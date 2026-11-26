@@ -4,10 +4,13 @@
 
 Berke Tezgöçen · November 2026
 
-[Paper (English, PDF)](paper/uda_en.pdf) · [Makale (Türkçe, PDF)](paper/uda_tr.pdf) · [Verification package](verification/)
+[Paper (English, PDF)](paper/uda_en.pdf) · [Makale (Türkçe, PDF)](paper/uda_tr.pdf) · [Lean 4 proof](lean/) · [Verification package](verification/)
 
-> **Status.** The proofs and certificates have so far been checked only by AI systems and by exact-arithmetic
-> verifiers, not yet by a human expert. Comments, checks and objections are welcome (open an issue).
+> **Status.** The main theorem (Theorem 1 at the half threshold, together with Lemmas 1–3) is
+> **formally verified in Lean 4 with Mathlib**: no `sorry`, only the three standard axioms, and
+> anyone can rebuild it (see [`lean/`](lean/)). The other results (Theorems 2–3, the asymptotic
+> constants) have been checked only by AI readings and exact-arithmetic verifiers. No human expert
+> has checked the proofs yet. Comments, checks and objections are welcome (open an issue).
 
 ---
 
@@ -57,11 +60,44 @@ which does not follow (the simplest counterexample is $x^2 + y^2 = 0$).
 - No radii or volumes for the open sets of Theorems 2 and 3, and nothing about measurement cost, statistical cost or
   robustness to noise. All results concern determinability from exact marginals.
 
+## Formal verification in Lean 4
+
+The main theorem is proved in Lean 4 with Mathlib (`lean/`, about 2,500 lines). The statement that
+is checked, in [`lean/UDA/Statement.lean`](lean/UDA/Statement.lean):
+
+```lean
+def MainStatement : Prop :=
+  ∀ n : ℕ, 139 ≤ n →
+    ∀ᵐ (ψ : Metric.sphere (0 : StateSpace n) 1) ∂(volume : Measure (StateSpace n)).toSphere,
+      IsUDA n ((n + 1) / 2 - 1) (ψ : StateSpace n).ofLp ∧
+        IsUGS n ((n + 1) / 2 - 1) (ψ : StateSpace n).ofLp
+```
+
+In words: for every `n ≥ 139`, almost every unit vector of `ℂ^(2^n)` (uniform sphere measure,
+i.e. Haar-random pure states) is uniquely determined among all density matrices by its marginals
+on all `⌈n/2⌉ − 1`-element sets of qubits, and is the unique zero-energy ground state of a positive
+semidefinite `(⌈n/2⌉ − 1)`-local Hamiltonian. `JonesLindenFails` states the consequence: for every
+`N ≥ 139` there is `K < N/2` whose `K`-UDA states have positive measure, with a null complement.
+All definitions (Pauli operators, partial traces, density matrices, UDA) are in
+[`lean/UDA/Defs.lean`](lean/UDA/Defs.lean).
+
+To check it yourself, install [elan](https://github.com/leanprover/elan), then:
+
+```bash
+cd lean
+lake exe cache get
+lake build
+```
+
+The build ends by printing `[propext, Classical.choice, Quot.sound]` as the axioms of each main
+theorem. Details, the file map and what is not formalized: [`lean/README.md`](lean/README.md).
+
 ## Repository contents
 
 ```
 paper/uda_en.tex, uda_en.pdf    English paper (12 pages, revtex4-2, pdflatex)
 paper/uda_tr.tex, uda_tr.pdf    Turkish version of the same paper
+lean/                           Lean 4 + Mathlib formalization of Theorem 1 (half threshold)
 verification/                   uda-verification 1.0.0: certificates, exact verifiers, finite-field
                                 witnesses, threshold checks, reference outputs (see verification/README.md)
 ```
@@ -100,8 +136,9 @@ This work was carried out with extensive use of AI systems. The derivations, pro
 verification code and the text of the paper were produced by AI agents (Anthropic Claude Opus models and OpenAI
 Codex/GPT models) directed by the author, who chose the problem, organized the work and the cross-checks, and takes
 responsibility for the manuscript. The proofs were checked by several independent AI readings from two different model
-families, and the computer-assisted parts by exact-arithmetic verifiers. **No human expert has yet checked the
-proofs**; we would be grateful for any such check.
+families, and the computer-assisted parts by exact-arithmetic verifiers. The Lean 4 formalization of the main
+theorem was written by Claude agents (Anthropic) and is checked by the Lean kernel. **No human expert has yet
+checked the proofs**; we would be grateful for any such check.
 
 ## Citation
 
@@ -146,5 +183,7 @@ rasyonel eşitsizliklere dayanan açık UDA kümeleri veriyoruz. Sonuç olarak J
 $N \ge 7$ için yanlıştır; her $N \ge 139$ için tersi hemen her durumda doğrudur. Üst sınırları etkilenmez. Hatalı
 adım, gerçel ikinci dereceden bir sistemde denklem sayımının gerçel bir çözüm ailesinin varlığına kanıt sayılmasıdır.
 
-**Durum:** İspatları ve sertifikaları şimdiye kadar yalnızca yapay zekâ sistemleri ve kesin aritmetikli
-doğrulayıcılar denetledi; henüz hiçbir insan uzman denetlemedi.
+**Durum:** Ana teorem (Teorem 1, yarı eşiği; Lemma 1–3 ile birlikte) Lean 4 ve Mathlib ile biçimsel olarak
+doğrulandı: `sorry` yok, yalnız üç standart aksiyom var ve herkes `lean/` dizininde kendisi derleyebilir.
+Öteki sonuçları (Teorem 2–3, asimptotik sabitler) yalnızca yapay zekâ sistemleri ve kesin aritmetikli
+doğrulayıcılar denetledi. İspatları henüz hiçbir insan uzman denetlemedi.
