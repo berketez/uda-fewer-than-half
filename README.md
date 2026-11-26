@@ -6,11 +6,12 @@ Berke Tezgöçen · November 2026
 
 [Paper (English, PDF)](paper/uda_en.pdf) · [Makale (Türkçe, PDF)](paper/uda_tr.pdf) · [Lean 4 proof](lean/) · [Verification package](verification/)
 
-> **Status.** The main theorem (Theorem 1 at the half threshold, together with Lemmas 1–3) is
-> **formally verified in Lean 4 with Mathlib**: no `sorry`, only the three standard axioms, and
-> anyone can rebuild it (see [`lean/`](lean/)). The other results (Theorems 2–3, the asymptotic
-> constants) have been checked only by AI readings and exact-arithmetic verifiers. No human expert
-> has checked the proofs yet. Comments, checks and objections are welcome (open an issue).
+> **Status.** Theorem 1 (all thresholds and the asymptotic form), Lemmas 1–3 and A, the small
+> cases of Theorem 3 and the upper bound of Theorem 2 are **formally verified in Lean 4 with
+> Mathlib**: no `sorry`, only the three standard axioms, and anyone can rebuild it (see
+> [`lean/`](lean/)). The large certificates of Theorem 3, the explicit bound of Theorem 2 (ii) and
+> the lower bounds have been checked only by AI readings and exact-arithmetic verifiers. No human
+> expert has checked the proofs yet. Comments, checks and objections are welcome (open an issue).
 
 ---
 
@@ -62,8 +63,8 @@ which does not follow (the simplest counterexample is $x^2 + y^2 = 0$).
 
 ## Formal verification in Lean 4
 
-The main theorem is proved in Lean 4 with Mathlib (`lean/`, about 2,500 lines). The statement that
-is checked, in [`lean/UDA/Statement.lean`](lean/UDA/Statement.lean):
+The results below are proved in Lean 4 with Mathlib (`lean/`, 27 files, about 5,000 lines). The
+main statement, in [`lean/UDA/Statement.lean`](lean/UDA/Statement.lean):
 
 ```lean
 def MainStatement : Prop :=
@@ -76,10 +77,24 @@ def MainStatement : Prop :=
 In words: for every `n ≥ 139`, almost every unit vector of `ℂ^(2^n)` (uniform sphere measure,
 i.e. Haar-random pure states) is uniquely determined among all density matrices by its marginals
 on all `⌈n/2⌉ − 1`-element sets of qubits, and is the unique zero-energy ground state of a positive
-semidefinite `(⌈n/2⌉ − 1)`-local Hamiltonian. `JonesLindenFails` states the consequence: for every
-`N ≥ 139` there is `K < N/2` whose `K`-UDA states have positive measure, with a null complement.
-All definitions (Pauli operators, partial traces, density matrices, UDA) are in
-[`lean/UDA/Defs.lean`](lean/UDA/Defs.lean).
+semidefinite `(⌈n/2⌉ − 1)`-local Hamiltonian. All definitions (Pauli operators, partial traces,
+density matrices, UDA) are in [`lean/UDA/Defs.lean`](lean/UDA/Defs.lean).
+
+Also proved:
+
+| Lean statement | Content |
+|---|---|
+| `Thm1FourTenths`, `Thm1Kappa`, `Thm1Asymptotic` | Theorem 1 with `⌈0.4n⌉` (`n ≥ 996`), `⌈2κ_c n + 4 log₂ n⌉` (`n ≥ 274`), and `2κ_c n + O(log n)` |
+| `KappaCStatement` | `κ_c` exists, is unique, and `0.1892896 < κ_c < 0.1892897` |
+| `JonesLindenFails` | for every `N ≥ 139` there is `K < N/2` whose `K`-UDA states have positive measure and a null complement |
+| `JonesLindenFailsSmall` | positive measure of `K`-UDA states at `(N, K) = (8, 3)`, `(4, 2)`, `(6, 3)` |
+| `Lemma1Statement`, `GenericityStatement`, `Lemma3Statement` | Lemmas 1–3 |
+| `PropTopStatement`, `LemmaAStatement` | simple top eigenvectors are UDA; Lemma A (certificate to open set) |
+| `Thm3Small` | Theorem 3 for `(4, 2)`, `(6, 3)`, `(8, 3)` |
+| `Thm2Upper` | Theorem 2 (i), upper bound `κ_c n + O(log n)` |
+
+Not formalized: Theorem 3 for `(10, 4)` and `(12, 4)` and the large certificates (too large for the
+Lean kernel; see `verification/`), the explicit bound of Theorem 2 (ii), and the lower bounds.
 
 To check it yourself, install [elan](https://github.com/leanprover/elan), then:
 
@@ -89,15 +104,17 @@ lake exe cache get
 lake build
 ```
 
-The build ends by printing `[propext, Classical.choice, Quot.sound]` as the axioms of each main
-theorem. Details, the file map and what is not formalized: [`lean/README.md`](lean/README.md).
+The build prints `[propext, Classical.choice, Quot.sound]` as the axioms of each of the 14 main
+theorems. Details, the file map and the differences from the paper's proofs:
+[`lean/README.md`](lean/README.md).
 
 ## Repository contents
 
 ```
 paper/uda_en.tex, uda_en.pdf    English paper (12 pages, revtex4-2, pdflatex)
 paper/uda_tr.tex, uda_tr.pdf    Turkish version of the same paper
-lean/                           Lean 4 + Mathlib formalization of Theorem 1 (half threshold)
+lean/                           Lean 4 + Mathlib formalization (Theorem 1, Lemmas 1–3 and A, small cases of
+                                Theorem 3, upper bound of Theorem 2)
 verification/                   uda-verification 1.0.0: certificates, exact verifiers, finite-field
                                 witnesses, threshold checks, reference outputs (see verification/README.md)
 ```
@@ -137,7 +154,7 @@ verification code and the text of the paper were produced by AI agents (Anthropi
 Codex/GPT models) directed by the author, who chose the problem, organized the work and the cross-checks, and takes
 responsibility for the manuscript. The proofs were checked by several independent AI readings from two different model
 families, and the computer-assisted parts by exact-arithmetic verifiers. The Lean 4 formalization of the main
-theorem was written by Claude agents (Anthropic) and is checked by the Lean kernel. **No human expert has yet
+results was written by Claude agents (Anthropic) and is checked by the Lean kernel. **No human expert has yet
 checked the proofs**; we would be grateful for any such check.
 
 ## Citation
@@ -183,7 +200,8 @@ rasyonel eşitsizliklere dayanan açık UDA kümeleri veriyoruz. Sonuç olarak J
 $N \ge 7$ için yanlıştır; her $N \ge 139$ için tersi hemen her durumda doğrudur. Üst sınırları etkilenmez. Hatalı
 adım, gerçel ikinci dereceden bir sistemde denklem sayımının gerçel bir çözüm ailesinin varlığına kanıt sayılmasıdır.
 
-**Durum:** Ana teorem (Teorem 1, yarı eşiği; Lemma 1–3 ile birlikte) Lean 4 ve Mathlib ile biçimsel olarak
-doğrulandı: `sorry` yok, yalnız üç standart aksiyom var ve herkes `lean/` dizininde kendisi derleyebilir.
-Öteki sonuçları (Teorem 2–3, asimptotik sabitler) yalnızca yapay zekâ sistemleri ve kesin aritmetikli
-doğrulayıcılar denetledi. İspatları henüz hiçbir insan uzman denetlemedi.
+**Durum:** Teorem 1 (bütün eşikler ve asimptotik biçim), Lemma 1–3 ve Lemma A, Teorem 3'ün küçük vakaları
+((4,2), (6,3), (8,3)) ve Teorem 2'nin üst sınırı Lean 4 ve Mathlib ile biçimsel olarak doğrulandı: `sorry` yok,
+yalnız üç standart aksiyom var ve herkes `lean/` dizininde kendisi derleyebilir. Teorem 3'ün büyük
+sertifikalarını, Teorem 2 (ii)'nin açık sınırını ve alt sınırları yalnızca yapay zekâ sistemleri ve kesin
+aritmetikli doğrulayıcılar denetledi. İspatları henüz hiçbir insan uzman denetlemedi.
