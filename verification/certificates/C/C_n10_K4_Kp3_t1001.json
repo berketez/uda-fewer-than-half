@@ -1,0 +1,13 @@
+{
+ "aciklama": "U8 C(n,K') sertifikası: t_G, f_G parametreleri. U1 sertifikasıyla (sha256) birlikte okunur.",
+ "u1_sertifika": "certificates/S/S_n10_K4_t1001.json",
+ "u1_sha256": "11d3144f10ed33bdb24ac2fe2b1e76418866e0274383ad439caab336fa958534",
+ "n": 10,
+ "Kp": 3,
+ "t_G": 10202439536649,
+ "f_G": 6,
+ "bilgi": {
+  "lmin_float": 20404879073299.473,
+  "Xmax_float": 236956542377516.0
+ }
+}

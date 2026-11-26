@@ -1,0 +1,30 @@
+kappa_c = 0.1892896249, 2 kappa_c = 0.3785792498, f'(kappa_c) = 3.683554
+f(0.195) - 1 = 0.0208823579; 2^7 (f(0.195)-1) = 2.6729418
+f'(0.195) = 3.630477
+[t=7, L=floor(0.195 m)] floating point: last m where (*) fails = 1646 (scan m <= 60000)
+  integer confirmation m in [1346,3146]: last failing m = 1646
+  m=1646: L=320, 2^7 log2(B/2^m) - 2m = -10.354
+  m=1647: L=321, 2^7 log2(B/2^m) - 2m = 364.548
+  m=1656: L=322, 2^7 log2(B/2^m) - 2m = 19.078
+  m=1746: L=340, 2^7 log2(B/2^m) - 2m = 284.028
+  m=5000: L=975, 2^7 log2(B/2^m) - 2m = 2595.094
+  m=20000: L=3900, 2^7 log2(B/2^m) - 2m = 12561.238
+  m=60000: L=11700, 2^7 log2(B/2^m) - 2m = 39377.476
+  analytic lower bound g_low(M=5000) = 2092.33; derivative of g_low ~ 128(f-1) - 2 - 128/(2 m ln2) = 0.6545 > 0 (m >= M)
+[c=0.4 choice] N0 = 1654  (for all n >= N0: (*) and K(n) <= ceil(0.4 n); scan n < 200000, beyond: K <= 0.39 n + 12.27 <= 0.4 n, n >= 1227)
+[log choice] last n where (*) fails = None; last n with K > ceil(2 kc n + 4 log2 n) = 273 (scan n <= 200000)
+  n=100: t=7, L=25, K=65, 2kc n + 4log2 n = 64.43, K/n = 0.6500
+  n=1000: t=10, L=198, K=417, 2kc n + 4log2 n = 418.44, K/n = 0.4170
+  n=10000: t=14, L=1904, K=3837, 2kc n + 4log2 n = 3838.94, K/n = 0.3837
+  n=100000: t=17, L=18943, K=37921, 2kc n + 4log2 n = 37924.36, K/n = 0.3792
+[optimised Lemma 3] first n with K < n/2: (127, 63, 6, 25)
+[optimised Lemma 3] last n with K > ceil(0.4 n) (n <= 3000): 995
+  number of n after first_half with K >= n/2: 6; examples [128, 129, 130, 133, 134, 138]
+  n=50: K=33 (t=4, L=12), K/n=0.6600
+  n=100: K=53 (t=5, L=21), K/n=0.5300
+  n=200: K=93 (t=6, L=40), K/n=0.4650
+  n=500: K=209 (t=7, L=97), K/n=0.4180
+  n=1000: K=399 (t=9, L=190), K/n=0.3990
+  n=2000: K=781 (t=9, L=381), K/n=0.3905
+  n=3000: K=1161 (t=9, L=571), K/n=0.3870
+  integer confirmation (n=127, t=6, L=25): (*) = True; with L-1 = False

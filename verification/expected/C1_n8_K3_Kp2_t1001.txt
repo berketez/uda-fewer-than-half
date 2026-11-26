@@ -1,0 +1,10 @@
+C certificate certificates/C/C_n8_K3_Kp2_t1001.json
+  U1 (S certificate): certificates/S/S_n8_K3_t1001.json (sha256 matches); n=8, K=3, target C(n,2), D=256
+  (V1) θ = 1641194.082624 > s = 1592820; r̂ = 3.013081e+00   [exact]
+  A: N=512, t=23108952794, f=10, ‖E‖_∞=180137845194 vs 2^(2f)t=24231493284921344 (ratio 7.434e-06)  ⇒ λ_min(A) ≥ 2.310878e+10  [0.1 s]
+  (V2) A ≻ 0 ⇒ λ₂(H) < s; λ₁ > s > λ₂: ψ₀ is well defined and simple.
+  (V3) G built: M'+1 = 277 Paulis (I included, |P| ≤ 2); tr(G) = (M'+1)·w†w holds; spot checks 20/20  [0.1 s]
+  G: N=512, t=17739795533, f=8, ‖E‖_∞=175316747942 vs 2^(2f)t=1162595240050688 (ratio 1.508e-04)  ⇒ λ_min(G) ≥ 1.773712e+10  [0.2 s]
+  (V4) 2(M'+1) r̂²/(θ−s)² = 2.1493e-06  <  τ'/w†w = 1.1049e-03  (ratio 1.945e-03)
+      ⇒ σ_D(B^C_ψ₀) ≥ 0.03177 > 0
+ALL PASSED: C(8,2) holds at ψ₀ (span_C{Pψ₀ : |P| ≤ 2} = C^256).  [0.2 s]

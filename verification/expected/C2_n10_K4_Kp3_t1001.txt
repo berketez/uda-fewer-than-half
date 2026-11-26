@@ -1,0 +1,7 @@
+[verify_C2] certificates/C/C_n10_K4_Kp3_t1001.json: n=10, K=4, target C(n,3)
+  θ = 8542698.574779 > s = 7492352; r̂ = 1.751805e+01  [exact; tensor Paulis]
+  (V2) n > 8: not done here (covered by verify_C1.py V2 and by the S verifier D2).
+  (V3) M'+1 = 3676 labels (filter over 4^10); G built  [9.1 s]
+  G (complex residual): N=1024, t=10202439536649, f=6, ‖E‖≤441980793461 vs 2^(2f)t=41789192342114304 (ratio 1.058e-05) ⇒ λ_min ≥ 1.020233e+13  [10.9 s]
+  (V4) lhs = 2.0451e-06 < rhs = 2.4199e-01
+ALL PASSED [verify_C2]: C(10,3) holds at ψ₀.  [10.9 s]

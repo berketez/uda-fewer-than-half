@@ -1,0 +1,10 @@
+Certificate certificates/S/S_n10_K4_t1001.json: n = 10, K = 4, D = 1024, mode = int64
+  (D0) H = Σ c_P P built: 20685 Paulis, weights ≤ 4, Hermitian, max|c| = 65536
+  (D1) θ = w†Hw/w†w = 8542698.574779 > s = 7492352  ⇒  λ₁(H) ≥ θ > s   [exact]
+  A: N=2048, t=1319318415327, f=8, ‖E‖_∞ = 583419302245 < 2^(2f)·t = 86462851666870272 (ratio 6.748e-06)  ⇒  λ_min(A) ≥ 1.319310e+12
+  (D2) A ≻ 0  ⇒  H ≺ sI + (q/p) zz†  ⇒  λ₂(H) < s.  Together: λ₁ > s > λ₂, λ₁ is SIMPLE.
+  (D3) G_w = B_w B_wᵀ built in exact integers (M = 20685 Paulis + w, iw; int64; spot checks 36/36)  [360.9 s]
+  G: N=2048, t=31620678855552, f=6, ‖E‖_∞ = 724735666119 < 2^(2f)·t = 129518300592340992 (ratio 5.596e-06)  ⇒  λ_min(G) ≥ 3.162050e+13
+  (D4) r̂ = 1.7518e+01, θ − s = 1050346.5748; 2(M+2) r̂²/(θ−s)² = 1.1509e-05 < σ_min(B_ŵ)² ≥ 7.5000e-01
+      ⇒ σ_min(B_ψ₀) ≥ 0.8626 > 0  ⇒  rank_ℝ = 2D = 2048.
+ALL PASSED (n = 10, K = 4): ψ₀ is UDA with its K-body marginals; dΦ is onto ⇒ the UDA set contains a nonempty open set.  [364.7 s]

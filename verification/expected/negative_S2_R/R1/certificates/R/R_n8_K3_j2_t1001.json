@@ -1,0 +1,9 @@
+{
+ "aciklama": "Corrupted R certificate (negative test): R(2) at psi_8 is false.",
+ "u1_sertifika": "certificates/S/S_n8_K3_t1001.json",
+ "u1_sha256": "6dae139be49ffcf677411f56fd07a3e5bfd40416afa53f49e2ac0f0b64943fd9",
+ "n": 8,
+ "j": 2,
+ "t_G": 1000,
+ "f_G": 8
+}

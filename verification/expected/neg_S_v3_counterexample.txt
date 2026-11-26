@@ -1,0 +1,4 @@
+Certificate certificates/negative/S_overflow_p.json: n = 2, K = 2, D = 4, mode = int64
+  (D0) H = Σ c_P P built: 1 Paulis, weights ≤ 2, Hermitian, max|c| = 1
+  (D1) θ = w†Hw/w†w = 1.000000 > s = 0  ⇒  λ₁(H) ≥ θ > s   [exact]
+FAILED: p = z†z overflow

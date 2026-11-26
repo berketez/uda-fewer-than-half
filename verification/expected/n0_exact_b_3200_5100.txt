@@ -1,0 +1,1 @@
+[b] t=7, L=floor(0.195m), m in [3200,5100]: number of m where (*) fails in integers: 0 []

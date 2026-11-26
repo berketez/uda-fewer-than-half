@@ -1,0 +1,1 @@
+b=4 c=1 seed=1: v ∈ {0,1}^16 (‖v‖²=7), p=1000037, ι=320900; columns 13; rank_Fp = 13/16 ⇒ witness INSUFFICIENT  [0.0 s]

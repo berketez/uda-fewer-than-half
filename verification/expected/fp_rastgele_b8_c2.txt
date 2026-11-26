@@ -1,0 +1,1 @@
+b=8 c=2 seed=1: v ∈ {0,1}^256 (‖v‖²=128), p=1000037, ι=320900; columns 277; rank_Fp = 256/256 ⇒ C(b,c) GENERIC (witness valid)  [0.0 s]

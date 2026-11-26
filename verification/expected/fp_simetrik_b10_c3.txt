@@ -1,0 +1,4 @@
+b=10 c=3 seed=1 [Z^b-symmetric witness]: sector size 512; columns even 1796, odd 1880; p=1000037
+  even sector rank_Fp = 512/512  [0.9 s]
+  odd sector rank_Fp = 512/512  [1.8 s]
+  total rank = 1024/1024 ⇒ C(b,c) GENERIC (witness valid)

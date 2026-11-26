@@ -1,0 +1,6 @@
+‖v‖² = 132
+number of columns: 277
+p = 1009, i ↦ 469: rank of the full matrix = 256 / 256
+p = 1013, i ↦ 45: rank of the full matrix = 256 / 256
+p = 10009, i ↦ 3303: rank of the full matrix = 256 / 256
+determinant of the first 256 columns in the witness's column order (mod 1009, i ↦ 469): 62

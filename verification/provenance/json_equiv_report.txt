@@ -1,0 +1,164 @@
+# Output of: python3 tools/json_equiv.py tools/json_map.json --orig-root <orig> --redact-prefix <orig>/ --redact-word <name> --redact-word <name>
+# Generated 2026-11-10 13:47 +03.
+
+== certificates/S/S_n4_K2_t1001.json
+   original: <orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n4_K2_t1001.json
+   sha256 original: 1ded57255555e9a23a7025bb0d81b3ac37debfc44e83491b307edba60a53c430
+   sha256 package:  1ded57255555e9a23a7025bb0d81b3ac37debfc44e83491b307edba60a53c430
+   BYTE-IDENTICAL
+
+== certificates/S/S_n6_K3_t1001.json
+   original: <orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n6_K3_t1001.json
+   sha256 original: 9cc56b5dad44e6b57aa59ca850b8e6414bda799bea9ec897fad13aa1809f5ea5
+   sha256 package:  9cc56b5dad44e6b57aa59ca850b8e6414bda799bea9ec897fad13aa1809f5ea5
+   BYTE-IDENTICAL
+
+== certificates/S/S_n8_K3_t1001.json
+   original: <orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n8_K3_t1001.json
+   sha256 original: 6dae139be49ffcf677411f56fd07a3e5bfd40416afa53f49e2ac0f0b64943fd9
+   sha256 package:  6dae139be49ffcf677411f56fd07a3e5bfd40416afa53f49e2ac0f0b64943fd9
+   BYTE-IDENTICAL
+
+== certificates/S/S_n8_K3_t1002.json
+   original: <orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n8_K3_t1002.json
+   sha256 original: dfef195a26919b5e6586e979da68a95c09197f960fd023cd3f3f69a1b83ca24d
+   sha256 package:  dfef195a26919b5e6586e979da68a95c09197f960fd023cd3f3f69a1b83ca24d
+   BYTE-IDENTICAL
+
+== certificates/S/S_n8_K3_t1003.json
+   original: <orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n8_K3_t1003.json
+   sha256 original: e304cc46f366e8306564e6953443a42c36970ec4cccc53397174140ed0ad1dbb
+   sha256 package:  e304cc46f366e8306564e6953443a42c36970ec4cccc53397174140ed0ad1dbb
+   BYTE-IDENTICAL
+
+== certificates/S/S_n10_K4_t1001.json
+   original: <orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n10_K4_t1001.json
+   sha256 original: 11d3144f10ed33bdb24ac2fe2b1e76418866e0274383ad439caab336fa958534
+   sha256 package:  11d3144f10ed33bdb24ac2fe2b1e76418866e0274383ad439caab336fa958534
+   BYTE-IDENTICAL
+
+== certificates/S/S_n12_K4_t1001.json
+   original: <orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n12_K4_t1001.json
+   sha256 original: bac0d90436055a13b994ceb62a4fafb905079d50616d78e4ceaf707dc5db8528
+   sha256 package:  bac0d90436055a13b994ceb62a4fafb905079d50616d78e4ceaf707dc5db8528
+   BYTE-IDENTICAL
+
+== certificates/C/C_n10_K4_Kp3_t1001.json
+   original: <orig>/faz2/yaratici/u8_yapistirma/sertifika/C_n10_K4_Kp3_t1001.json
+   sha256 original: 6744a0b88074f9958a15ea53e3213213e33a990f94cfcba04351670e382af6f9
+   sha256 package:  218533581e9faf1159f002d49958c8bc7ac2e1652002e2b0c0b61262c6212353
+   key 'u1_sertifika' differs (declared):
+      original: '<orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n10_K4_t1001.json'
+      package:  'certificates/S/S_n10_K4_t1001.json'
+   all other keys identical (7 keys): ACCEPTED
+
+== certificates/C/C_n4_K2_Kp2_t1001.json
+   original: <orig>/faz2/yaratici/u8_yapistirma/sertifika/C_n4_K2_Kp2_t1001.json
+   sha256 original: a716b06f09230f2f85d0af97c0ce1616aa79544684f2a8033b9d076f3d5493ba
+   sha256 package:  d0bf2ceaeeb2882842c0a97776961b560e91bd8b8463d87e4afcd321d3d67cb2
+   key 'u1_sertifika' differs (declared):
+      original: '<orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n4_K2_t1001.json'
+      package:  'certificates/S/S_n4_K2_t1001.json'
+   all other keys identical (7 keys): ACCEPTED
+
+== certificates/C/C_n6_K3_Kp2_t1001.json
+   original: <orig>/faz2/yaratici/u8_yapistirma/sertifika/C_n6_K3_Kp2_t1001.json
+   sha256 original: a2b8ae02e23b232fb016e1f6c08460cf757fbf54ace4abaee98f6024e2aa0019
+   sha256 package:  8b1b5a3e81bd01455daee16c7153e4a0ab399653270d1b601b9d1ff8a8fab100
+   key 'u1_sertifika' differs (declared):
+      original: '<orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n6_K3_t1001.json'
+      package:  'certificates/S/S_n6_K3_t1001.json'
+   all other keys identical (7 keys): ACCEPTED
+
+== certificates/C/C_n8_K3_Kp2_t1001.json
+   original: <orig>/faz2/yaratici/u8_yapistirma/sertifika/C_n8_K3_Kp2_t1001.json
+   sha256 original: 8df1a4210c156c9d1af7e22ac8ec2e1aa01e236ef73ccd3c6d3efd1ff07bed43
+   sha256 package:  ddf2824bb60a23935d82a5d349c24e961047f3e434aa323dccfc6930a48b79f6
+   key 'u1_sertifika' differs (declared):
+      original: '<orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n8_K3_t1001.json'
+      package:  'certificates/S/S_n8_K3_t1001.json'
+   all other keys identical (7 keys): ACCEPTED
+
+== certificates/C/C_n8_K3_Kp2_t1002.json
+   original: <orig>/faz2/yaratici/u8_yapistirma/sertifika/C_n8_K3_Kp2_t1002.json
+   sha256 original: 00f458c23b163bd3382e486d5f62e1afc0b6ce836c05509f2743a214044b197c
+   sha256 package:  aa7f1ef3ca60fb62623083b98bc41a4a488be6bd19dbafbc5fb045ca36fa4e16
+   key 'u1_sertifika' differs (declared):
+      original: '<orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n8_K3_t1002.json'
+      package:  'certificates/S/S_n8_K3_t1002.json'
+   all other keys identical (7 keys): ACCEPTED
+
+== certificates/C/C_n8_K3_Kp2_t1003.json
+   original: <orig>/faz2/yaratici/u8_yapistirma/sertifika/C_n8_K3_Kp2_t1003.json
+   sha256 original: bc99d982bb3d254b946a5038e851733eca517012789555cf8a79519ec4d06812
+   sha256 package:  7ae50216bdd7480570108ccff7729c35d2cb25f6899a02871a4a43ba1d88c268
+   key 'u1_sertifika' differs (declared):
+      original: '<orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n8_K3_t1003.json'
+      package:  'certificates/S/S_n8_K3_t1003.json'
+   all other keys identical (7 keys): ACCEPTED
+
+== certificates/R/R_n10_K4_j3_t1001.json
+   original: <orig>/faz2/yaratici/u8_yapistirma/sertifika/R_n10_K4_j3_t1001.json
+   sha256 original: 4a223e03bd20446ceda4722e520d9180d5611c454c876f18455fc8de18ad8dc9
+   sha256 package:  36a2cb7324681e5b311151fe736d751eef806166a331ecc303732f1ac0c0b4e4
+   key 'u1_sertifika' differs (declared):
+      original: '<orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n10_K4_t1001.json'
+      package:  'certificates/S/S_n10_K4_t1001.json'
+   all other keys identical (7 keys): ACCEPTED
+
+== certificates/R/R_n4_K2_j2_t1001.json
+   original: <orig>/faz2/yaratici/u8_yapistirma/sertifika/R_n4_K2_j2_t1001.json
+   sha256 original: 58d4287b3b1ad671ffc688184e0722f626ec852c23ebf3589e9b62090f2c8bc2
+   sha256 package:  8b5bef0f13e34119fe2e2b1f2a5acfc028081a6e9e40a1286b2d8e33bbda12db
+   key 'u1_sertifika' differs (declared):
+      original: '<orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n4_K2_t1001.json'
+      package:  'certificates/S/S_n4_K2_t1001.json'
+   all other keys identical (7 keys): ACCEPTED
+
+== certificates/R/R_n6_K3_j2_t1001.json
+   original: <orig>/faz2/yaratici/u8_yapistirma/sertifika/R_n6_K3_j2_t1001.json
+   sha256 original: 863a3fec73ecd37a8a12516962cc58736bca005e0f67c177a943f38101262fda
+   sha256 package:  8863fbe16bddce8210438b06e6530c541b99755d9222fe7abb30258a456de02a
+   key 'u1_sertifika' differs (declared):
+      original: '<orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n6_K3_t1001.json'
+      package:  'certificates/S/S_n6_K3_t1001.json'
+   all other keys identical (7 keys): ACCEPTED
+
+== certificates/R/R_n8_K3_j3_t1001.json
+   original: <orig>/faz2/yaratici/u8_yapistirma/sertifika/R_n8_K3_j3_t1001.json
+   sha256 original: fcd8c29ee9a4279af861329c9c5e50b36bf8e9d6054111b980b8ef97842e4eb7
+   sha256 package:  dd0274d42ee41b6f2589aa0e8757ee3628c802dffa2d5ea97dc0786e5b83d2c5
+   key 'u1_sertifika' differs (declared):
+      original: '<orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n8_K3_t1001.json'
+      package:  'certificates/S/S_n8_K3_t1001.json'
+   all other keys identical (7 keys): ACCEPTED
+
+== certificates/R/R_n8_K3_j3_t1002.json
+   original: <orig>/faz2/yaratici/u8_yapistirma/sertifika/R_n8_K3_j3_t1002.json
+   sha256 original: 4d9166152a3c5f850afbb8a4660d9e7645e3da75062ad37ea08e410eadeef625
+   sha256 package:  e9418e910e434d24dcde81405f532cf504aabcdb68b1a7f6bc6d5aba051600e3
+   key 'u1_sertifika' differs (declared):
+      original: '<orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n8_K3_t1002.json'
+      package:  'certificates/S/S_n8_K3_t1002.json'
+   all other keys identical (7 keys): ACCEPTED
+
+== certificates/R/R_n8_K3_j3_t1003.json
+   original: <orig>/faz2/yaratici/u8_yapistirma/sertifika/R_n8_K3_j3_t1003.json
+   sha256 original: 7e77c7f919fdc3bc50a7de9147e5a9f071e085774b558c5a0e388af621715339
+   sha256 package:  b702b09ee40bb6e5200bf52785c7d1ce9d2407d89e087a33274250eb3cf8e848
+   key 'u1_sertifika' differs (declared):
+      original: '<orig>/faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n8_K3_t1003.json'
+      package:  'certificates/S/S_n8_K3_t1003.json'
+   all other keys identical (7 keys): ACCEPTED
+
+== certificates/negative/S_overflow_p.json
+   original: <orig>/faz2/ana_oturum_betikleri/2026-11-05_karsi_ornek_p_tasmasi.json
+   sha256 original: 8ebb81596632027c614a85a1c23edaaf32ed767ade85d18bf037c5691d738c9c
+   sha256 package:  507439e2fb50457360dba37711dd8c9cfe0c9ef3673de682ea67c985afa4813a
+   key 'aciklama' differs (declared):
+      original: '<redacted> <redacted> karşı örneği (yapay): H = diag(1,1,-1,-1), λ1 = λ2 = 1 (BASİT DEĞİL). Doğrulayıcı reddetmeli.'
+      package:  'Artificial counterexample (constructed during an independent review of the verifier): H = diag(1,1,-1,-1), λ1 = λ2 = 1 (NOT simple). The S verifier must reject it.'
+   all other keys identical (13 keys): ACCEPTED
+
+SUMMARY: 20 files, 7 byte-identical; ALL ACCEPTED
+# exit status: 0

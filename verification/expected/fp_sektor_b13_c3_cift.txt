@@ -1,0 +1,2 @@
+b=13 c=3 seed=1 sector=cift: 4096 rows × 4122 columns, p=1000037  [0.3 s]
+  cift sector rank_Fp = 4096/4096  [121.0 s]

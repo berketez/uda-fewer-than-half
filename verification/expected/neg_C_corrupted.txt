@@ -1,0 +1,25 @@
+N1 C(8,1) (false: 25 < 256)                | verify_C1.py       | REJECTED | FAILED: G: Cholesky hint could not be produced (X − tI does not look positive definite)
+N1 C(8,1) (false: 25 < 256)                | verify_C2.py       | REJECTED | FAILED: G: complex Cholesky hint could not be produced
+N2 t_G ×3                                  | verify_C1.py       | REJECTED | FAILED: G: Cholesky hint could not be produced (X − tI does not look positive definite)
+N2 t_G ×3                                  | verify_C2.py       | REJECTED | FAILED: G: complex Cholesky hint could not be produced
+N3 w corrupted (every 7th entry −)         | verify_C1.py       | REJECTED | FAILED: θ ≤ s
+N3 w corrupted (every 7th entry −)         | verify_C2.py       | REJECTED | FAILED: θ ≤ s
+N4 s = 1641195 > θ                         | verify_C1.py       | REJECTED | FAILED: θ ≤ s
+N4 s = 1641195 > θ                         | verify_C2.py       | REJECTED | FAILED: θ ≤ s
+N5 s = 1540000 < λ₂                        | verify_C1.py       | REJECTED | FAILED: A: Cholesky hint could not be produced (X − tI does not look positive definite)
+N5 s = 1540000 < λ₂                        | verify_C2.py       | REJECTED | FAILED: A: complex Cholesky hint could not be produced
+N6 sign of c[IZIIXIIZ] flipped             | verify_C1.py       | REJECTED | FAILED: Davis–Kahan transfer insufficient
+N6 sign of c[IZIIXIIZ] flipped             | verify_C2.py       | REJECTED | FAILED: Davis–Kahan transfer insufficient
+N7 w ← seed 1002 (H of seed 1001)          | verify_C1.py       | REJECTED | FAILED: θ ≤ s
+N7 w ← seed 1002 (H of seed 1001)          | verify_C2.py       | REJECTED | FAILED: θ ≤ s
+N8 sha256 mismatch                         | verify_C1.py       | REJECTED | FAILED: sha256 of the S (U1) certificate does not match
+N8 sha256 mismatch                         | verify_C2.py       | REJECTED | FAILED: sha256
+N9 n=4 t_G ×3 (Bareiss route)              | verify_C1.py       | REJECTED | FAILED: G: Cholesky hint could not be produced (X − tI does not look positive definite)
+N9 n=4 t_G ×3 (Bareiss route)              | verify_C2.py       | REJECTED | FAILED: G − tI: Bareiss leading minor 0 ≤ 0
+N10 C(4,1) (false: 13 < 16)                | verify_C1.py       | REJECTED | FAILED: G: Cholesky hint could not be produced (X − tI does not look positive definite)
+N10 C(4,1) (false: 13 < 16)                | verify_C2.py       | REJECTED | FAILED: G − tI: Bareiss leading minor 0 ≤ 0
+N11 z ~ 2^31.5 (z†z int64 overflow)        | verify_C1.py       | REJECTED | FAILED: A overflow
+N11 z ~ 2^31.5 (z†z int64 overflow)        | verify_C2.py       | REJECTED | FAILED: A overflow
+N12 w × 2^21 (G/Hw int64 overflow)         | verify_C1.py       | REJECTED | FAILED: Hw overflow
+N12 w × 2^21 (G/Hw int64 overflow)         | verify_C2.py       | REJECTED | FAILED: Hw overflow
+NEGATIVE CHECK RESULT: all rejected

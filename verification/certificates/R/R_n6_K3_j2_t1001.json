@@ -1,0 +1,12 @@
+{
+ "aciklama": "U8 R(j) sertifikası (t, f). U1 sertifikasıyla (sha256) okunur.",
+ "u1_sertifika": "certificates/S/S_n6_K3_t1001.json",
+ "u1_sha256": "9cc56b5dad44e6b57aa59ca850b8e6414bda799bea9ec897fad13aa1809f5ea5",
+ "n": 6,
+ "j": 2,
+ "t_G": 18030015919,
+ "f_G": 8,
+ "bilgi": {
+  "lmin_float": 36060031839.993774
+ }
+}

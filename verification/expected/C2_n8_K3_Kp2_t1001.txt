@@ -1,0 +1,8 @@
+[verify_C2] certificates/C/C_n8_K3_Kp2_t1001.json: n=8, K=3, target C(n,2)
+  θ = 1641194.082624 > s = 1592820; r̂ = 3.013081e+00  [exact; tensor Paulis]
+  A (complex residual): N=256, t=11554476397, f=9, ‖E‖≤90705776144 vs 2^(2f)t=3028936660615168 (ratio 2.995e-05) ⇒ λ_min ≥ 1.155413e+10  [1.6 s]
+  (V2) A ≻ 0 (complex residual method)
+  (V3) M'+1 = 277 labels (filter over 4^8); G built  [1.7 s]
+  G (complex residual): N=256, t=17739795533, f=8, ‖E‖≤165968909120 vs 2^(2f)t=1162595240050688 (ratio 1.428e-04) ⇒ λ_min ≥ 1.773726e+10  [1.7 s]
+  (V4) lhs = 2.1493e-06 < rhs = 1.1049e-03
+ALL PASSED [verify_C2]: C(8,2) holds at ψ₀.  [1.7 s]

@@ -1,0 +1,4 @@
+== ψ_a = S_n8_K3_t1001.json (n=8) ⊗ ψ_b = S_n4_K2_t1001.json (n=4) → n = 12, D = 4096; K = [3, 4]; method gram
+  [gram] buckets of G and N ready  [9.3 s]
+  [gram] K=3: rank_R = 4286/8192; λ_min(outside the kernel) = 5.2628e-03 (σ = 7.2545e-02), next = 1.507e-14; λ_max = 2.034e+01  [67.2 s]
+  [gram] K=4: rank_R = 8192/8192; λ_min(outside the kernel) = 3.4591e-03 (σ = 5.8814e-02), next = 0.000e+00; λ_max = 5.833e+01  [127.8 s]

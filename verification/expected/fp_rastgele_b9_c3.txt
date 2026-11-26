@@ -1,0 +1,1 @@
+b=9 c=3 seed=1: v ∈ {0,1}^512 (‖v‖²=262), p=1000037, ι=320900; columns 2620; rank_Fp = 512/512 ⇒ C(b,c) GENERIC (witness valid)  [1.4 s]

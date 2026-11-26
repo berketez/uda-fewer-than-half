@@ -1,0 +1,6 @@
+(i) Kronecker check (n = 3, 64 Paulis): max |difference| = 0.0
+(ii) s > λ₁ (D1 must fail): exit code 1; FAILED: θ ≤ s
+(ii) s < λ₂ (D2 must fail): exit code 1; FAILED: A: Cholesky hint could not be produced
+(ii) label of weight K+1 (D0 must fail): exit code 1; FAILED: weight 4 ∉ [1, K]: XXXXIIII
+(ii) τ too large (D3 must fail): exit code 1; FAILED: G: Cholesky hint could not be produced
+(ii) w coarse (D4 must fail): exit code 1; FAILED: Davis–Kahan transfer insufficient

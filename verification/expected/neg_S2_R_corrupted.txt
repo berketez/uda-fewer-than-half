@@ -1,0 +1,7 @@
+S2-a s < λ₂ (s = int(E2) − 10)               | verify_S2    | REJECTED | exit 1 | last stdout line: 'A ≻ 0 (Sylvester/Bareiss, 32 leading minors): False' | last stderr line: 'AssertionError'
+S2-b τ ×3                                    | verify_S2    | REJECTED | exit 1 | last stdout line: 'G − τI ≻ 0 (Sylvester/Bareiss, 32 leading minors): False' | last stderr line: 'AssertionError'
+S2-c label of weight K+1                     | verify_S2    | REJECTED | exit 1 | last stdout line: '' | last stderr line: 'AssertionError'
+R-1 R(2) at ψ8, false (278 < 512), t_G = 1000 | verify_R     | REJECTED | exit 1 | last stdout line: 'FAILED: G_R: Cholesky hint could not be produced (X − tI does not look positive definite)' | last stderr line: ''
+R-2 genuine R(3) at ψ8 with t_G ×3           | verify_R     | REJECTED | exit 1 | last stdout line: 'FAILED: G_R: Cholesky hint could not be produced (X − tI does not look positive definite)' | last stderr line: ''
+R-3 seed-1001 R(3) used for seed 1002 (sha256) | verify_R     | REJECTED | exit 1 | last stdout line: 'FAILED: R certificate does not match' | last stderr line: ''
+NEGATIVE CHECK RESULT (verify_S2, verify_R): all rejected

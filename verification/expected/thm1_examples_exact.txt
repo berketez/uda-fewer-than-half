@@ -1,0 +1,4 @@
+n = 200: chosen t = 6, L = 40, m = 194; K = 2(L+t)+1 = 93 (paper: 93); (*) in integers with L: True; with L-1: False; K/n = 0.4650
+n = 1000: chosen t = 9, L = 190, m = 991; K = 2(L+t)+1 = 399 (paper: 399); (*) in integers with L: True; with L-1: False; K/n = 0.3990
+n = 3000: chosen t = 9, L = 571, m = 2991; K = 2(L+t)+1 = 1161 (paper: 1161); (*) in integers with L: True; with L-1: False; K/n = 0.3870
+RESULT: all three example values confirmed in integers for the chosen t (smallest L for that t)

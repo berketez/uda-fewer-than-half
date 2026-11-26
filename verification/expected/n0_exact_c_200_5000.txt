@@ -1,0 +1,1 @@
+[c] log choice, n in [200,5000]: B>=2^(m+2) fails: [] (total 0); K <= ceil(2kc n + 4log2 n) fails: first [258, 263, 268, 273], last [258, 263, 268, 273] (total 4)

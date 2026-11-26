@@ -1,0 +1,8 @@
+[verify_C2] certificates/C/C_n6_K3_Kp2_t1001.json: n=6, K=3, target C(n,2)
+  θ = 1334884.720135 > s = 1143685; r̂ = 2.160061e+00  [exact; tensor Paulis]
+  (V2) A ≻ 0: Bareiss/Sylvester, all 128 leading minors > 0  [4.8 s]
+  (V3) M'+1 = 154 labels (filter over 4^6); G built  [4.8 s]
+  G − tI ≻ 0: Bareiss/Sylvester (128 leading minors > 0) ⇒ λ_min(G) > t = 627217493619  [10.6 s]
+  G (complex residual): N=64, t=627217493619, f=8, ‖E‖≤29998438149 vs 2^(2f)t=41105325661814784 (ratio 7.298e-07) ⇒ λ_min ≥ 6.272170e+11  [10.6 s]
+  (V4) lhs = 3.9310e-08 < rhs = 1.4347e-01
+ALL PASSED [verify_C2]: C(6,2) holds at ψ₀.  [10.6 s]

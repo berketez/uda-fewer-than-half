@@ -1,0 +1,14 @@
+=== A) Exact count of Lagrangian subspaces ===
+m=2: number of Lagrangians = 15 (formula prod(2^i+1) = 15); set of Pr[u in S] = {Fraction(1, 5)}, 1/(d+1) = 1/5
+   L=0: b=1  E N = 1/4 (b/d = 1/4)  Var N = 3/16 (formula 3/16)  Pr[N=0] = 3/4 <= Chebyshev 3 <= d/b = 4 : OK
+   L=1: b=7  E N = 7/4 (b/d = 7/4)  Var N = 63/80 (formula 63/80)  Pr[N=0] = 3/20 <= Chebyshev 9/35 <= d/b = 4/7 : OK
+   L=2: b=16  E N = 4 (b/d = 4)  Var N = 0 (formula 0)  Pr[N=0] = 0 <= Chebyshev 0 <= d/b = 1/4 : OK
+m=3: number of Lagrangians = 135 (formula prod(2^i+1) = 135); set of Pr[u in S] = {Fraction(1, 9)}, 1/(d+1) = 1/9
+   L=0: b=1  E N = 1/8 (b/d = 1/8)  Var N = 7/64 (formula 7/64)  Pr[N=0] = 7/8 <= Chebyshev 7 <= d/b = 8 : OK
+   L=1: b=10  E N = 5/4 (b/d = 5/4)  Var N = 15/16 (formula 15/16)  Pr[N=0] = 1/4 <= Chebyshev 3/5 <= d/b = 4/5 : OK
+   L=2: b=37  E N = 37/8 (b/d = 37/8)  Var N = 111/64 (formula 111/64)  Pr[N=0] = 1/40 <= Chebyshev 3/37 <= d/b = 8/37 : OK
+   L=3: b=64  E N = 8 (b/d = 8)  Var N = 0 (formula 0)  Pr[N=0] = 0 <= Chebyshev 0 <= d/b = 1/8 : OK
+m=4: number of Lagrangians = 2295 (formula prod(2^i+1) = 2295); set of Pr[u in S] = {Fraction(1, 17)}, 1/(d+1) = 1/17
+   L=1: b=13  E N = 13/16 (b/d = 13/16)  Var N = 3159/4352 (formula 3159/4352)  Pr[N=0] = 573/1360 <= Chebyshev 243/221 <= d/b = 16/13 : OK
+   L=2: b=67  E N = 67/16 (b/d = 67/16)  Var N = 12663/4352 (formula 12663/4352)  Pr[N=0] = 3/80 <= Chebyshev 189/1139 <= d/b = 16/67 : OK
+   L=3: b=175  E N = 175/16 (b/d = 175/16)  Var N = 14175/4352 (formula 14175/4352)  Pr[N=0] = 3/1360 <= Chebyshev 81/2975 <= d/b = 16/175 : OK

@@ -1,0 +1,22 @@
+[
+ {"package": "certificates/S/S_n4_K2_t1001.json", "original": "faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n4_K2_t1001.json"},
+ {"package": "certificates/S/S_n6_K3_t1001.json", "original": "faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n6_K3_t1001.json"},
+ {"package": "certificates/S/S_n8_K3_t1001.json", "original": "faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n8_K3_t1001.json"},
+ {"package": "certificates/S/S_n8_K3_t1002.json", "original": "faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n8_K3_t1002.json"},
+ {"package": "certificates/S/S_n8_K3_t1003.json", "original": "faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n8_K3_t1003.json"},
+ {"package": "certificates/S/S_n10_K4_t1001.json", "original": "faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n10_K4_t1001.json"},
+ {"package": "certificates/S/S_n12_K4_t1001.json", "original": "faz2/yaratici/u1_kesin_sertifika/sertifika/sert_n12_K4_t1001.json"},
+ {"package": "certificates/C/C_n10_K4_Kp3_t1001.json", "original": "faz2/yaratici/u8_yapistirma/sertifika/C_n10_K4_Kp3_t1001.json", "allowed_changes": ["u1_sertifika"]},
+ {"package": "certificates/C/C_n4_K2_Kp2_t1001.json", "original": "faz2/yaratici/u8_yapistirma/sertifika/C_n4_K2_Kp2_t1001.json", "allowed_changes": ["u1_sertifika"]},
+ {"package": "certificates/C/C_n6_K3_Kp2_t1001.json", "original": "faz2/yaratici/u8_yapistirma/sertifika/C_n6_K3_Kp2_t1001.json", "allowed_changes": ["u1_sertifika"]},
+ {"package": "certificates/C/C_n8_K3_Kp2_t1001.json", "original": "faz2/yaratici/u8_yapistirma/sertifika/C_n8_K3_Kp2_t1001.json", "allowed_changes": ["u1_sertifika"]},
+ {"package": "certificates/C/C_n8_K3_Kp2_t1002.json", "original": "faz2/yaratici/u8_yapistirma/sertifika/C_n8_K3_Kp2_t1002.json", "allowed_changes": ["u1_sertifika"]},
+ {"package": "certificates/C/C_n8_K3_Kp2_t1003.json", "original": "faz2/yaratici/u8_yapistirma/sertifika/C_n8_K3_Kp2_t1003.json", "allowed_changes": ["u1_sertifika"]},
+ {"package": "certificates/R/R_n10_K4_j3_t1001.json", "original": "faz2/yaratici/u8_yapistirma/sertifika/R_n10_K4_j3_t1001.json", "allowed_changes": ["u1_sertifika"]},
+ {"package": "certificates/R/R_n4_K2_j2_t1001.json", "original": "faz2/yaratici/u8_yapistirma/sertifika/R_n4_K2_j2_t1001.json", "allowed_changes": ["u1_sertifika"]},
+ {"package": "certificates/R/R_n6_K3_j2_t1001.json", "original": "faz2/yaratici/u8_yapistirma/sertifika/R_n6_K3_j2_t1001.json", "allowed_changes": ["u1_sertifika"]},
+ {"package": "certificates/R/R_n8_K3_j3_t1001.json", "original": "faz2/yaratici/u8_yapistirma/sertifika/R_n8_K3_j3_t1001.json", "allowed_changes": ["u1_sertifika"]},
+ {"package": "certificates/R/R_n8_K3_j3_t1002.json", "original": "faz2/yaratici/u8_yapistirma/sertifika/R_n8_K3_j3_t1002.json", "allowed_changes": ["u1_sertifika"]},
+ {"package": "certificates/R/R_n8_K3_j3_t1003.json", "original": "faz2/yaratici/u8_yapistirma/sertifika/R_n8_K3_j3_t1003.json", "allowed_changes": ["u1_sertifika"]},
+ {"package": "certificates/negative/S_overflow_p.json", "original": "faz2/ana_oturum_betikleri/2026-11-05_karsi_ornek_p_tasmasi.json", "allowed_changes": ["aciklama"]}
+]

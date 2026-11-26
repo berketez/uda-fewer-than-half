@@ -1,0 +1,10 @@
+Certificate certificates/S/S_n8_K3_t1003.json: n = 8, K = 3, D = 256, mode = int64
+  (D0) H = Σ c_P P built: 1788 Paulis, weights ≤ 3, Hermitian, max|c| = 65536
+  (D1) θ = w†Hw/w†w = 1394583.259168 > s = 1367230  ⇒  λ₁(H) ≥ θ > s   [exact]
+  A: N=512, t=11189934553, f=10, ‖E‖_∞ = 154009718493 < 2^(2f)·t = 11733496813846528 (ratio 1.313e-05)  ⇒  λ_min(A) ≥ 1.118979e+10
+  (D2) A ≻ 0  ⇒  H ≺ sI + (q/p) zz†  ⇒  λ₂(H) < s.  Together: λ₁ > s > λ₂, λ₁ is SIMPLE.
+  (D3) G_w = B_w B_wᵀ built in exact integers (M = 1788 Paulis + w, iw; int64; spot checks 36/36)  [0.7 s]
+  G: N=512, t=5411434255538, f=7, ‖E‖_∞ = 126291681927 < 2^(2f)·t = 88660938842734592 (ratio 1.424e-06)  ⇒  λ_min(G) ≥ 5.411427e+12
+  (D4) r̂ = 2.8736e+00, θ − s = 27353.2592; 2(M+2) r̂²/(θ−s)² = 3.9512e-05 < σ_min(B_ŵ)² ≥ 3.9417e-01
+      ⇒ σ_min(B_ψ₀) ≥ 0.6215 > 0  ⇒  rank_ℝ = 2D = 512.
+ALL PASSED (n = 8, K = 3): ψ₀ is UDA with its K-body marginals; dΦ is onto ⇒ the UDA set contains a nonempty open set.  [0.8 s]

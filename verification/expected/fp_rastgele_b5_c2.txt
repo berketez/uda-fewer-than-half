@@ -1,0 +1,1 @@
+b=5 c=2 seed=1: v ∈ {0,1}^32 (‖v‖²=15), p=1000037, ι=320900; columns 106; rank_Fp = 32/32 ⇒ C(b,c) GENERIC (witness valid)  [0.0 s]

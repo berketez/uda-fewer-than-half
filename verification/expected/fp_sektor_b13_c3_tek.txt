@@ -1,0 +1,2 @@
+b=13 c=3 seed=1 sector=tek: 4096 rows × 4342 columns, p=1000037  [0.3 s]
+  tek sector rank_Fp = 4096/4096  [111.3 s]

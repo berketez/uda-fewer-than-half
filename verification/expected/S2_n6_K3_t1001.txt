@@ -1,0 +1,5 @@
+n=6 K=3 M=693: Kronecker H built; Im(w†Hw) = 0; θ − s = 191199.7201 > 0: True
+  A ≻ 0 (Sylvester/Bareiss, 128 leading minors): True
+  G − τI ≻ 0 (Sylvester/Bareiss, 128 leading minors): True
+  D4: 2(M+2) r̂²/(θ−s)² = 1.7741e-07 < 7.5000e-01: True
+SECOND VERIFIER: ALL PASSED (n = 6, K = 3)

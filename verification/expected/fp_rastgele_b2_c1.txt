@@ -1,0 +1,1 @@
+b=2 c=1 seed=1: v ∈ {0,1}^4 (‖v‖²=3), p=1000037, ι=320900; columns 7; rank_Fp = 4/4 ⇒ C(b,c) GENERIC (witness valid)  [0.0 s]

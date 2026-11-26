@@ -1,0 +1,6 @@
+m=300 k=320 planted rank 300: rank_det_modp = 300, rank_modp_parcali = 300  ✓
+m=300 k=320 planted rank 257: rank_det_modp = 257, rank_modp_parcali = 257  ✓
+m=500 k=450 planted rank 450: rank_det_modp = 450, rank_modp_parcali = 450  ✓
+m=512 k=600 planted rank 511: rank_det_modp = 511, rank_modp_parcali = 511  ✓
+m=64 k=64 planted rank 17: rank_det_modp = 17, rank_modp_parcali = 17  ✓
+DP lower-bound check: min_n (K_V2 − K_count) = 0 (must not be negative)

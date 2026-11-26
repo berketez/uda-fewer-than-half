@@ -1,0 +1,503 @@
+# Output of: python3 tools/ast_equiv.py tools/equiv_map.json --orig-root <orig> --redact-prefix <orig>/ --redact-word <name> --redact-word <name>
+# Generated 2026-11-10 13:47 +03; <orig> = root of the author's working tree (not part of this package).
+# The redaction options only mask a local directory prefix and two internal names in the listing of OLD strings.
+
+== verifiers/verify_S_v3.py
+   original: <orig>/faz2/ana_oturum_betikleri/2026-11-05_dogrula_yamali3.py
+   sha256 original: 80de4857ec5e666e4da0363ee1dbbad1ff55adda43cdb03079195b3ad531b8f9
+   sha256 package:  95730d0d7fffa28f407336679cabf5d89402851e3ea81cdef175ebace42203e2
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 129 in total, 52 changed, 0 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [  37->42  ] MESSAGE                           'BAŞARISIZ:' -> 'FAILED:'
+   [  44->49  ] MESSAGE                           'geçersiz harf ' -> 'invalid letter '
+   [  60->65  ] MESSAGE                           ': simetrik değil' -> ': not symmetric'
+   [  61->66  ] MESSAGE                           ': t, f geçersiz' -> ': invalid t, f'
+   [  63->68  ] MESSAGE                           ': X − tI taşma ön koşulu' -> ': overflow precondition for X − tI'
+   [  65->70  ] MESSAGE                           ': ölçek taşması' -> ': scaling overflow'
+   [  70->75  ] MESSAGE                           ': Cholesky ipucu üretilemedi' -> ': Cholesky hint could not be produced'
+   [  73->78  ] MESSAGE                           ': R satır normu taşması' -> ': row-norm overflow of R'
+   [  76->81  ] MESSAGE                           ': artık taşması' -> ': residual overflow'
+   [  79->84  ] MESSAGE                           ' (oran ' -> ' (ratio '
+   [  81->86  ] MESSAGE                           ': pozitiflik kanıtlanamadı' -> ': positivity could not be proven'
+   [  88->93  ] MESSAGE                           "R girdisi 2^26'yı aşıyor" -> 'entry of R exceeds 2^26'
+   [  99->104 ] MESSAGE                           ': X − tI taşma ön koşulu' -> ': overflow precondition for X − tI'
+   [ 101->106 ] MESSAGE                           ': simetrik değil' -> ': not symmetric'
+   [ 102->107 ] MESSAGE                           ': t, f geçersiz' -> ': invalid t, f'
+   [ 103->108 ] MESSAGE                           ": ölçek 2^53'ü aşıyor" -> ': scale exceeds 2^53'
+   [ 109->114 ] MESSAGE                           ': Cholesky ipucu üretilemedi' -> ': Cholesky hint could not be produced'
+   [ 114->119 ] MESSAGE                           ': R satır normu ≥ 2^53' -> ': row norm of R ≥ 2^53'
+   [ 122->127 ] MESSAGE                           ': GEMM nokta denetimi tutmadı' -> ': GEMM spot check failed'
+   [ 130->135 ] MESSAGE                           ': artık taşması' -> ': residual overflow'
+   [ 133->138 ] MESSAGE                           ' (oran ' -> ' (ratio '
+   [ 134->139 ] MESSAGE                           '); GEMM nokta denetimi ' -> '); GEMM spot checks '
+   [ 136->141 ] MESSAGE                           ': pozitiflik kanıtlanamadı' -> ': positivity could not be proven'
+   [ 148->153 ] MESSAGE                           'Sertifika ' -> 'Certificate '
+   [ 148->153 ] MESSAGE                           ', kip = ' -> ', mode = '
+   [ 148->153 ] MESSAGE                           'GEMM-kesin (--blas)' -> 'GEMM-exact (--blas)'
+   [ 151->156 ] MESSAGE                           'etiket listesi' -> 'label list'
+   [ 152->157 ] MESSAGE                           'katsayılar tam sayı değil' -> 'coefficients are not nonzero integers'
+   [ 153->158 ] MESSAGE                           'katsayı toplamı taşması' -> 'coefficient-sum overflow'
+   [ 157->162 ] MESSAGE                           'etiket uzunluğu' -> 'label length'
+   [ 159->164 ] MESSAGE                           'ağırlık ' -> 'weight '
+   [ 165->170 ] MESSAGE                           'H Hermitsel değil' -> 'H is not Hermitian'
+   [ 166->171 ] MESSAGE                           '  (D0) H = Σ c_P P kuruldu: ' -> '  (D0) H = Σ c_P P built: '
+   [ 166->171 ] MESSAGE                           ' Pauli, ağırlıklar ≤ ' -> ' Paulis, weights ≤ '
+   [ 166->171 ] MESSAGE                           ', Hermitsel, max|c| = ' -> ', Hermitian, max|c| = '
+   [ 173->178 ] MESSAGE                           'Hw taşması' -> 'Hw overflow'
+   [ 182->187 ] MESSAGE                           'w†Hw gerçel değil' -> 'w†Hw is not real'
+   [ 186->191 ] MESSAGE                           '  ⇒  λ₁(H) ≥ θ > s   [tam]' -> '  ⇒  λ₁(H) ≥ θ > s   [exact]'
+   [ 191->196 ] MESSAGE                           'p = z†z taşması' -> 'p = z†z overflow'
+   [ 193->198 ] MESSAGE                           'A taşması' -> 'A overflow'
+   [ 200->205 ] MESSAGE                           '  (D2) A ≻ 0  ⇒  H ≺ sI + (q/p) zz†  ⇒  λ₂(H) < s.  Birlikte: λ₁ > s > λ₂, λ₁ BASİT.' -> '  (D2) A ≻ 0  ⇒  H ≺ sI + (q/p) zz†  ⇒  λ₂(H) < s.  Together: λ₁ > s > λ₂, λ₁ is SIMPLE.'
+   [ 211->216 ] MESSAGE                           'Pauli sayımı' -> 'Pauli count'
+   [ 213->218 ] MESSAGE                           'G taşması' -> 'G overflow'
+   [ 216->221 ] MESSAGE                           'G: GEMM kesinlik sınırı' -> 'G: GEMM exactness bound'
+   [ 242->247 ] MESSAGE                           'G nokta denetimi tutmadı' -> 'G spot check failed'
+   [ 243->248 ] MESSAGE                           '  (D3) G_w = B_w B_wᵀ tam sayıyla kuruldu (M = ' -> '  (D3) G_w = B_w B_wᵀ built in exact integers (M = '
+   [ 243->248 ] MESSAGE                           ' Pauli + w, iw; ' -> ' Paulis + w, iw; '
+   [ 243->248 ] MESSAGE                           'GEMM-kesin' -> 'GEMM-exact'
+   [ 243->248 ] MESSAGE                           '; nokta denetimi ' -> '; spot checks '
+   [ 252->257 ] MESSAGE                           'Davis–Kahan aktarımı yetmedi' -> 'Davis–Kahan transfer insufficient'
+   [ 254->259 ] MESSAGE                           'HEPSİ GEÇTİ (n = ' -> 'ALL PASSED (n = '
+   [ 254->259 ] MESSAGE                           '): ψ₀ K-marjinalleriyle UDA; dΦ örten ⇒ UDA kümesi boş olmayan açık küme içerir.  [' -> '): ψ₀ is UDA with its K-body marginals; dΦ is onto ⇒ the UDA set contains a nonempty open set.  ['
+
+== verifiers/verify_S2.py
+   original: <orig>/faz2/yaratici/u1_kesin_sertifika/dogrula2.py
+   sha256 original: 32b50ed83374ffb8fbaf9fc6d11ca7f3a9ca6687f2127ff87fb31ceb58eb0870
+   sha256 package:  950169a8c62781bcd9b7ec396c95a91ead8ab2b4e82c37dcc30d0b1fa3dc7b2a
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 50 in total, 6 changed, 0 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [  74->75  ] MESSAGE                           ': Kronecker H kuruldu; Im(w†Hw) = ' -> ': Kronecker H built; Im(w†Hw) = '
+   [  82->83  ] MESSAGE                           ' baş minör): ' -> ' leading minors): '
+   [  86->87  ] MESSAGE                           ' I (ayrı yazılmış Python-tam-sayı artığı): ' -> ' I (separately written Python-integer residual): '
+   [ 103->104 ] MESSAGE                           ' baş minör): ' -> ' leading minors): '
+   [ 107->108 ] MESSAGE                           ' I (ayrı yazılmış Python-tam-sayı artığı): ' -> ' I (separately written Python-integer residual): '
+   [ 113->114 ] MESSAGE                           'İKİNCİ DOĞRULAYICI: HEPSİ GEÇTİ (n = ' -> 'SECOND VERIFIER: ALL PASSED (n = '
+
+== verifiers/verify_C1.py
+   original: <orig>/faz2/yaratici/u8_yapistirma/u8_C_dogrula.py
+   sha256 original: c1a4a45ac99c333d86b28a6a63be48e151d23c7a0b41637bf7d527889ef55d5e
+   sha256 package:  6a018419a58a6bdb2bf274d571481d0cb1da43e65339c5c3f85bd3f29d86c981
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 113 in total, 42 changed, 0 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [  27->30  ] MESSAGE                           'BAŞARISIZ:' -> 'FAILED:'
+   [  34->37  ] MESSAGE                           'geçersiz harf ' -> 'invalid letter '
+   [  57->60  ] MESSAGE                           ': int64 simetrik değil' -> ': not int64 symmetric'
+   [  58->61  ] MESSAGE                           ': t, f geçersiz' -> ': invalid t, f'
+   [  60->63  ] MESSAGE                           ': X − tI taşma ön koşulu' -> ': overflow precondition for X − tI'
+   [  63->66  ] MESSAGE                           ': ölçek taşması' -> ': scaling overflow'
+   [  68->71  ] MESSAGE                           ': Cholesky ipucu üretilemedi (X − tI PD görünmüyor)' -> ': Cholesky hint could not be produced (X − tI does not look positive definite)'
+   [  70->73  ] MESSAGE                           ': ipucu çok büyük' -> ': hint too large'
+   [  73->76  ] MESSAGE                           ': R satır normu taşması' -> ': row-norm overflow of R'
+   [  77->80  ] MESSAGE                           ': RRᵀ nokta denetimi' -> ': RRᵀ spot check'
+   [  80->83  ] MESSAGE                           ': artık satır toplamı taşması' -> ': overflow of residual row sums'
+   [  83->86  ] MESSAGE                           ' (oran ' -> ' (ratio '
+   [  85->88  ] MESSAGE                           ': pozitiflik kanıtlanamadı' -> ': positivity could not be proven'
+   [ 104->107 ] MESSAGE                           "U1 sertifikasının sha256'sı tutmuyor" -> 'sha256 of the S (U1) certificate does not match'
+   [ 107->110 ] MESSAGE                           "n / K' tutarsız" -> "n / K' inconsistent"
+   [ 113->116 ] MESSAGE                           'C sertifikası ' -> 'C certificate '
+   [ 113->116 ] MESSAGE                           '\n  U1: ' -> '\n  U1 (S certificate): '
+   [ 113->116 ] MESSAGE                           ' (sha256 tuttu); n=' -> ' (sha256 matches); n='
+   [ 113->116 ] MESSAGE                           ', hedef C(n,' -> ', target C(n,'
+   [ 116->119 ] MESSAGE                           'etiket listesi' -> 'label list'
+   [ 117->120 ] MESSAGE                           'katsayılar tam sayı değil' -> 'coefficients are not nonzero integers'
+   [ 119->122 ] MESSAGE                           'katsayı toplamı' -> 'coefficient sum'
+   [ 123->126 ] MESSAGE                           'etiket ' -> 'label '
+   [ 129->132 ] MESSAGE                           'H Hermitsel değil' -> 'H is not Hermitian'
+   [ 134->137 ] MESSAGE                           'Hw taşması' -> 'Hw overflow'
+   [ 143->146 ] MESSAGE                           'w†Hw gerçel değil' -> 'w†Hw is not real'
+   [ 148->151 ] MESSAGE                           'r̂² < 0 (iç tutarsızlık)' -> 'r̂² < 0 (internal inconsistency)'
+   [ 149->152 ] MESSAGE                           '   [tam]' -> '   [exact]'
+   [ 157->160 ] MESSAGE                           'A taşması' -> 'A overflow'
+   [ 164->167 ] MESSAGE                           '  (V2) A ≻ 0 ⇒ λ₂(H) < s; λ₁ > s > λ₂: ψ₀ iyi tanımlı, basit.' -> '  (V2) A ≻ 0 ⇒ λ₂(H) < s; λ₁ > s > λ₂: ψ₀ is well defined and simple.'
+   [ 168->171 ] MESSAGE                           'Pauli sayımı' -> 'Pauli count'
+   [ 169->172 ] MESSAGE                           'G taşması' -> 'G overflow'
+   [ 184->187 ] MESSAGE                           'G nokta denetimi' -> 'G spot check'
+   [ 185->188 ] MESSAGE                           'G Hermitsel değil' -> 'G is not Hermitian'
+   [ 187->190 ] MESSAGE                           "iz(G) ≠ (M'+1) w†w" -> "tr(G) ≠ (M'+1) w†w"
+   [ 190->193 ] MESSAGE                           "  (V3) G kuruldu: M'+1 = " -> "  (V3) G built: M'+1 = "
+   [ 190->193 ] MESSAGE                           ' Pauli (I dahil, |P| ≤ ' -> ' Paulis (I included, |P| ≤ '
+   [ 190->193 ] MESSAGE                           "); iz(G) = (M'+1)·w†w tuttu; nokta denetimi 20/20  [" -> "); tr(G) = (M'+1)·w†w holds; spot checks 20/20  ["
+   [ 196->199 ] MESSAGE                           '  (oran ' -> '  (ratio '
+   [ 197->200 ] MESSAGE                           'Davis–Kahan aktarımı yetmedi' -> 'Davis–Kahan transfer insufficient'
+   [ 199->202 ] MESSAGE                           'HEPSİ GEÇTİ: C(' -> 'ALL PASSED: C('
+   [ 199->202 ] MESSAGE                           ") ψ₀'da (span_C{Pψ₀ : |P| ≤ " -> ') holds at ψ₀ (span_C{Pψ₀ : |P| ≤ '
+
+== verifiers/verify_C2.py
+   original: <orig>/faz2/yaratici/u8_yapistirma/u8_C_dogrula2.py
+   sha256 original: 02510ade8b53d5b680606720f74f806b67cf142d81862bbb29b78846f61f3b28
+   sha256 package:  f67872946ccf333292e13780b6546cd891aafc7e24ce395b5acecaff5a11d0e7
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 107 in total, 34 changed, 0 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [  31->31  ] MESSAGE                           'BAŞARISIZ:' -> 'FAILED:'
+   [  84->84  ] MESSAGE                           ': Hermitsel değil' -> ': not Hermitian'
+   [  85->85  ] MESSAGE                           ': t, f geçersiz' -> ': invalid t, f'
+   [  87->87  ] MESSAGE                           ': ölçek taşması' -> ': scaling overflow'
+   [  92->92  ] MESSAGE                           ': karmaşık Cholesky ipucu üretilemedi' -> ': complex Cholesky hint could not be produced'
+   [  98->98  ] MESSAGE                           ': R satır normu taşması' -> ': row-norm overflow of R'
+   [ 104->104 ] MESSAGE                           ': artık toplamı taşması' -> ': overflow of residual sums'
+   [ 107->107 ] MESSAGE                           ' (karmaşık artık): N=' -> ' (complex residual): N='
+   [ 107->107 ] MESSAGE                           ' (oran ' -> ' (ratio '
+   [ 109->109 ] MESSAGE                           ': pozitiflik kanıtlanamadı' -> ': positivity could not be proven'
+   [ 121->121 ] MESSAGE                           '[dogrula2] ' -> '[verify_C2] '
+   [ 121->121 ] MESSAGE                           ', hedef C(n,' -> ', target C(n,'
+   [ 127->127 ] MESSAGE                           'katsayılar' -> 'coefficients'
+   [ 128->128 ] MESSAGE                           'Hw taşması' -> 'Hw overflow'
+   [ 131->131 ] MESSAGE                           'etiket' -> 'label'
+   [ 140->140 ] MESSAGE                           'w†Hw gerçel değil' -> 'w†Hw is not real'
+   [ 145->145 ] MESSAGE                           '  [tam; tensör Paulileri]' -> '  [exact; tensor Paulis]'
+   [ 157->157 ] MESSAGE                           'Kronecker H ≠ tensör H' -> 'Kronecker H ≠ tensor H'
+   [ 162->162 ] MESSAGE                           'A taşması' -> 'A overflow'
+   [ 167->167 ] MESSAGE                           'A: Bareiss baş minör ' -> 'A: Bareiss leading minor '
+   [ 168->168 ] MESSAGE                           '  (V2) A ≻ 0: Bareiss/Sylvester, ' -> '  (V2) A ≻ 0: Bareiss/Sylvester, all '
+   [ 168->168 ] MESSAGE                           ' baş minörün hepsi > 0  [' -> ' leading minors > 0  ['
+   [ 171->171 ] MESSAGE                           '  (V2) A ≻ 0 (karmaşık artık yöntemi)' -> '  (V2) A ≻ 0 (complex residual method)'
+   [ 173->173 ] MESSAGE                           '  (V2) n > 8: burada yapılmıyor (u8_C_dogrula.py V2 + U1 dogrula.py D2 + yamalı doğrulayıcı).' -> '  (V2) n > 8: not done here (covered by verify_C1.py V2 and by the S verifier D2).'
+   [ 177->177 ] MESSAGE                           'G taşması' -> 'G overflow'
+   [ 184->184 ] MESSAGE                           ' etiket (4^' -> ' labels (filter over 4^'
+   [ 184->184 ] MESSAGE                           ' süzgeci); G kuruldu  [' -> '); G built  ['
+   [ 188->188 ] MESSAGE                           'G − tI: Bareiss baş minör ' -> 'G − tI: Bareiss leading minor '
+   [ 190->190 ] MESSAGE                           ' baş minör > 0) ⇒ λ_min(G) > t = ' -> ' leading minors > 0) ⇒ λ_min(G) > t = '
+   [ 196->196 ] MESSAGE                           '  (V4) sol = ' -> '  (V4) lhs = '
+   [ 196->196 ] MESSAGE                           ' < sağ = ' -> ' < rhs = '
+   [ 197->197 ] MESSAGE                           'Davis–Kahan aktarımı yetmedi' -> 'Davis–Kahan transfer insufficient'
+   [ 198->198 ] MESSAGE                           'HEPSİ GEÇTİ [dogrula2]: C(' -> 'ALL PASSED [verify_C2]: C('
+   [ 198->198 ] MESSAGE                           ") ψ₀'da.  [" -> ') holds at ψ₀.  ['
+
+== verifiers/verify_R.py
+   original: <orig>/faz2/yaratici/u8_yapistirma/u8_R_dogrula.py
+   sha256 original: 038ac6b4806dba908b9ff8f9146832ea52237bf0ad6bf1b4e11ab91712757865
+   sha256 package:  bc170e1182f9e11872bd727b26028b04814117d6eac53b7741f5b35a758897f1
+   declared module renames (import statements only): {'u8_C_dogrula': 'verify_C1'}
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 93 in total, 20 changed, 4 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [  14->18  ] CALL_ARG:insert              FLAG '<orig>/faz2/yaratici/u8_yapistirma' -> 'verifiers'
+   [  17->21  ] ASSIGNMENT                   FLAG '<orig>/faz2/yaratici/u8_yapistirma' -> 'certificates'
+   [  35->39  ] MESSAGE                           'Pauli sayımı' -> 'Pauli count'
+   [  36->40  ] MESSAGE                           'G taşması' -> 'G overflow'
+   [  47->51  ] MESSAGE                           'iz(G) ≠ (M_j+2) w†w' -> 'tr(G) ≠ (M_j+2) w†w'
+   [  58->62  ] ASSIGNMENT                   FLAG '/sertifika/R_n' -> '/R/R_n'
+   [  60->64  ] MESSAGE                           'üretildi: ' -> 'written: '
+   [  62->66  ] CALL_ARG:open                FLAG '/sertifika/R_n' -> '/R/R_n'
+   [  63->67  ] MESSAGE                           'R sertifikası uyuşmuyor' -> 'R certificate does not match'
+   [  64->68  ] MESSAGE                           ') sertifikası, U1 ' -> ') certificate, U1 (S certificate) '
+   [  64->68  ] MESSAGE                           ' sütun' -> ' columns'
+   [  67->71  ] MESSAGE                           'katsayılar/etiketler' -> 'coefficients/labels'
+   [  69->73  ] MESSAGE                           'Hw taşması' -> 'Hw overflow'
+   [  72->76  ] MESSAGE                           'etiket ' -> 'label '
+   [  77->81  ] MESSAGE                           'H Hermitsel değil' -> 'H is not Hermitian'
+   [  81->85  ] MESSAGE                           'w†Hw gerçel değil' -> 'w†Hw is not real'
+   [  88->92  ] MESSAGE                           'A taşması' -> 'A overflow'
+   [  97->101 ] MESSAGE                           'Davis–Kahan aktarımı yetmedi' -> 'Davis–Kahan transfer insufficient'
+   [  98->102 ] MESSAGE                           'HEPSİ GEÇTİ: R(' -> 'ALL PASSED: R('
+   [  98->102 ] MESSAGE                           ") ψ₀'da (n=" -> ') holds at ψ₀ (n='
+
+== verifiers/neg_S_v3.py
+   original: <orig>/faz2/yaratici/u1_kesin_sertifika/dogrula_test.py
+   sha256 original: 72c79bc57a5899741e82f10b24bb836972175395c973e101da7eb174acb7cfa0
+   sha256 package:  148e3186466b606a3a253f73c1c44203dffb6afa2f86c24de4740ffdde252994
+   declared module renames (import statements only): {'dogrula': 'verify_S_v3'}
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 34 in total, 10 changed, 8 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [  27->30  ] MESSAGE                           '(i) Kronecker denetimi (n = 3, 64 Pauli): max |fark| = ' -> '(i) Kronecker check (n = 3, 64 Paulis): max |difference| = '
+   [  33->36  ] DICT_KEY                     FLAG 's > λ₁ (D1 düşmeli)' -> 's > λ₁ (D1 must fail)'
+   [  34->37  ] DICT_KEY                     FLAG 's < λ₂ (D2 düşmeli)' -> 's < λ₂ (D2 must fail)'
+   [  35->38  ] DICT_KEY                     FLAG 'ağırlık K+1 etiket (D0 düşmeli)' -> 'label of weight K+1 (D0 must fail)'
+   [  37->40  ] DICT_KEY                     FLAG 'τ çok büyük (D3 düşmeli)' -> 'τ too large (D3 must fail)'
+   [  38->41  ] DICT_KEY                     FLAG 'w kaba (D4 düşmeli)' -> 'w coarse (D4 must fail)'
+   [  44->47  ] CALL_ARG:join                FLAG 'dogrula.py' -> 'verify_S_v3.py'
+   [  46->49  ] CALL_ARG:startswith          FLAG 'BAŞARISIZ' -> 'FAILED'
+   [  46->49  ] CALL_ARG:startswith          FLAG 'HEPSİ' -> 'ALL PASSED'
+   [  47->50  ] MESSAGE                           ': çıkış kodu ' -> ': exit code '
+
+== verifiers/neg_S_v3_overflow.py
+   original: <orig>/faz2/ana_oturum_betikleri/2026-11-04_dogrula_tasma_sinama.py
+   sha256 original: 59969ea829355504444a5f5eb7722e8bbb41543bd0e29c7408d75291041d4b1a
+   sha256 package:  f7b320d52b4e9dfd28c8f82bbd2073a4c5ef758c092a62614d2b292e973b3507
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 8 in total, 6 changed, 2 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [   4->7   ] CALL_ARG:insert              FLAG '<orig>/faz2/yaratici/u1_kesin_sertifika' -> 'verifiers'
+   [   6->9   ] CALL_ARG:spec_from_file_location FLAG '<orig>/faz2/yaratici/u1_kesin_sertifika/dogrula.py' -> 'verifiers/verify_S_v3.py'
+   [  12->15  ] MESSAGE                           '   >>> DÖNDÜ: λ_min ≥' -> '   >>> RETURNED: λ_min ≥'
+   [  12->15  ] MESSAGE                           " (X'in gerçek λ_min'i -1)" -> ' (the true λ_min of X is -1)'
+   [  14->17  ] MESSAGE                           '   (dur ile reddedildi)' -> '   (rejected via dur)'
+   [  16->19  ] MESSAGE                           '   istisna:' -> '   exception:'
+
+== verifiers/neg_C.py
+   original: <orig>/faz2/yaratici/u8_yapistirma/u8_C_negatif.py
+   sha256 original: b46a3dc63b4509cc5827717c4cb0cea31f13109d96b4d4713bfb52d0bfc6f5a8
+   sha256 package:  ea1ea571ec847afbae503f64fc720af4381fa4a53ea42b2b48b6cebf6b77ae5b
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 90 in total, 25 changed, 20 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [   7->8   ] ASSIGNMENT                   FLAG '<orig>/faz2/yaratici/u8_yapistirma' -> '.'
+   [   8->9   ] ASSIGNMENT                   FLAG '/sertifika/negatif' -> '/out/negative_C'
+   [  28->29  ] OTHER                        FLAG 'u8_C_dogrula.py' -> 'verify_C1.py'
+   [  28->29  ] OTHER                        FLAG 'u8_C_dogrula2.py' -> 'verify_C2.py'
+   [  29->30  ] CALL_ARG:run                 FLAG '/' -> '/verifiers/'
+   [  31->32  ] COMPARISON                   FLAG 'BAŞARISIZ' -> 'FAILED'
+   [  31->32  ] COMPARISON                   FLAG 'HEPSİ GEÇTİ' -> 'ALL PASSED'
+   [  37->38  ] CALL_ARG:open                FLAG '/sertifika/C_n8_K3_Kp2_t1001.json' -> '/certificates/C/C_n8_K3_Kp2_t1001.json'
+   [  39->40  ] CALL_ARG:open                FLAG '/sertifika/C_n4_K2_Kp2_t1001.json' -> '/certificates/C/C_n4_K2_Kp2_t1001.json'
+   [  43->44  ] CALL_ARG:append              FLAG 'N1 C(8,1) (yanlış: 25 < 256)' -> 'N1 C(8,1) (false: 25 < 256)'
+   [  49->50  ] CALL_ARG:append              FLAG 'N3 w bozuldu (her 7. bileşen −)' -> 'N3 w corrupted (every 7th entry −)'
+   [  62->63  ] CALL_ARG:append              FLAG 'N6 c[' -> 'N6 sign of c['
+   [  62->63  ] CALL_ARG:append              FLAG '] işareti çevrildi' -> '] flipped'
+   [  66->67  ] CALL_ARG:append              FLAG 'N7 w ← tohum 1002 (H tohum 1001)' -> 'N7 w ← seed 1002 (H of seed 1001)'
+   [  69->70  ] CALL_ARG:append              FLAG 'N8 sha256 uyuşmazlığı' -> 'N8 sha256 mismatch'
+   [  71->72  ] CALL_ARG:append              FLAG 'N9 n=4 t_G ×3 (Bareiss yolu)' -> 'N9 n=4 t_G ×3 (Bareiss route)'
+   [  73->74  ] CALL_ARG:append              FLAG 'N10 C(4,1) (yanlış: 13 < 16)' -> 'N10 C(4,1) (false: 13 < 16)'
+   [  77->78  ] CALL_ARG:append              FLAG 'N11 z ~ 2^31,5 (z†z int64 taşması)' -> 'N11 z ~ 2^31.5 (z†z int64 overflow)'
+   [  81->82  ] CALL_ARG:append              FLAG 'N12 w × 2^21 (G/Hw int64 taşması)' -> 'N12 w × 2^21 (G/Hw int64 overflow)'
+   [  85->86  ] COMPARISON                   FLAG 'GEÇTİ' -> 'PASSED'
+   [  87->88  ] MESSAGE                           'REDDETTİ' -> 'REJECTED'
+   [  87->88  ] MESSAGE                           'KABUL ETTİ (!)' -> 'ACCEPTED (!)'
+   [  88->89  ] MESSAGE                           'NEGATİF KONTROL SONUCU:' -> 'NEGATIVE CHECK RESULT:'
+   [  88->89  ] MESSAGE                           'hepsi reddedildi' -> 'all rejected'
+   [  88->89  ] MESSAGE                           'EN AZ BİRİ KABUL EDİLDİ — SORUN' -> 'AT LEAST ONE ACCEPTED — PROBLEM'
+
+== verifiers/neg_S2_R.py
+   NEW FILE (no original; not covered by this equivalence check)
+   sha256 package: 3166c2d6959c8edb2508db6d22da3595ab642d231b004cec0b5b6d278472364b
+
+== witnesses/fp_witness.py
+   original: <orig>/faz2/yaratici/u8_yapistirma/u8_tanik_modp.py
+   sha256 original: 7f407a600dbadd33ea4912f8873344071f392765966e9c96ae6fa1a22ed40226
+   sha256 package:  bb61e4165b297605426e39d2024e81a777a8c1b0ad759b28832ae5548797d111
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 99 in total, 28 changed, 0 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [  99->101 ] MESSAGE                           'hakem tanığı: ‖v‖² = ' -> 'C(8,2) witness: ‖v‖² = '
+   [  99->101 ] MESSAGE                           ' (beklenen 132); p = ' -> ' (expected 132); p = '
+   [ 104->106 ] MESSAGE                           '  etiket→bit kuralı ' -> '  label→bit convention '
+   [ 104->106 ] MESSAGE                           'ters (etiket[j]→bit n−1−j)' -> 'reversed (label[j]→bit n−1−j)'
+   [ 104->106 ] MESSAGE                           'düz (etiket[j]→bit j)' -> 'direct (label[j]→bit j)'
+   [ 104->106 ] MESSAGE                           ': sütun sayısı ' -> ': number of columns '
+   [ 105->107 ] MESSAGE                           ', ilk sütunlar ' -> ', first columns '
+   [ 105->107 ] MESSAGE                           '…; det(ilk 256) mod ' -> '…; det(first 256) mod '
+   [ 105->107 ] MESSAGE                           '; rank(277 sütun) = ' -> '; rank(277 columns) = '
+   [ 110->112 ] MESSAGE                           '  ikinci asal p = ' -> '  second prime p = '
+   [ 125->127 ] MESSAGE                           ' tohum=' -> ' seed='
+   [ 125->127 ] MESSAGE                           '; sütun ' -> '; columns '
+   [ 126->128 ] MESSAGE                           'C(b,c) JENERİK (tanık geçerli)' -> 'C(b,c) GENERIC (witness valid)'
+   [ 126->128 ] MESSAGE                           'tanık YETMEDİ' -> 'witness INSUFFICIENT'
+   [ 158->160 ] MESSAGE                           ' tohum=' -> ' seed='
+   [ 158->160 ] MESSAGE                           ' [Z^b-simetrik tanık]: sektör boyutu ' -> ' [Z^b-symmetric witness]: sector size '
+   [ 158->160 ] MESSAGE                           '; sütunlar çift ' -> '; columns even '
+   [ 158->160 ] MESSAGE                           ', tek ' -> ', odd '
+   [ 164->166 ] MESSAGE                           '  çift sektör rank_Fp = ' -> '  even sector rank_Fp = '
+   [ 167->169 ] MESSAGE                           '  tek sektör rank_Fp = ' -> '  odd sector rank_Fp = '
+   [ 169->171 ] MESSAGE                           '  toplam rank = ' -> '  total rank = '
+   [ 169->171 ] MESSAGE                           'C(b,c) JENERİK (tanık geçerli)' -> 'C(b,c) GENERIC (witness valid)'
+   [ 169->171 ] MESSAGE                           'tanık YETMEDİ' -> 'witness INSUFFICIENT'
+   [ 232->234 ] MESSAGE                           ' tohum=' -> ' seed='
+   [ 232->234 ] MESSAGE                           ' sektör=' -> ' sector='
+   [ 232->234 ] MESSAGE                           ' satır × ' -> ' rows × '
+   [ 232->234 ] MESSAGE                           ' sütun, p=' -> ' columns, p='
+   [ 235->237 ] MESSAGE                           ' sektör rank_Fp = ' -> ' sector rank_Fp = '
+
+== witnesses/fp_witness_selftest.py
+   original: <orig>/faz2/yaratici/u8_yapistirma/u8_modp_test.py
+   sha256 original: 701a10a0fdfbe43d090a5226f29dd23686e8baec1e532e1060f1f0b0e84914c2
+   sha256 package:  526a9447918cf26d679750901e00e4473b204f742fc48c1106007bb073cb998a
+   declared module renames (import statements only): {'u8_tanik_modp': 'fp_witness', 'u8_dp': 'dp_glue'}
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 12 in total, 4 changed, 1 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [   3->4   ] CALL_ARG:insert              FLAG '<orig>/faz2/yaratici/u8_yapistirma' -> 'thresholds'
+   [  14->15  ] MESSAGE                           ' gömülü rank ' -> ' planted rank '
+   [  17->18  ] MESSAGE                           'DP alt sınır denetimi: min_n (K_V2 − K_say) =' -> 'DP lower-bound check: min_n (K_V2 − K_count) ='
+   [  17->18  ] MESSAGE                           '(negatif olmamalı)' -> '(must not be negative)'
+
+== witnesses/c82_independent.py
+   original: <orig>/faz2/ana_oturum_betikleri/2026-11-05_c82_modul_tanik.py
+   sha256 original: 4135d742c212adb33e5fefd272f0ca5cd0cc7d841edb26faf2cbc52ab33297c1
+   sha256 package:  74144b9e2c58ee742cebbbbd92b4144d1853c98a213d1e3a5f65127152c8ca21
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 13 in total, 3 changed, 0 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [  98->100 ] MESSAGE                           'sütun sayısı:' -> 'number of columns:'
+   [ 103->105 ] MESSAGE                           ': tam matrisin rankı = ' -> ': rank of the full matrix = '
+   [ 104->106 ] MESSAGE                           "<redacted>'nın sütun sırasıyla ilk 256 sütunun determinantı (mod 1009, i ↦ 469):" -> "determinant of the first 256 columns in the witness's column order (mod 1009, i ↦ 469):"
+
+== witnesses/b13_vector.py
+   NEW FILE (no original; not covered by this equivalence check)
+   sha256 package: 73148ac4f7e985fd2eb2229bc97104eaacca3c62861067a21cc495bd8bcdb688
+
+== thresholds/thm1_constants.py
+   original: <orig>/faz2/yaratici/v1_tipik_uda_denetim/betikler/sabitler.py
+   sha256 original: d4ce29ea15e9952a51ad78b0d5d2251d09305230ad69f3265f6c32e53010b47c
+   sha256 package:  b355598a9552fd95eef569691ef4de54ab89c960785f924f6cba607a081aa79a
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 57 in total, 17 changed, 0 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [  95->97  ] MESSAGE                           '[t=7, L=floor(0.195 m)] kayan nokta: (*) son başarısız m = ' -> '[t=7, L=floor(0.195 m)] floating point: last m where (*) fails = '
+   [  95->97  ] MESSAGE                           ' (tarama m <= ' -> ' (scan m <= '
+   [ 104->106 ] MESSAGE                           '  tam sayı teyidi m in [' -> '  integer confirmation m in ['
+   [ 104->106 ] MESSAGE                           ']: son başarısız m = ' -> ']: last failing m = '
+   [ 116->118 ] MESSAGE                           '  analitik alt sınır g_low(M=' -> '  analytic lower bound g_low(M='
+   [ 116->118 ] MESSAGE                           '; g_low türevi ~ 128(f-1) - 2 - 128/(2 m ln2) = ' -> '; derivative of g_low ~ 128(f-1) - 2 - 128/(2 m ln2) = '
+   [ 129->131 ] MESSAGE                           '[U9 c=0.4] N0 = ' -> '[c=0.4 choice] N0 = '
+   [ 129->131 ] MESSAGE                           '  (tüm n >= N0 için (*) ve K(n) <= ceil(0.4 n); tarama n < 200000, ötesi: K <= 0.39 n + 12.27 <= 0.4 n, n >= 1227)' -> '  (for all n >= N0: (*) and K(n) <= ceil(0.4 n); scan n < 200000, beyond: K <= 0.39 n + 12.27 <= 0.4 n, n >= 1227)'
+   [ 149->151 ] MESSAGE                           '[U9 log] (*) son başarısız n = ' -> '[log choice] last n where (*) fails = '
+   [ 149->151 ] MESSAGE                           '; K > ceil(2 kc n + 4 log2 n) son n = ' -> '; last n with K > ceil(2 kc n + 4 log2 n) = '
+   [ 149->151 ] MESSAGE                           ' (tarama n <= 200000)' -> ' (scan n <= 200000)'
+   [ 200->202 ] MESSAGE                           '[en iyilenmiş Lemma 3] ilk n ile K < n/2: ' -> '[optimised Lemma 3] first n with K < n/2: '
+   [ 201->203 ] MESSAGE                           '[en iyilenmiş Lemma 3] K > ceil(0.4 n) olan son n (n <= 3000): ' -> '[optimised Lemma 3] last n with K > ceil(0.4 n) (n <= 3000): '
+   [ 204->206 ] MESSAGE                           '  first_half sonrası K >= n/2 olan n sayısı: ' -> '  number of n after first_half with K >= n/2: '
+   [ 204->206 ] MESSAGE                           '; örnekler ' -> '; examples '
+   [ 209->211 ] MESSAGE                           '  tam sayı teyidi (n=' -> '  integer confirmation (n='
+   [ 209->211 ] MESSAGE                           '; L-1 ile = ' -> '; with L-1 = '
+
+== thresholds/n0_exact.py
+   original: <orig>/makale_uda_denetim/betikler/n0_tam.py
+   sha256 original: 9a54132ea8cf0162347f3b291c3675c871402051cebcdfa8b50133f8eb242e4a
+   sha256 package:  7308cf77b9f7b4ccd531fc387b20440997dd403df27cc9e2b28683fe9b759c3a
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 27 in total, 14 changed, 0 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [  82->82  ] MESSAGE                           '] (tam sayı (*))' -> '] (integer (*))'
+   [  83->83  ] MESSAGE                           "    K >= n/2 olan n'ler (>=120): " -> '    n with K >= n/2 (>=120): '
+   [  83->83  ] MESSAGE                           '; toplam ' -> '; total '
+   [  84->84  ] MESSAGE                           "    K > ceil(0.4n) olan n'ler (>=980): " -> '    n with K > ceil(0.4n) (>=980): '
+   [  84->84  ] MESSAGE                           '; toplam ' -> '; total '
+   [  85->85  ] MESSAGE                           '    float ipucunun tam sayıda düzeltilmesi gereken n sayısı: ' -> '    number of n where the floating-point hint had to be corrected in integers: '
+   [  98->98  ] MESSAGE                           ']: (*) tam sayıyla başarısız m sayısı ' -> ']: number of m where (*) fails in integers: '
+   [ 108->108 ] MESSAGE                           'kc_lo alt sınır değil' -> 'kc_lo is not a lower bound'
+   [ 123->123 ] MESSAGE                           '[c] U9 log seçimi, n in [' -> '[c] log choice, n in ['
+   [ 123->123 ] MESSAGE                           ']: B>=2^(m+2) başarısız: ' -> ']: B>=2^(m+2) fails: '
+   [ 123->123 ] MESSAGE                           ' (toplam ' -> ' (total '
+   [ 123->123 ] MESSAGE                           '); K <= ceil(2kc n + 4log2 n) başarısız: ilk ' -> '); K <= ceil(2kc n + 4log2 n) fails: first '
+   [ 124->124 ] MESSAGE                           ', son ' -> ', last '
+   [ 124->124 ] MESSAGE                           ' (toplam ' -> ' (total '
+
+== thresholds/n0_log_margin.py
+   original: <orig>/makale_uda_denetim/betikler/n0_c_marj.py
+   sha256 original: 18d3072e3c40ce00decfd6bf8b05f6186f76b09261aab9fff8f8c913edfbbe5c
+   sha256 package:  94f42305d18290230afbefd5c9ce74fd02765f5ac6ce5ed4620a34139364ffe9
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 8 in total, 3 changed, 0 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [  15->15  ] MESSAGE                           'en küçük marj (sag - (K-1)) n in [274,5000]:' -> 'smallest margin (rhs - (K-1)) for n in [274,5000]:'
+   [  17->17  ] MESSAGE                           'kuyruk eşiği: log2 n >= (5-2kc)/(2kc) =' -> 'tail threshold: log2 n >= (5-2kc)/(2kc) ='
+   [  22->22  ] MESSAGE                           'x <= 0.2 için m >=' -> 'for x <= 0.2: m >='
+
+== thresholds/examples_exact.py
+   NEW FILE (no original; not covered by this equivalence check)
+   sha256 package: 595666f3da860cddab74912abf2a7434ec62b00e0f0e9d2f40e8d6414815867b
+
+== thresholds/prop_half83.py
+   original: <orig>/makale_uda_denetim/betikler/lemma1_cgen_esik.py
+   sha256 original: 5783d4f954097330ed8e208c22e2c1f07ae29b2a19de681867a9c53978c3de95
+   sha256 package:  1ef97dfc99f9966eaf187c83a24c33564657f58f6c8b8516c22fe5f9d3d7881d
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 4 in total, 4 changed, 0 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [  12->12  ] MESSAGE                           '2c(n)+1 >= n/2 olan en büyük n (n<=400):' -> 'largest n with 2c(n)+1 >= n/2 (n<=400):'
+   [  13->13  ] MESSAGE                           'örnekler n: K=2c(n)+1, n/2:' -> 'examples n: K=2c(n)+1, n/2:'
+   [  16->16  ] MESSAGE                           'n in (max,400] hepsi K<n/2:' -> 'n in (max,400] all have K<n/2:'
+   [  16->16  ] MESSAGE                           '; c(n+13)=c(n)+3 her n>=1 (<=387):' -> '; c(n+13) <= c(n)+3 for every 1 <= n <= 387:'
+
+== thresholds/lemma23.py
+   original: <orig>/faz2/yaratici/v1_tipik_uda_denetim/betikler/lemma23.py
+   sha256 original: 842ac47c5d6da06964dbb4db4444b01370fa8a4c228a756449e51e1a3954e2df
+   sha256 package:  409109e7984ff1fb4cfc235e8b769cf802f76415ebd6336ead7a65d156e21c1a
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 73 in total, 23 changed, 12 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [ 145->147 ] MESSAGE                           'izdüşüm sıfır' -> 'projection is zero'
+   [ 216->218 ] MESSAGE                           '=== A) Tam Lagrange sayımı ===' -> '=== A) Exact count of Lagrangian subspaces ==='
+   [ 230->232 ] MESSAGE                           ': Lagrange sayısı = ' -> ': number of Lagrangians = '
+   [ 230->232 ] MESSAGE                           ' (formül prod(2^i+1) = ' -> ' (formula prod(2^i+1) = '
+   [ 230->232 ] MESSAGE                           '); Pr[u in S] kümesi = ' -> '); set of Pr[u in S] = '
+   [ 252->254 ] MESSAGE                           ' (formül ' -> ' (formula '
+   [ 254->256 ] MESSAGE                           'HATA' -> 'ERROR'
+   [ 260->262 ] MESSAGE                           '=== B) Lemma 2: örtme yarıçapı (sendrom) <-> rank V_r psi_S (sayısal) ===' -> '=== B) Lemma 2: covering radius (syndromes) <-> rank V_r psi_S (numerical) ==='
+   [ 272->274 ] ASSIGNMENT                   FLAG ': izotropik=' -> ': isotropic='
+   [ 272->274 ] ASSIGNMENT                   FLAG ', boyut=' -> ', dimension='
+   [ 272->274 ] ASSIGNMENT                   FLAG 'HATA' -> 'ERROR'
+   [ 272->274 ] ASSIGNMENT                   FLAG ', stab hata=' -> ', stab. error='
+   [ 278->280 ] ASSIGNMENT                   FLAG ', vurulan koset=' -> ', cosets hit='
+   [ 278->280 ] ASSIGNMENT                   FLAG ', Gram özdeğer tam-sayıdan sapma=' -> ', deviation of Gram eigenvalues from integers='
+   [ 303->305 ] MESSAGE                           '=== C) Lemma 3 inşası: S + açgözlü v -> W -> grafik S~ ===' -> '=== C) Construction of Lemma 3: S + greedy v -> W -> graph S~ ==='
+   [ 393->395 ] ASSIGNMENT                   FLAG ' (Chebyshev ortalama sınırı d/b); açgözlü eps: ' -> ' (Chebyshev average bound d/b); greedy eps: '
+   [ 396->398 ] ASSIGNMENT                   FLAG '); W örtme yarıçapı <= L: ' -> '); covering radius of W <= L: '
+   [ 397->399 ] ASSIGNMENT                   FLAG '; form rankı 2s = ' -> '; form rank 2s = '
+   [ 397->399 ] ASSIGNMENT                   FLAG '); radikal boyutu ' -> '); radical dimension '
+   [ 398->400 ] ASSIGNMENT                   FLAG '); S~: izotropik=' -> '); S~: isotropic='
+   [ 398->400 ] ASSIGNMENT                   FLAG '); S~ örtme yarıçapı R=' -> '); covering radius of S~ R='
+   [ 404->406 ] MESSAGE                           '   V_(L+s) psi_S~ rankı = ' -> '   rank of V_(L+s) psi_S~ = '
+   [ 404->406 ] MESSAGE                           '  (Lemma 2 ile germe: ' -> '  (spanning by Lemma 2: '
+
+== thresholds/lagrangian_cover.py
+   original: <orig>/faz2/yaratici/v1_tipik_uda_denetim/betikler/ek_sinamalar.py
+   sha256 original: 6ab164139859ae019c39f18bdaa80e594ab41f4eb8a11f8a4652624649de3055
+   sha256 package:  36f4374a7a70180662a7db860be42ce8a46c8f34d8ae8ba41a61b35553c9deaa
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 20 in total, 5 changed, 0 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [  26->27  ] MESSAGE                           ', 1-cisim marjinal farkı (tau - rho) = ' -> ', difference of 1-body marginals (tau - rho) = '
+   [  40->41  ] MESSAGE                           ', koset sayısı ' -> ', number of cosets '
+   [  40->41  ] MESSAGE                           '; ' -> '; among '
+   [  40->41  ] MESSAGE                           " rastgele Lagrange'tan örtme yarıçapı <= L olan: " -> ' random Lagrangians, covering radius <= L: '
+   [  41->42  ] MESSAGE                           '; en çok vurulan koset = ' -> '; most cosets hit = '
+
+== thresholds/dp_glue.py
+   original: <orig>/faz2/yaratici/u8_yapistirma/u8_dp.py
+   sha256 original: 4998fc89dd76f0c4a9c471dd72a2590c96acfac5c0474c65ba099f33808fd8cd
+   sha256 package:  bc82eb35e61131d1b0530972253ad579ca231714cd9592aca3756f23b765dbe1
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 84 in total, 16 changed, 0 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [ 101->105 ] MESSAGE                           '; jenerik C tanıklı b: ' -> '; b with generic C witnesses: '
+   [ 102->106 ] MESSAGE                           'c_gen(n) (alt-toplamsal kapanış), n=1..64:' -> 'c_gen(n) (sub-additive closure), n=1..64:'
+   [ 115->119 ] MESSAGE                           '] K < n/2 olan n: ' -> '] n with K < n/2: '
+   [ 116->120 ] MESSAGE                           '] K ≤ ⌊n/2⌋ olan n: ' -> '] n with K ≤ ⌊n/2⌋: '
+   [ 117->121 ] MESSAGE                           '] ⌊n/2⌋ ölçü-1 sınırı her n ≥ ' -> '] K ≤ ⌊n/2⌋ for every n ≥ '
+   [ 117->121 ] MESSAGE                           ' için çöküyor (n ≤ ' -> ' (n ≤ '
+   [ 117->121 ] MESSAGE                           '); K < n/2 her n ≥ ' -> '); K < n/2 for every n ≥ '
+   [ 117->121 ] MESSAGE                           ' için' -> ' in this range'
+   [ 118->122 ] MESSAGE                           " (n ≤ 64), n ∈ [33,64]'te " -> ' (n ≤ 64), on n ∈ [33,64] '
+   [ 127->131 ] MESSAGE                           '[V2] K_say(n) = K_V2(n) (K*_+(n) TAM belirlenir) olan n ≤ 64: ' -> '[V2] n ≤ 64 with K_say(n) = K_V2(n) (K*_+(n) determined EXACTLY): '
+   [ 128->132 ] MESSAGE                           '[V2] en büyük fark K_V2 − K_say (n ≤ 64): ' -> '[V2] largest difference K_V2 − K_say (n ≤ 64): '
+   [ 134->138 ] MESSAGE                           '[V2] pencere s ∈ [' -> '[V2] window s ∈ ['
+   [ 134->138 ] MESSAGE                           ']: her n ≥ ' -> ']: for every n ≥ '
+   [ 134->138 ] MESSAGE                           ' için K*_+(n) ≤ (3n + ' -> ', K*_+(n) ≤ (3n + '
+   [ 137->141 ] MESSAGE                           '[V2] tabloda K(n+13) ≤ K(n) + 3 her n ≤ ' -> '[V2] in the table K(n+13) ≤ K(n) + 3 for every n ≤ '
+   [ 137->141 ] MESSAGE                           ' için: ' -> ': '
+
+== thresholds/dp_no_S.py
+   original: <orig>/faz2/yaratici/u8_yapistirma/u8_dp_u1siz.py
+   sha256 original: 4732b01b2c42d404a1cdd08f7f36adcb2434de1f237168f1e24cee0e18a9fe81
+   sha256 package:  b084122dd8b1e46c335078542864c3e5d2ced39f23dde791329e1a7d19ef8fd6
+   declared module renames (import statements only): {'u8_dp': 'dp_glue'}
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 10 in total, 6 changed, 1 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [   3->3   ] CALL_ARG:insert              FLAG '<orig>/faz2/yaratici/u8_yapistirma' -> 'thresholds'
+   [  23->23  ] MESSAGE                           "U1'siz K(n), n=1..64:" -> 'K(n) without S certificates, n=1..64:'
+   [  26->26  ] MESSAGE                           'pencere [' -> 'window ['
+   [  26->26  ] MESSAGE                           ']: her n ≥ ' -> ']: for every n ≥ '
+   [  26->26  ] MESSAGE                           ' için K*_+(n) ≤ (3n + ' -> ', K*_+(n) ≤ (3n + '
+   [  27->27  ] MESSAGE                           'K(n+13) ≤ K(n)+3 tabloda:' -> 'K(n+13) ≤ K(n)+3 in the table:'
+
+== thresholds/dp_qubit_chain.py
+   original: <orig>/faz2/yaratici/u8_yapistirma/u8_kubit_zinciri.py
+   sha256 original: 50e6eccf757722421684244a433bd72a7f9cea62a7b45d6e2116ba9924684d0f
+   sha256 package:  8f9c81395392d23e826fff264ea08231b0cead16cc7b8b65da2936101514cef4
+   declared module renames (import statements only): {'u8_dp': 'dp_glue'}
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 11 in total, 4 changed, 1 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [   5->6   ] CALL_ARG:insert              FLAG '<orig>/faz2/yaratici/u8_yapistirma' -> 'thresholds'
+   [  18->19  ] MESSAGE                           'n | K_say | üst (tanıklı) | üst (H-C koşullu)' -> 'n | K_say | upper (witnessed) | upper (conditional on H-C)'
+   [  21->22  ] MESSAGE                           'H-C altında fark (üst − K_say) dağılımı n ≤ 128:' -> 'under H-C, distribution of the difference (upper − K_say), n ≤ 128:'
+   [  22->23  ] MESSAGE                           'tanıklı üst = K_say olan n ≤ 128:' -> 'n ≤ 128 with witnessed upper bound = K_say:'
+
+== numerics/direct_glue_rank.py
+   original: <orig>/faz2/yaratici/u8_yapistirma/u8_dogrudan.py
+   sha256 original: 6250d347c01ad2e73f54897fbe1e850ae53e4d5a499e3399f743a5ea873a423b
+   sha256 package:  9d2b1c5911e71b323063bd1d387f7c1d12f5507e6122e04a3dab6271d95f0156
+   AST after removing docstrings and masking string constants: IDENTICAL
+   string constants: 64 in total, 11 changed, 1 of the changes flagged (role other than MESSAGE), 0 format specifications changed
+   [  16->22  ] ASSIGNMENT                   FLAG '<orig>/faz2/yaratici/u1_kesin_sertifika/sertifika' -> 'certificates/S'
+   [ 166->172 ] MESSAGE                           '; yöntem ' -> '; method '
+   [ 170->176 ] MESSAGE                           '  [öngörü B′] K=' -> '  [prediction B′] K='
+   [ 170->176 ] MESSAGE                           ": R(K) ψ_a'da " -> ': R(K) at ψ_a '
+   [ 170->176 ] MESSAGE                           ", ψ_b'de " -> ', at ψ_b '
+   [ 170->176 ] MESSAGE                           ' (hedef ' -> ' (target '
+   [ 170->176 ] MESSAGE                           '); öngörülen rank = ' -> '); predicted rank = '
+   [ 171->177 ] MESSAGE                           'geçersiz (R(K) bir çarpanda yok)' -> 'invalid (R(K) fails at a factor)'
+   [ 188->194 ] MESSAGE                           '  [gram] G, N kovaları hazır  [' -> '  [gram] buckets of G and N ready  ['
+   [ 195->201 ] MESSAGE                           '; λ_min(çekirdek dışı) = ' -> '; λ_min(outside the kernel) = '
+   [ 195->201 ] MESSAGE                           '), sonraki = ' -> '), next = '
+
+SUMMARY: 21 original/packaged pairs (0 byte-identical), 3 new files; flagged string changes: 50; ALL PAIRS EQUIVALENT
+# exit status: 0

@@ -1,0 +1,11 @@
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*Notes.bib
+.DS_Store
+verification/out/
+verification/venv/
+__pycache__/

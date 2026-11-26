@@ -1,0 +1,1 @@
+b=12 c=2 seed=1: v ∈ {0,1}^4096 (‖v‖²=2051), p=1000037, ι=320900; columns 631; rank_Fp = 631/4096 ⇒ witness INSUFFICIENT  [3.2 s]

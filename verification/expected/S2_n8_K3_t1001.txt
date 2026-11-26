@@ -1,0 +1,5 @@
+n=8 K=3 M=1788: Kronecker H built; Im(w†Hw) = 0; θ − s = 48374.0826 > 0: True
+  A ⪰ 2.3109e+10 I (separately written Python-integer residual): True
+  G ⪰ 6.1018e+12 I (separately written Python-integer residual): True
+  D4: 2(M+2) r̂²/(θ−s)² = 1.3889e-05 < 3.8011e-01: True
+SECOND VERIFIER: ALL PASSED (n = 8, K = 3)

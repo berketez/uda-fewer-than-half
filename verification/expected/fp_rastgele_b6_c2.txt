@@ -1,0 +1,1 @@
+b=6 c=2 seed=1: v ∈ {0,1}^64 (‖v‖²=28), p=1000037, ι=320900; columns 154; rank_Fp = 64/64 ⇒ C(b,c) GENERIC (witness valid)  [0.0 s]

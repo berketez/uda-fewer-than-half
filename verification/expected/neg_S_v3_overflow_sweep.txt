@@ -1,0 +1,12 @@
+FAILED: X=[[-1]], t=1: Cholesky hint could not be produced
+   (rejected via dur)
+FAILED: X=[[-1]], t=1099511627776: Cholesky hint could not be produced
+   (rejected via dur)
+FAILED: X=[[-1]], t=4611686018427387904: overflow precondition for X − tI
+   (rejected via dur)
+FAILED: X=[[-1]], t=9223372036854775807: overflow precondition for X − tI
+   (rejected via dur)
+FAILED: X=[[-1]], t=9223372036854775813: overflow precondition for X − tI
+   (rejected via dur)
+FAILED: X=[[-1]], t=18446744073709551613: overflow precondition for X − tI
+   (rejected via dur)

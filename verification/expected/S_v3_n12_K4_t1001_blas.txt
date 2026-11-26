@@ -1,0 +1,10 @@
+Certificate certificates/S/S_n12_K4_t1001.json: n = 12, K = 4, D = 4096, mode = GEMM-exact (--blas)
+  (D0) H = Σ c_P P built: 46663 Paulis, weights ≤ 4, Hermitian, max|c| = 65536
+  (D1) θ = w†Hw/w†w = 9533386.118938 > s = 8809364  ⇒  λ₁(H) ≥ θ > s   [exact]
+  A: N=8192, t=3074946493528, f=2, ‖E‖_∞ = 74456460048 < 2^(2f)·t = 49199143896448 (ratio 1.513e-03); GEMM spot checks 32/32  ⇒  λ_min(A) ≥ 3.070293e+12
+  (D2) A ≻ 0  ⇒  H ≺ sI + (q/p) zz†  ⇒  λ₂(H) < s.  Together: λ₁ > s > λ₂, λ₁ is SIMPLE.
+  (D3) G_w = B_w B_wᵀ built in exact integers (M = 46665 Paulis + w, iw; GEMM-exact; spot checks 36/36)  [107.9 s]
+  G: N=8192, t=17819885111270, f=2, ‖E‖_∞ = 125196834338 < 2^(2f)·t = 285118161780320 (ratio 4.391e-04); GEMM spot checks 32/32  ⇒  λ_min(G) ≥ 1.781206e+13
+  (D4) r̂ = 4.4055e+01, θ − s = 724022.1189; 2(M+2) r̂²/(θ−s)² = 3.4556e-04 < σ_min(B_ŵ)² ≥ 4.9978e-01
+      ⇒ σ_min(B_ψ₀) ≥ 0.6884 > 0  ⇒  rank_ℝ = 2D = 8192.
+ALL PASSED (n = 12, K = 4): ψ₀ is UDA with its K-body marginals; dΦ is onto ⇒ the UDA set contains a nonempty open set.  [138.6 s]

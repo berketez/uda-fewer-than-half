@@ -1,0 +1,515 @@
+\documentclass[aps,pra,onecolumn,superscriptaddress,nofootinbib,longbibliography,10pt]{revtex4-2}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[turkish,shorthands=off]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Teorem}
+\newtheorem*{theorem2p}{Teorem 2$'$}
+\newtheorem*{lemA}{Lemma A}
+\newtheorem*{lemB}{Lemma B}
+\newtheorem*{lemBp}{Lemma B$'$}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Önerme}[section]
+\newtheorem{corollary}[proposition]{Sonuç}
+\theoremstyle{definition}
+\newtheorem{definition}[proposition]{Tanım}
+\newtheorem{remark}[proposition]{Not}
+\newtheorem{observation}[proposition]{Gözlem}
+\renewcommand{\proofname}{İspat}
+
+\newcommand{\CC}{\mathbb C}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\spanR}{\operatorname{span}_{\RR}}
+\newcommand{\spanC}{\operatorname{span}_{\CC}}
+\newcommand{\Pperp}{\Pi^{\perp}_{\psi}}
+\newcommand{\kc}{\kappa_c}
+\newcommand{\Kp}{K^{*}_{+}}
+\newcommand{\Ko}{K^{*}_{1}}
+\newcommand{\Kc}{K_{\mathrm{say}}}
+\newcommand{\cgen}{c_{\mathrm{gen}}}
+
+\setlength{\emergencystretch}{3em}
+\begin{document}
+
+\title{Saf qubit durumlarının qubitlerin yarısından azına ait marjinallerle belirlenmesi:\\ ölçü-1 sınırı ve Jones--Linden alt sınırının düzeltilmesi}
+
+\author{Berke Tezgöçen}
+\email{berketezgocen97@hotmail.com}
+\affiliation{Fizik Mühendisi (lisans, İstanbul Teknik Üniversitesi), Eskişehir, Türkiye}
+
+\date{26 Kasım 2026}
+
+\begin{abstract}
+Kuantum marjinal probleminin temel sorularından biri şudur: $n$ qubitlik saf bir durum, bütün $K$-cisim marjinalleriyle, saf ve karışık bütün durumlar arasında tek olarak belirlenir mi? Jones ve Linden (2005), $N/2$'den az tarafın marjinallerinin hemen her durum için yetmediğini ileri sürdü; bu cümle literatürde hâlâ aktarılıyor. Haar-hemen her $n$-qubit saf durumun, $K(n)=2\kc n+O(\log n)\approx0{,}379n$ cisim marjinalleriyle bu anlamda tek olarak belirlendiğini gösteriyoruz. Burada $\kc\approx0{,}189$, $h_2(\kappa)+\kappa\log_2 3=1$ denkleminin çözümüdür. Açık eşikler şunlardır: her $n\ge139$ için qubitlerin yarısından azına ait marjinaller, her $n\ge996$ için $\lceil0{,}4n\rceil$ cisim marjinalleri yeter. Böyle bir durum ayrıca pozitif yarı tanımlı, $K(n)$-yerel bir Hamiltonyenin enerjisi sıfır olan tek temel durumudur. İspat Pauli germesini, stabilizer durumlarının örtme yarıçapını ve polinom jenerikliğini birleştirir. $\kc n$ alt sınırı Linden ve Wootters'ın (2002) parametre sayımından gelir; ölçü-1 eşiğinde iki sınır arasındaki 2 çarpanı açıktır.
+İkinci sonuç olarak, belirlenen durumların pozitif ölçülü bir küme oluşturduğu en küçük $K$ için $\Kp(n)=\kc n+O(\log n)$ olduğunu, yani bu eşiğin baş katsayısının tam olarak $\kc$ olduğunu gösteriyoruz. Her $n$ için açık sabitli $\kc n<\Kp(n)\le(3n+24)/13$ sınırı da geçerlidir. Üçüncü olarak, $(n, K)=(8, 3)$, $(10, 4)$, $(12, 4)$ için belirlenen durumlardan oluşan açık kümeler veriyoruz; bu sertifikaların nihai doğrulaması tam sayı ve rasyonel eşitsizliklere dayanır.
+Sonuç olarak qubitlerde Jones--Linden'in alt sınır cümlesi her $N\ge7$ için yanlıştır; üst sınırları etkilenmez. Her $N\ge139$ için ise tersi hemen her durumda geçerlidir.
+\end{abstract}
+
+\maketitle
+
+\noindent\textit{Durum: İspatları ve sertifikaları şimdiye kadar yalnızca yapay zekâ sistemleri ve kesin aritmetikli doğrulayıcılar denetledi; henüz hiçbir insan uzman denetlemedi (sondaki yapay zekâ beyanına bakınız).}
+
+\paragraph*{Gösterim.} $\mathcal H_n=(\CC^2)^{\otimes n}$, $D=2^n$. Saf durumlar $\CP^{D-1}$'i oluşturur; üzerindeki normlanmış Fubini--Study ölçüsü $\mu_n$, Haar-rastgele saf durumun dağılımıdır. Bir Pauli dizisi $P$ için $|P|$ ağırlıktır (özdeşlik olmayan çarpan sayısı); $\mathcal P_K=\{P:1\le|P|\le K\}$ ve $M_K(n)=|\mathcal P_K|=\sum_{w=1}^{K}\binom nw 3^w$. $h_2$ ikili entropidir (bit), $f(x)=h_2(x)+x\log_2 3$ ve $\kc=0{,}1892896249\ldots$, $f(\kappa)=1$ denkleminin $(0, 1/2)$'deki tek çözümüdür; $2\kc=0{,}3785792498\ldots$. $\Pperp=I-\psi\psi^\dagger$, $\langle u,v\rangle_{\RR}=\operatorname{Re}\langle u,v\rangle$ ve $\mathcal V_L=\spanC\{P:|P|\le L\}$ (özdeşlik dahil).
+
+\section{Giriş}
+
+Çok parçalı bir kuantum durumunun parçaları bütünü ne kadar belirler? Saf durumlar için soru şöyle kurulur. $|\psi\rangle\in\mathcal H_n$ verilsin ve her $K$-elemanlı $A\subseteq\{1,\dots,n\}$ için $\Tr_{A^c}|\psi\rangle\langle\psi|$'yi bildiğimizi varsayalım. Bu marjinallere sahip tek yoğunluk matrisi $|\psi\rangle\langle\psi|$ mi? Öyleyse $\psi$, $K$-cisim marjinalleriyle \emph{bütün durumlar arasında tek olarak belirlenir} (UDA); teklik yalnız saf durumlar arasında isteniyorsa $\psi$ UDP'dir.
+
+Linden, Popescu ve Wootters, üç qubitte hemen her saf durumun iki-cisim marjinalleriyle belirlendiğini gösterdi~\cite{LPW02}. Linden ve Wootters, genel bir saf durumu belirlemek için gereken taraf sayısının qubitlerde yaklaşık $0{,}189n$ ile $2n/3$ arasında olduğunu gösterdi~\cite{LW02}; alt uç bir parametre sayımıdır ve $\kc$'yi verir. Stabilizer durumları için Wu ve diğerleri~\cite{Wu15}, her $n$-qubit stabilizer durumunun $n$ bağımsız stabilizer üretecinin desteklerindeki marjinallerle UDA olduğunu gösterdi; bizim sonuçlarımız ise jenerik (Haar) durumlar ve sınırlı büyüklükteki marjinallerle ilgilidir. Jones ve Linden~\cite{JL05} iki ucu da yarıya taşıdığını bildirdi: Çift $N$ için genel saf durumlar $N/2+1$ tarafın marjinalleriyle belirlenir (tek $N$ durumunu daha sonra Huang, Chen, Li ve Zeng $(N+1)/2$'ye indirdi~\cite{HCLZ18}); ve~\cite{JL05}'in özetinde $N/2$'den az tarafın indirgenmiş durumlarının hemen her durum için yetmediği söylenir. \cite{JL05}'in gövdesi (giriş ve §3) daha güçlü bir biçim kurar: $\lfloor N/2\rfloor$-taraf marjinalleri, genel bir saf durumu öteki saf ya da karışık durumlardan ayırmaz. ``Genel'' ve ``hemen her'' sözcükleri ölçü-1 anlamında kullanıldığından alt sınır iddiası şöyle okunur: $K<N/2$ (özet) ya da $K=\lfloor N/2\rfloor$ (gövde) iken UDA durumların kümesinin Haar ölçüsü sıfırdır.
+
+Bu cümle aktarılmaya devam ediyor. Tam metinlerde doğruladığımız aktarımlar: Wyderka, Huber ve Gühne~\cite{WHG17}; Huang ve diğerleri~\cite{HCLZ18}; Uzcátegui Contreras ve Goyeneche~\cite{UG22}; Zhang, Shi ve Zhang~\cite{ZSZ24} (en güçlü biçimiyle: çift $N$ için hemen her saf durum $N/2$-UDP'dir ama $N/2$-UDA değildir); Shen ve Chen~\cite{SC23}; Qiu, Chen, Li ve Chu~\cite{QCLC25}; ayrıca Huber~\cite{Hub17} ve Wyderka'nın~\cite{Wyd20} doktora tezleri. İncelediğimiz kaynaklarda (Bölüm~\ref{sec:JL}) alt sınıra yönelik bir düzeltme ya da yorum, yarının altında bir ölçü-1 üst sınırı da bulamadık.
+
+\subsection*{Bu çalışma}
+\begin{enumerate}
+\item \textbf{Ölçü-1 sınırı (Teorem~\ref{thm:main}).} Haar-hemen her $n$-qubit saf durum, $K(n)=2\kc n+O(\log n)$ cisim marjinalleriyle UDA'dır ve pozitif yarı tanımlı, $K(n)$-yerel bir Hamiltonyenin enerjisi sıfır olan tek temel durumudur. Açık eşikler: her $n\ge139$ için $\lceil n/2\rceil-1$ (yarıdan az) ve her $n\ge996$ için $\lceil0{,}4n\rceil$. Bu, Jones--Linden alt sınırının ölçü-1 okumasını her $N\ge139$ için çürütür ve bilinen en iyi ölçü-1 üst sınırını $\lfloor n/2\rfloor+1$'den asimptotik olarak $\approx0{,}379n$'ye indirir.
+\item \textbf{Pozitif ölçü eşiği (Teorem~\ref{thm:pos}).} UDA durumların pozitif ölçülü olduğu en küçük $K$ için $\Kp(n)=\kc n+O(\log n)$; açık olarak her $n$ için $\kc n<\Kp(n)\le(3n+24)/13$. Özellikle her $N\ge7$ için $K<N/2$ ile pozitif ölçülü bir UDA kümesi vardır.
+\item \textbf{Sonlu kesin sertifikalar (Teorem~\ref{thm:cert}).} $(n, K)=(8, 3)$, $(10, 4)$, $(12, 4)$ ($K<n/2$) ile $(4, 2)$, $(6, 3)$ ($K=n/2$) için UDA durumları boş olmayan bir açık küme içerir. İspatlar bilgisayar desteklidir; her nihai hüküm kesin bir tam sayı ya da rasyonel eşitsizliktir.
+\item Kesin sertifikaların \textbf{yapıştırılması (Teorem~\ref{thm:glue})}; Teorem~\ref{thm:pos}'yi bu sağlar.
+\item Jones--Linden argümanındaki geçersiz adımı gösteriyoruz (Bölüm~\ref{sec:JL}).
+\end{enumerate}
+
+\paragraph*{İddia etmediklerimiz.} Küçük $n$ için hemen her durumun qubitlerin yarısından azına ait marjinallerle belirlendiğini iddia etmiyoruz; bu $(n, K)=(8, 3)$'te yanlıştır: 3-üniform bir graf durumunun çevresinde UDA olmayan bir açık küme vardır~\cite{HG16} (Gözlem~\ref{obs:sep}). Ölçü-1 eşiğinin $\kc n+O(\log n)$ olduğunu kanıtlamıyoruz; 2 çarpanı açık kalıyor. Teorem~\ref{thm:pos} ve~\ref{thm:cert}'ün açık kümelerinin yarıçapını ya da hacmini vermiyoruz; ölçüm maliyeti, istatistiksel maliyet ya da gürültüye kararlılık hakkında bir şey söylemiyoruz.
+
+\paragraph*{Motivasyon.} Bu soruya kara delik bilgi probleminden geldik. Buharlaşma üniterse son ışınım saftır; Haar-tipik bir saf durumla modellenirse, qubitlerin sabit bir $\alpha<1/2$ oranını içeren her alt sistem $n\to\infty$ iken neredeyse maksimal karışıktır~\cite{Pag93a,Pag93b}. O zaman bilginin hangi mertebeden korelasyonlarda yazılı olduğu sorulabilir: tek bir küçük alt sistemde değil, bütün $K$-cisim marjinallerinde \emph{birlikte}. Sonuçlarımız kuantum bilgi kuramına aittir ve yalnız tam veriden belirlenebilirlikle ilgilidir (Bölüm~\ref{sec:disc}).
+
+\section{Tanımlar ve eşikler}
+
+\begin{definition}
+$\psi$ saf bir durum ve $1\le K\le n$ olsun; $K\ge n$ için $K$-UDA'yı $n$-UDA olarak okuruz (bu bayağı olarak doğrudur) ve aşağıdaki $2L+1$ gibi yerellik mertebeleri $\min(n,2L+1)$ olarak anlaşılır. Bir $\rho$ durumunun $K$-cisim marjinallerini bilmek, her $P\in\mathcal P_K$ için $\Tr(\rho P)$'yi bilmekle aynıdır.
+\begin{itemize}
+\item Her $P\in\mathcal P_K$ için $\Tr(\rho P)=\langle\psi|P|\psi\rangle$ olan her yoğunluk matrisi $\rho$, $|\psi\rangle\langle\psi|$'ye eşitse $\psi$ \emph{$K$-UDA}'dır; aynı koşul yalnız saf $\rho$'lar için isteniyorsa \emph{$K$-UDP}'dir.
+\item $\psi$, $K$-yerel bir Hamiltonyenin tek temel durumuysa \emph{$K$-UGS}'dir. UGS, UDA'yı gerektirir (Önerme~\ref{prop:top}); tersi genelde yanlıştır~\cite{KJTV19}.
+\item $\mathcal U_K(n)\subseteq\CP^{D-1}$, $K$-UDA durumların kümesidir; $\mathcal N_K(n)$ tümleyenidir. $\mathcal U_K\subseteq\mathcal U_{K+1}$ ve $\mathcal U_n=\CP^{D-1}$.
+\end{itemize}
+\end{definition}
+
+\begin{definition}
+\emph{Pozitif ölçü eşiği} $\Kp(n)=\min\{K:\mu_n(\mathcal U_K(n))>0\}$; \emph{ölçü-1 eşiği} $\Ko(n)=\min\{K:\mu_n(\mathcal N_K(n))=0\}$; \emph{sayım eşiği} $\Kc(n)=\min\{K:M_K(n)\ge2^{n+1}-2\}$, burada $2D-2$, $\CP^{D-1}$'in gerçel boyutudur. $u(n)$, $K$-üniform (bütün $K$-cisim marjinalleri maksimal karışık) bir $n$-qubit saf durumun var olduğu en büyük $K$'dır.
+\end{definition}
+
+$\Kp$ için verdiğimiz bütün üst sınırlar boş olmayan \emph{açık} bir UDA kümesi kurar; alt sınırlar yalnız pozitif ölçüyü kullanır.
+
+\begin{proposition}\label{prop:rel}
+Her $n$ için:
+(i) $\Kc(n)\le\Kp(n)\le\Ko(n)$;
+(ii) $\Ko(n)\ge u(n)+1$;
+(iii) $\Ko(n)\le\lfloor n/2\rfloor+1$ \cite{JL05,HCLZ18};
+(iv) $K(n)$ Teorem~\ref{thm:main}'deki gibi olmak üzere $\Ko(n)\le K(n)$;
+(v) $\mathcal N_K(n)$ yarı-cebirseldir; dolayısıyla $\mu_n(\mathcal N_K)>0$ ancak ve ancak $\mathcal N_K$'nın içi boş değilse doğrudur.
+\end{proposition}
+\noindent (i)'nin ilk eşitsizliği Önerme~\ref{prop:count}'tür. (ii), Huber ve Gühne'nin~\cite{HG16} doğrudan sonucudur: $\varphi$ $K$-üniform ise $\rho_t=\psi\psi^\dagger+t(I/D-\varphi\varphi^\dagger)$, $\psi$ ile aynı $K$-cisim marjinallerine sahiptir ve $|\langle\psi|\varphi\rangle|^2>(D-1)/D$ iken küçük $t>0$ için $\psi\psi^\dagger$'den farklı geçerli bir durumdur; bu, UDA olmayan durumlardan oluşan açık bir toptur. (iii) aktarılmıştır; bu ispatları yeniden denetlemedik. (v) Tarski--Seidenberg ilkesinden çıkar.
+
+\begin{observation}\label{obs:sep}
+$(n, K)=(6, 3)$ ve $(8, 3)$'te hem $\mathcal U_K$ hem $\mathcal N_K$ boş olmayan açık küme içerir: UDA tarafı Teorem~\ref{thm:cert}'tür; UDA olmayan taraf, Önerme~\ref{prop:rel}(ii) aracılığıyla 3-üniform çark graf durumundan ($n=6$) ve küp graf durumundan ($n=8$) gelir. Dolayısıyla $\Kp(8)=3<4\le\Ko(8)$. $n=12$'de $\Kp(12)=4$, buna karşılık 5-üniform bir 12-qubit durumu (\,$[[12{,}0{,}6]]$ dodekakodu) nedeniyle $\Ko(12)\ge6$'dır. Yani küçük $n$'de pozitif ölçü dili zorunludur.
+\end{observation}
+
+\section{Ana sonuçlar}
+
+\subsection{Sertifika dili}
+Bir birim vektör $\psi$ için gerçel ve karmaşık germe koşulları:
+\begin{itemize}
+\item $\psi$'de $R(K)$: $\spanR\{P\psi:0\le|P|\le K\}+\RR\,i\psi=\CC^D$ ($\RR^{2D}$ olarak); eşdeğeri $\spanR\{\Pperp P\psi:P\in\mathcal P_K\}=\psi^\perp$.
+\item $\psi$'de $C(c)$: $\spanC\{P\psi:0\le|P|\le c\}=\CC^D$, yani $\mathcal V_c\psi=\CC^D$.
+\item $(H,\psi)$'de $S(n,K)$: $h_P\in\RR$ ile $H=\sum_{P\in\mathcal P_K}h_PP$; $\psi$, $H$'nin \emph{basit} en büyük özdeğerinin özvektörüdür; ve $\psi$'de $R(K)$ sağlanır.
+\end{itemize}
+$R(K)\Rightarrow C(K)$; ikisi de faz değişmezdir. $R(K)$, $\mu_K:[\psi]\mapsto(\langle\psi|P|\psi\rangle)_{P\in\mathcal P_K}$ gönderiminin $[\psi]$'de daldırma olmasına eşdeğerdir. Bir durumun \emph{sertifika verisi} $(K_H,r,c)$ üst sınırları kaydeder: durum, gerçel katsayılı ve yerelliği en çok $K_H$ olan bir Hamiltonyenin basit üst özvektörüdür ve $R(r)$ ile $C(c)$'yi sağlar. Kaydedilen değerlerin en küçük olması gerekmez. $R(r)\Rightarrow C(r)$ olduğundan her zaman $c\le r$ varsayılabilir. İki sertifika türünün rolleri farklıdır: $S$ bir \emph{komşuluğu} UDA yapar (Lemma~A); $C$ ise tek başına, mertebe iki katına çıkarak, noktanın kendisini UDA yapar (Lemma~\ref{lem:1}). $C(c)$ jenerik bir koşul olduğundan ikincisi ölçü-1 sonuçlarına götürür. $\cgen(m)$, $C(c)$'nin bir (dolayısıyla Bölüm~\ref{sec:proof2}'ye göre Haar-hemen her) $m$-qubit durumda sağlandığı en küçük $c$'dir.
+
+\subsection{Ölçü-1}
+\begin{theorem}\label{thm:main}
+Her $n$ için, Haar-hemen her $n$-qubit saf durum $\psi$ (istisna kümesi o $n$ için ölçü sıfırdır) şu özellikleri taşır: bütün $K(n)$-elemanlı qubit alt kümelerindeki indirgenmiş yoğunluk matrisleriyle, saf ve karışık bütün durumlar arasında tek olarak belirlenir; ve pozitif yarı tanımlı, $K(n)$-yerel bir Hamiltonyenin enerjisi sıfır olan tek temel durumudur. Burada genel olarak $K(n)=2\kc n+O(\log n)$'dir; açık olarak:
+\begin{itemize}
+\item her $n\ge139$ için $K(n)=\lceil n/2\rceil-1$ yeter (qubitlerin yarısından azı);
+\item her $n\ge996$ için $K(n)=\lceil0{,}4n\rceil$ yeter;
+\item her $n\ge274$ için $K(n)=\lceil2\kc n+4\log_2n\rceil$ yeter.
+\end{itemize}
+Alt sınır $\Ko(n)\ge\Kc(n)>\kc n$'dir; 2 çarpanı açıktır.
+\end{theorem}
+
+\subsection{Pozitif ölçü}
+\begin{theorem}\label{thm:pos}
+(i) $\Kp(n)=\kc n+O(\log n)$; özellikle $\lim_{n\to\infty}\Kp(n)/n=\kc$, yani pozitif ölçü eşiğinin baş katsayısı sayım katsayısına eşittir.
+(ii) Açık olarak, her $n\ge1$ için
+\[
+\lfloor\kc n\rfloor+1\le\Kc(n)\le\Kp(n)\le\frac{3n+24}{13},
+\]
+ve her $n\ge14$ için $\Kp(n)\le(3n+20)/13$.
+\end{theorem}
+
+\begin{theorem2p}
+Her $n\ge2$ için $\Kp(n)\le1+\max_{1\le m<n}\cgen(m)$.
+\end{theorem2p}
+
+\noindent (ii)'deki açık sınır küçük $n$'de yararlı olmayı sürdürür: her $N\ge7$ için $K<N/2$ ile pozitif ölçülü UDA kümeleri verir; Teorem~\ref{thm:main} ise $N\ge139$ ister. Ölçü daha zayıftır (tam değil, pozitif).
+
+\subsection{Sonlu kesin sertifikalar}
+\begin{theorem}\label{thm:cert}
+Tablo~\ref{tab:cert}'teki her $(n, K)$ için boş olmayan bir açık $O_{n,K}\subseteq\CP^{2^n-1}$ vardır: her $[\psi]\in O_{n,K}$ ve her yoğunluk matrisi $\rho$ için, bütün $|A|=K$ alt kümelerinde $\Tr_{A^c}\rho=\Tr_{A^c}|\psi\rangle\langle\psi|$ ise $\rho=|\psi\rangle\langle\psi|$'dir. Özellikle $\mu_n(O_{n,K})>0$.
+\end{theorem}
+\begin{table}[h]
+\caption{Sonlu sertifikalar (Teorem~\ref{thm:cert}). Bütün doğrudan $S$ sertifikaları son doğrulayıcıdan geçer (Bölüm~\ref{sec:exact}).}\label{tab:cert}
+\begin{tabular}{lll}
+\toprule
+$(n, K)$ & $K$ ile $n/2$ & sertifika yolu\\
+\midrule
+$(4, 2)$ & $K=n/2$ & doğrudan $S(4{,}2)$\\
+$(6, 3)$ & $K=n/2$ & doğrudan $S(6{,}3)$\\
+$(8, 3)$ & $K<n/2$ & doğrudan $S(8{,}3)$ (üç bağımsız tohum)\\
+$(10, 4)$ & $K<n/2$ & doğrudan $S(10{,}4)$\\
+$(12, 4)$ & $K=n/3$ & (a) yapıştırma: $S(4{,}2)\otimes S(8{,}3)$ ve $\psi_8$'de $C(2)$, Lemma~B; kesin tam sayılar\\
+ & & (b) doğrudan sertifika (ara toplamları $<2^{53}$ olarak kanıtlanmış kayan noktalı GEMM)\\
+\bottomrule
+\end{tabular}
+\end{table}
+\noindent Teorem~\ref{thm:pos}'de kullanılan ek kesin girdiler: $n=4{,}6{,}8$'de (üç tohum), $S$ sertifikalarının aynı $\psi_0$ noktalarında $C(2)$ sertifikaları; $n=10$'da $C(3)$; $n=6$'da $R(2)$ ve $n=10$'da $R(3)$. Bunlar kesin blok verilerini verir: $\psi_4:(2{,}2{,}2)$, $\psi_6:(3{,}2{,}2)$, $\psi_8:(3{,}3{,}2)$, $\psi_{10}:(4{,}3{,}3)$, $|0\rangle:(1{,}1{,}1)$.
+
+\subsection{Yapıştırma}
+\begin{lemA}[sertifikadan açık kümeye]
+$S(n,K)$, $(H_0,\psi_0)$'da sağlansın. O zaman $K$-UDA olan saf durumlar $[\psi_0]$'ın bir açık komşuluğunu içerir ve bu komşulukta her yerde $R(K)$ sağlanır.
+\end{lemA}
+\begin{lemB}[yapıştırma]
+$S(n_1,K_1)$, $(H_1,\psi_1)$'de; $S(n_2,K_2)$, $(H_2,\psi_2)$'de ve $C(K_2')$, $\psi_2$'de sağlansın. $K=\max(K_1,K_2,K_1+K_2')$ ile $S(n_1+n_2,K)$, $(H_1\otimes I+I\otimes H_2,\allowbreak\ \psi_1\otimes\psi_2)$'de sağlanır. İki bloğun da $C$ düzeyleri biliniyorsa $K=\max(K_1,K_2,\min(K_1+K_2',K_1'+K_2))$ kullanılabilir.
+\end{lemB}
+\begin{lemBp}[gerek ve yeter koşul]
+$A_j=\Pi^\perp_{\psi_1}\spanR\{P\psi_1:|P|\le j\}$, $B_j$ de $\psi_2$ için aynı biçimde tanımlansın; $X\hat\otimes Y=\spanR\{x\otimes y:x\in X,y\in Y\}$ ve $W_K=\sum_{j=1}^{K-1}A_j\hat\otimes B_{K-j}\subseteq\psi_1^\perp\otimes\psi_2^\perp$ olsun. O zaman $\psi_1\otimes\psi_2$'de $R(K)$ ancak ve ancak $\psi_1$'de $R(K)$, $\psi_2$'de $R(K)$ ve $W_K=\psi_1^\perp\otimes\psi_2^\perp$ ise sağlanır. İlk ikisi sağlandığında $\dim_{\RR}V_K=2(D_1+D_2-1)+\dim_{\RR}W_K$'dır; burada $V_K=\spanR\{P(\psi_1\otimes\psi_2):|P|\le K\}+\RR\,i(\psi_1\otimes\psi_2)$.
+\end{lemBp}
+\noindent \textbf{Bileşim kuralı.} Lemma~B$'$'nün yeter yönünden
+\[
+(K_{H,1},r_1,c_1)\otimes(K_{H,2},r_2,c_2)\to(K_H',r',c')
+\]
+çıkar; burada $K_H'=\max(K_{H,1},K_{H,2})$, $r'=\max\big(r_1,r_2,\min(r_1+c_2,\,c_1+r_2)\big)$ ve $c'=c_1+c_2$'dir; karmaşık germe toplamsaldır: $\psi_1$'de $C(c_1)$ ve $\psi_2$'de $C(c_2)$ ise $\psi_1\otimes\psi_2$'de $C(c_1+c_2)$ sağlanır.
+
+\begin{theorem}\label{thm:glue}
+Lemma~A, Lemma~B, Lemma~B$'$ ve bileşim kuralı geçerlidir. Elde edilen açık kümeler çarpım durumlarının komşuluklarıdır ve kesimde dolanık durumları da içerir; teklik, karışık rakipler dahil küreseldir.
+\end{theorem}
+\noindent \emph{Öncel çalışma.} Shen ve Chen~\cite{SC23}, UDA durumların (biri saf olmak üzere) tensör çarpımının $\max(k_1,k_2)$ düzeyinde UDA olduğunu kanıtladı; bu, çarpım durumunun kendisiyle ilgilidir. Teorem~\ref{thm:glue} ise onun açık bir komşuluğuyla ilgilidir ve mertebe toplamsal büyür.
+
+\begin{proposition}[jenerik yükseltme]\label{prop:upgrade}
+Verisi $(K_H,r,c)$ olan bir $n$-qubit durum varsa ve $C(c')$, $n$ qubitte jenerikse, verisi $(\max(K_H,r),r,\min(c,c'))$ olan bir durum vardır.
+\end{proposition}
+\begin{proposition}[bayağı blok]\label{prop:triv}
+$S(b,b)$ her $b$-qubit saf durumda sağlanır. Dolayısıyla $b$ qubitte jenerik $C(c)$'nin tek bir tanığı, Önerme~\ref{prop:upgrade} ile, verisi $(b,b,c)$ olan bir blok verir.
+\end{proposition}
+
+\subsection{Yerel teklik ve daha keskin bir yarı eşiği}
+\begin{proposition}[yerel teklik]\label{prop:loc}
+$R(K)$ bir $n$-qubit durumda sağlanıyorsa, Haar-hemen her $\psi$ için $\mu_K$, $[\psi]$'de daldırmadır; yani $\psi$'nin yakınında aynı $K$-cisim marjinallerine sahip başka saf durum yoktur. (Örnek: $n=6$'da $R(2)$, $n=10$'da $R(3)$ jeneriktir.) Bu yalnız saf durumlar arasında yerel bir tekliktir.
+\end{proposition}
+
+\begin{proposition}[bilgisayar destekli]\label{prop:83}
+$\cgen(1)=\cgen(2)=\cgen(3)=1$, $\cgen(4)=\dots=\cgen(8)=2$, $\cgen(9)=\dots=\cgen(13)=3$ (Tablo~\ref{tab:fp}'deki $\FF_p$ tanıkları) ve
+$c(n)=\min\{\sum_i\cgen(b_i):\sum_ib_i=n,\ 1\le b_i\le13\}$ olsun. O zaman her $n$ için Haar-hemen her $n$-qubit saf durum $(2c(n)+1)$-UDA ve $(2c(n)+1)$-UGS'dir. Özellikle her $n\ge83$ için $2c(n)+1<n/2$'dir.
+\end{proposition}
+\begin{proof}
+$C$'nin toplamsallığından (Bölüm~\ref{sec:proof2}) blok tanıklarının tensör çarpımı $C(c(n))$'yi sağlar; jeneriklikten $C(c(n))$ Haar-hemen her yerde sağlanır; Lemma~\ref{lem:1} sonucu verir. Dinamik programlamayla $2c(n)+1\ge n/2$ en son $n=82$'de sağlanır ($n\le400$ taraması). 13 qubitlik bir blok $c(n+13)\le c(n)+3$ verdiğinden, $2c(n)+1<n/2$ ise $2c(n+13)+1\le2c(n)+7<(n+13)/2$ olur; koşul $[83, 95]$ penceresinde sağlanır.
+\end{proof}
+\noindent Eğim $6/13$, Teorem~\ref{thm:main}'den asimptotik olarak kötüdür, ama yarı eşiği $139$'dan $83$'e iner. Özet, Teorem~\ref{thm:main}'in yolunun eşiği olan $139$'u verir; $83$'e iyileşme Tablo~\ref{tab:fp}'deki sonlu cisim tanıklarına dayanır ve burada bilgisayar destekli bir iyileştirme olarak verilir.
+
+\subsection{Jones--Linden alt sınırının durumu}
+\begin{corollary}\label{cor:JL}
+Qubitler için:
+\begin{itemize}
+\item Özet okuması (``$N/2$'den az tarafın marjinalleri hemen her durum için yetmez'') her $N\ge7$ için yanlıştır, çünkü $7N>48$ iken $\Kp(N)\le(3N+24)/13<N/2$; Teorem~\ref{thm:cert} bunu $N=8{,}10{,}12$ için doğrudan verir. Her $N\ge139$ için daha güçlüsü doğrudur: hemen her durum $K<N/2$ ile UDA'dır.
+\item Gövde okuması (``$\lfloor N/2\rfloor$-cisim marjinaller hemen her durum için yetmez'') $N=4$ ve her $N\ge6$ için yanlıştır; her $N\ge139$ için hemen her durum $\lfloor N/2\rfloor$-cisim marjinalleriyle UDA'dır.
+\item $N\in\{1{,}2{,}3{,}5\}$ için pozitif ölçü inşamız $K>\lfloor N/2\rfloor$ verir; $N=3$'te bu, sayımla ve~\cite{LPW02} ile tutarlıdır; $N=5$ açıktır.
+\end{itemize}
+``UDA olmayan küme pozitif ölçülüdür'' biçimindeki zayıf okuma bazı küçük $N$'lerde ($K$-üniform durumlar nedeniyle~\cite{HG16}) doğrudur, ama her $N\ge139$ için yanlıştır. \cite{JL05,HCLZ18}'in üst sınırları etkilenmez.
+\end{corollary}
+
+\section{Teorem~\ref{thm:main}'in ispatı}\label{sec:proof1}
+
+\begin{lemma}[karmaşık germe yerel pozitif sertifika verir]\label{lem:1}
+$\mathcal V_L\psi=\CC^D$, yani $\psi$'de $C(L)$ sağlansın. O zaman $\ker G=\CC\psi$ olan, pozitif yarı tanımlı, $(2L+1)$-yerel bir $G$ vardır. Dolayısıyla $\psi$, $(2L+1)$-UDA'dır ve pozitif yarı tanımlı, $(2L+1)$-yerel $G$ Hamiltonyeninin enerjisi sıfır olan tek temel durumudur.
+\end{lemma}
+\begin{proof}
+\emph{Taban.} Ağırlığı $\le L$ olan $P_1,\dots,P_D$ Paulileri, $P_i\psi$'ler bir taban oluşturacak biçimde seçilsin; $B=[P_1\psi\cdots P_D\psi]$ tersinirdir.
+\emph{Sökücüler.} Her tek-site $Q\in\{X_j,Z_j\}$ için $C_Q=B^{-1}QB$ ve $A_{Q,i}=QP_i-\sum_j(C_Q)_{ji}P_j$ olsun. $QB=BC_Q$'nun $i$. sütunu $QP_i\psi=\sum_j(C_Q)_{ji}P_j\psi$'dir; yani $A_{Q,i}\psi=0$.
+\emph{Pozitiflik ve yerellik.} $G=\sum_{Q,i}A_{Q,i}^\dagger A_{Q,i}\succeq0$. $S_i=\sum_j(C_Q)_{ji}P_j$ ile
+$A_{Q,i}^\dagger A_{Q,i}=I-(QP_i)^\dagger S_i-S_i^\dagger QP_i+S_i^\dagger S_i$, çünkü $(QP_i)^\dagger QP_i=I$; yani iki ağırlık-$(L+1)$ çarpanının çarpımı hiç oluşmaz. Çapraz terimlerin ağırlığı $\le2L+1$, son terimin ağırlığı $\le2L$'dir; $G$, $(2L+1)$-yerel ve Hermitseldir.
+\emph{Tek boyutlu çekirdek.} Bütün $A_{Q,i}$'lerin yok ettiği bir $\phi$ alınsın ve doğrusal $T$, $T(P_i\psi)=P_i\phi$ ile tanımlansın. O zaman $QP_i\phi=\sum_j(C_Q)_{ji}P_j\phi=T(QP_i\psi)$ ve ayrıca $QP_i\phi=QT(P_i\psi)$; yani taban üzerinde $QT=TQ$. $\{X_j,Z_j\}$, $M_{2^n}(\CC)$'yi ürettiğinden $T=cI$; dolayısıyla $P_i(\phi-c\psi)=0$ ve $\phi=c\psi$.
+\emph{UDA.} $G$, ağırlığı $\le2L+1$ olan Paulilerin bir bileşimidir. $\sigma$'nın $(2L+1)$-cisim marjinalleri $\psi$'ninkilerle aynıysa $\Tr(\sigma G)=\langle\psi,G\psi\rangle=0$; $G\succeq0$ olduğundan $\operatorname{ran}\sigma\subseteq\ker G=\CC\psi$, yani $\sigma=\psi\psi^\dagger$.
+\end{proof}
+\begin{remark}
+Lemma~\ref{lem:1}, UDA'dan güçlü olan UGS'yi verir; bu~\cite{KJTV19} ile çelişmez, o sonuç başka durumlar içindir. $A_{Q,i}$ operatörleri yerel değildir; pozitiflik globaldir, yerellik Pauli ağırlığındadır. $2L+1<n/2$ iken Haar-jenerik $\psi$ için bütün $(2L+1)$-cisim marjinalleri tam ranklıdır; bu yüzden destek temelli (engelsiz) ebeveyn Hamiltonyenleri~\cite{KJTV17} sıfır olur; Lemma~\ref{lem:1} bu engeli aşar. \cite{CJWZ12}'nin $(H-E)^2$ yolunun aksine basit özdeğer varsayımı gerekmez. \emph{Öncel:} kareler toplamıyla yerelliğin ikiye katlanması~\cite{CJWZ12}'de; sökücülerden ebeveyn Hamiltonyeni~\cite{GST18}'de; UDA'nın SDP duali~\cite{HG16,KJTV19,Wyd20}'de vardır. Germe ölçütünü ve komütant argümanını incelediğimiz literatürde bulamadık.
+\end{remark}
+
+\begin{lemma}[stabilizer örtme $\Leftrightarrow$ germe]\label{lem:2}
+Fazları atılmış $m$-qubit Pauliler $V=\FF_2^{2m}$ ile özdeşleştirilsin; bir Lagrange altuzayı $S\subset V$ bir stabilizer durumu $\psi_S$ belirler. $S$'nin her koseti ağırlığı $\le R$ olan bir temsilci içerir ancak ve ancak $\mathcal V_R\psi_S=\CC^{2^m}$. Dahası, $\mathcal V_R\psi=\CC^{2^m}$ bir durumda sağlanıyorsa Haar-hemen her durumda sağlanır.
+\end{lemma}
+\begin{proof}
+$s\in S$ için $Ps\,\psi_S$, faz farkıyla $P\psi_S$'ye eşittir; yani $P\psi_S$ yalnız $P+S$ kosetine bağlıdır. Farklı kosetler diktir: $P^\dagger P'\notin S=S^\perp$ ise bir stabilizerle anti-komüt eder ve beklenen değeri sıfırdır. $2^m$ koset dik bir taban verir; her kosette düşük ağırlıklı bir temsilci her taban vektörünü üretir, temsilcisi olmayan bir koset ise kendi taban vektörünü germenin dışında bırakır. Jeneriklik: $M(\psi)=[P\psi]_{|P|\le R}$, $\psi$'de doğrusaldır; $D\times D$ minörleri homojen holomorf polinomlardır; tanıkta sıfırdan farklı bir minör, sıfır kümesini öz bir cebirsel koni yapar; bunun küre üzerindeki ölçüsü sıfırdır (yöntem~\cite{KJTV17} çizgisindedir).
+\end{proof}
+
+\begin{lemma}[az sayıda ek qubitle örtme]\label{lem:3}
+$B_m(L)=\sum_{j=0}^{L}\binom mj3^j$ ve $d=2^m$ olsun. O zaman
+\[
+2^t\log_2\frac{B_m(L)}{2^m}>2m\quad\Longrightarrow\quad\text{Haar-hemen her $(m+t)$-qubit saf durum $(2(L+t)+1)$-UDA'dır.}\tag{$*$}
+\]
+\end{lemma}
+\begin{proof}
+(1) \emph{Rastgele Lagrange.} Düzgün rastgele bir Lagrange $S$ ve bağımsız düzgün $v\in V$ seçilsin; $b=B_m(L)$ ve $N=|(v+S)\cap B_L|$. Sıfırdan farklı her $u$ için $\Pr[u\in S]=1/(d+1)$'dir ve çift sayımla $\mathbb EN=b/d$, $\operatorname{Var}N=b(d^2-b)/(d^2(d+1))$ bulunur. Chebyshev ile $\Pr[N=0]\le d/b$; yani bir $S$, $V$'nin en çok $\varepsilon\le d/b$ oranını $S+B_L$ ile örtülmemiş bırakır.
+(2) \emph{Kare alma.} $v_1$ eklemek örtülmeyen $U$ kümesini $U\cap(U+v_1)$ ile değiştirir; bunun $v_1$ üzerinden ortalaması $|U|^2/|V|$'dir; ortalamadan kötü olmayan bir $v_1$ seçilir. $t$ adımdan sonra $W=S+\operatorname{span}\{v_1,\dots,v_t\}$ en çok $d^2(d/b)^{2^t}$ nokta örtmez; $(*)$ altında bu $<1$'dir, yani $W$'nin örtme yarıçapı $\le L$'dir.
+(3) \emph{İzotropinin onarımı.} $\dim W=m+s$, $s\le t$. $S\subset W$ olduğundan $W^\perp\subset S\subset W$; formun $W$ üzerindeki radikali $W^\perp$'dir ve $W/W^\perp$, $2s$ boyutlu semplektiktir. $W/W^\perp$'yi $s$ ek qubitin semplektik uzayıyla özdeşleştiren bir $F$ seçilirse $\widetilde S=\{(w,Fw):w\in W\}$, $m+s$ qubitte bir Lagrange altuzayıdır ($\FF_2$'de iki semplektik katkı birbirini götürür); bu, dolanıklık destekli stabilizer kurgusudur~\cite{BDH06}.
+(4) \emph{Yarıçap.} Eski koordinatlarda uzaklık $\le L$, yenilerde $\le s$: örtme yarıçapı $\le L+s$. $t-s$ qubit $|0\rangle$ eklenirse $m+t$ qubitte yarıçap $\le L+t$ olur.
+(5) Lemma~\ref{lem:2}, Haar-hemen her yerde $\mathcal V_{L+t}\psi=\CC^{2^{m+t}}$ verir; Lemma~\ref{lem:1} ispatı tamamlar.
+\end{proof}
+\noindent \emph{Öncel.} Rastgele doğrusal örtme ve kare alma klasik örtme kodu teknikleridir; izotropi onarımı dolanıklık destekli stabilizer kurgusudur~\cite{BDH06}. Örtme yarıçapı ile Pauli germesi arasındaki bağı ve bunun UDA'ya uygulanışını incelediğimiz literatürde bulamadık. Lagrange (toplamsal öz-dual $GF(4)$~\cite{CRSS98}) kodlarının örtme yarıçapına dair asimptotik bir sonuç kodlama kuramında bilinebilir; bu literatürü derinlemesine taramadık.
+
+\paragraph*{Sabitler.} \emph{Doğrusal eğim:} $\beta=0{,}195$ ve $t=7$ ile $f(\beta)-1=0{,}0208823579$ ve $2^7(f(\beta)-1)=2{,}6729>2$; Stirling ile $\log_2B_m(\lfloor\beta m\rfloor)=mf(\beta)+O(\log m)$, dolayısıyla büyük $m$ için $(*)$ sağlanır; $n=m+7$ ve $L=\lfloor0{,}195m\rfloor$ ile $K=2(L+7)+1\le0{,}39n+12{,}27$. \emph{$2\kc$ eğimi:} $t=\lceil\log_2n\rceil$, $m=n-t$, $L=\lceil\kc m+\log_2m\rceil$ alınsın. $f(\kc)=1$ ve $f'(\kc)=\log_2\frac{3(1-\kc)}{\kc}=3{,}683554$ olduğundan $\log_2(B_m(L)/2^m)=(f'(\kc)-\tfrac12)\log_2m+O(1)\to\infty$ ve $(*)$ sağlanır; mertebe $K=2(L+t)+1=2\kc n+(4-2\kc)\log_2n+O(1)$'dir.
+
+\paragraph*{Açık eşikler.} Teorem~\ref{thm:main}'in eşiklerinin nasıl kurulduğu Tablo~\ref{tab:N0}'dadır. $n\in[100, 1660]$ aralığında $(*)$ koşulu, en iyilenmiş $(t,L)$ seçimiyle, eşdeğeri olan $B^{2^t}>2^{m2^t+2m}$ karşılaştırmasıyla saf tam sayı aritmetiğinde denetlendi. En iyilenmiş inşanın örnek değerleri: $n=200$'de $K=93$ ($0{,}465n$), $n=1000$'de $K=399$, $n=3000$'de $K=1161$; bu üç değerde $(*)$ koşulu, seçilen $(t,L)$ için tam sayı aritmetiğinde doğrulandı. $K<n/2$ olan ilk $n$ değeri $127$'dir ($K=63$), ama koşul $n\in\{128{,}129{,}130{,}133{,}134{,}138\}$'de yeniden bozulur; bu yüzden yarı eşiği $139$'dur.
+
+\begin{table}[h]
+\caption{Teorem~\ref{thm:main}'in eşikleri.}\label{tab:N0}
+\begin{tabular}{p{0.3\textwidth}p{0.08\textwidth}p{0.55\textwidth}}
+\toprule
+İddia & $N_0$ & Denetim\\
+\midrule
+$\lceil n/2\rceil-1$, en iyilenmiş $(t,L)$ & 139 & $[100, 1660]$'da $(*)$'ın kesin tam sayı denetimi (son başarısızlık 138); $n>1660$ için $t=7$ satırı ve $0{,}39n+12{,}27<n/2$\\
+$\lceil0{,}4n\rceil$, en iyilenmiş $(t,L)$ & 996 & aynı yöntem (son başarısızlık 995); $n>1660$ için alttaki satır\\
+$\lceil0{,}4n\rceil$, $t=7$, $L=\lfloor0{,}195m\rfloor$ & 1654 & $m\in[1640, 5100]$'de kesin tam sayılar (başarısızlık yalnız 1641 ve 1646'da); $m\ge5000$ için aşağıdaki analitik alt sınır $g(m)$\\
+$\lceil2\kc n+4\log_2n\rceil$ & 274 & $[274, 5000]$'de $B_m(L)\ge2^{m+2}$ yeter koşulu kesin tam sayılarla (son başarısızlık 273), titizlikle denetlenmiş $\kappa_{\mathrm{lo}}=0{,}1892896249<\kc$ ile; $n\ge4729$ için analitik kuyruk\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent Kuyruk için $n\ge4729$'da $K\le2\kc n+(4-2\kc)\log_2n+5-2\kc\le2\kc n+4\log_2n$; $B_m(L)\ge2^{m+2}$ ise $x=L/m\le0{,}2$ ($m\ge1028$) için $f$'nin içbükeyliğinden ve MacWilliams--Sloane sınırından, $\binom{m}{\lambda m}\ge2^{mh_2(\lambda)}/\sqrt{8m\lambda(1-\lambda)}$~\cite{MS77}, çıkar: $\log_2B-m\ge3{,}08\log_2m-0{,}2\ge2$. $2^t\ge n>m$ olduğundan $B_m(L)\ge2^{m+2}$, $(*)$ için yeterlidir. $K(n)=2\kc n+O(\log n)$ asimptotik ifadesi yukarıda analitik olarak kanıtlanmıştır ve bu sonlu denetimlere dayanmaz; denetimler yalnız $N_0$'ın açık değerlerini sabitler. Üçüncü satır için $\beta=0{,}195$, $t=7$ ve $L=\lfloor\beta m\rfloor$ ile $\binom mL3^L\le B_m(L)$ eşitsizliği, yukarıdaki binom sınırı, $f$'nin içbükeyliği ($m\ge5000$ için $mf(L/m)\ge mf(\beta)-f'(\beta-1/5000)$ verir) ve $L(1-L/m)\le\beta(1-\beta)m$ birlikte şunu verir:
+\[
+2^7\log_2\frac{B_m(L)}{2^m}-2m\ \ge\ g(m):=128\Big[m\big(f(\beta)-1\big)-f'\big(\beta-\tfrac{1}{5000}\big)-\tfrac12\log_2\big(8\beta(1-\beta)m\big)\Big]-2m,
+\]
+ve $g(5000)\approx2092>0$'dır; ayrıca $m\ge5000$ için $g'(m)=128(f(\beta)-1)-2-64/(m\ln2)>0$'dır.
+
+\begin{remark}[üniform durumlarla tutarlılık]
+Örtme yarıçapı $\rho$ olan bir Lagrange altuzayı varsa $(2\rho+1)$-üniform bir saf durum yoktur: $2\rho$-üniform bir $\varphi$ için koset temsilcileri $P_c$, $\{P_c\varphi\}$ dik tabanını verir; $(2\rho+1)$-üniformluk her $QP_c$'nin ($Q$ tek-site) yine bir temsilci olmasını zorlar; o zaman temsilciler bütün Pauli grubunu oluştururdu, bu $2^n<4^n$ ile çelişir. Dolayısıyla Teorem~\ref{thm:main}'in öncülü, Önerme~\ref{prop:rel}(ii)'nin engelini kendiliğinden dışlar. Qubit üniformluğunun ayrıca gölge sayıcı sınırlarıyla kabaca $n/3$ ile sınırlı olduğu bilinmektedir (bkz.~\cite{Scott04} ve oradaki kaynaklar); bu, $2\kc n$'nin altındadır.
+\end{remark}
+\begin{remark}[sonlu $n$'de yol kayıplıdır]
+Stabilizer tanığı küçük $m$'de gerçek germe eşiğinden kötüdür: $m=8$, $L=2$'de 1500 rastgele Lagrange'ın hiçbiri örtme yarıçapı $\le2$ vermedi; oysa Bölüm~\ref{sec:exact}'teki kesin modüler tanıkla $C(2)$ açık bir 8-qubit noktada, dolayısıyla jenerik olarak sağlanır. Bu asimptotik eğimi etkilemez.
+\end{remark}
+
+\section{Teorem~\ref{thm:pos} ve~\ref{thm:glue}'ün ispatları}\label{sec:proof2}
+
+\begin{proposition}[basit üst özvektör UDA'dır; bkz.~\cite{CJWZ12,KJTV19}]\label{prop:top}
+$H=\sum_{P\in\mathcal P_K}h_PP$ gerçel katsayılı ($h_P\in\RR$) Hermitsel bir operatör olsun; en büyük iki özdeğeri $\lambda_1>\lambda_2$, birim üst özvektörü $\psi$. O zaman $\psi$, $K$-UDA'dır.
+\end{proposition}
+\begin{proof}
+$\rho$ aynı $K$-cisim marjinallerine sahipse doğrusallıktan $\Tr H\rho=\lambda_1$. $\lambda_1I-H\succeq(\lambda_1-\lambda_2)(I-\psi\psi^\dagger)$ olduğundan $0=\Tr(\lambda_1I-H)\rho\ge(\lambda_1-\lambda_2)(1-\langle\psi|\rho|\psi\rangle)$; yani $\langle\psi|\rho|\psi\rangle=1$ ve $\rho=\psi\psi^\dagger$.
+\end{proof}
+
+\begin{proof}[Lemma A'nın ispatı]
+$H_c=\sum_Pc_PP$ olmak üzere $\mathcal O=\{c\in\RR^{M_K}:\lambda_1(H_c)\text{ basit}\}$ açıktır ve $\Phi:c\mapsto[H_c\text{'nin üst özvektörü}]$ gerçel-analitiktir (Riesz izdüşümcüsü). $T_{[\psi]}\CP^{D-1}\cong\psi^\perp$ özdeşleşmesiyle
+$d\Phi_c(\delta c)=(\lambda_1-H)|_{\psi^\perp}^{-1}\Pperp\big(\sum_P\delta c_PP\big)\psi$.
+$(\lambda_1-H)|_{\psi^\perp}$ karmaşık-doğrusal ve tersinirdir; dolayısıyla $d\Phi$ örtendir ancak ve ancak $\spanR\{\Pperp P\psi\}=\psi^\perp$, yani $R(K)$ sağlanırsa. Örtenlik $c_0$'ın bir $U$ komşuluğunda sürer; batırma açık bir gönderimdir, dolayısıyla $\Phi(U)$, $[\psi_0]$'ı içeren açık bir kümedir. $\Phi(U)$'daki her durum boşluklu bir üst özvektördür, dolayısıyla Önerme~\ref{prop:top} ile UDA'dır. $R(K)$ açık bir koşuldur.
+\end{proof}
+
+\begin{proof}[Lemma B'nin ispatı]
+$\psi=\psi_1\otimes\psi_2$ ve $V=\spanR\{P\psi:|P|\le K\}+\RR\,i\psi$ olsun.
+(1) $H_1\otimes I+I\otimes H_2$'nin spektrumu $\{a_i+b_j\}$'dir ve $a_1+b_1$ değerine yalnız $(1{,}1)$ ile, katlılık bir olarak ulaşılır; terimlerin ağırlığı $\le\max(K_1,K_2)\le K$'dır.
+(2) $\CC^D=\CC\psi\oplus(\psi_1^\perp\otimes\psi_2)\oplus(\psi_1\otimes\psi_2^\perp)\oplus(\psi_1^\perp\otimes\psi_2^\perp)$.
+(3) $v\mapsto v\otimes\psi_2$ gerçel-doğrusal ve birebirdir; $\psi_1$'de $R(K_1)$ ve $i\psi\in V$, $\CC^{D_1}\otimes\psi_2\subseteq V$ verir; simetrik olarak $\psi_1\otimes\CC^{D_2}\subseteq V$.
+(4) $\alpha_i\in\RR$, $a\in\psi_1^\perp$, $b\in\psi_2^\perp$ ile $P_1\psi_1=\alpha_1\psi_1+a$, $P_2\psi_2=\alpha_2\psi_2+b$ yazılırsa
+$P_1\psi_1\otimes P_2\psi_2=\alpha_1\alpha_2\psi+\alpha_2a\otimes\psi_2+\alpha_1\psi_1\otimes b+a\otimes b$; ilk üç terim (3)'ten $V$'dedir ve katsayılar gerçeldir, dolayısıyla $a\otimes b\in V$.
+(5) $|P_1|\le K_1$, $|P_2|\le K_2'$ üzerinden $a\otimes b$ vektörleri $A\hat\otimes B'$'yü gerer; $A=\spanR\{a(P_1)\}=\psi_1^\perp$ ($R(K_1)$'den) bir \emph{karmaşık} altuzaydır. Dolayısıyla $A\hat\otimes B'=A\otimes_{\CC}\spanC B'$ ve $C(K_2')$ ile $\spanC B'=\psi_2^\perp$. Kullanılan ağırlıklar $\le K_1+K_2'\le K$'dır.
+(6) (3) ve (5)'ten $V=\CC^D$, yani $R(K)$ sağlanır; (1) ile birlikte $S(n_1+n_2,K)$. Simetrik sürüm roller değiştirilerek elde edilir.
+\end{proof}
+\noindent (5)'teki karmaşık yapı zorunludur: yalnız gerçel bir $A$ için $A\hat\otimes B'$'nün gerçel boyutu yetmeyebilir (sayısal olarak $\psi_8\otimes\psi_4$, $K=3$: rank $4286/8192$).
+
+\begin{proof}[Lemma B$'$'nün ispatı]
+($\Leftarrow$) Yukarıdaki (3)--(6) adımları; çapraz üreteçlerin $\psi_1^\perp\otimes\psi_2^\perp$ bileşeni tam olarak $a\otimes b$'dir. ($\Rightarrow$) $Q_1=\Pi^\perp_{\psi_1}\otimes|\psi_2\rangle\langle\psi_2|$ ile $Q_1(P_1\psi_1\otimes P_2\psi_2)=\alpha_2a\otimes\psi_2$ ve $Q_1(i\psi)=0$; $P_2=I$ alınarak $Q_1V=A_K\otimes\psi_2$ bulunur; $\psi$'de $R(K)$, $A_K=\psi_1^\perp$'yi, yani $\psi_1$'de $R(K)$'yı gerektirir; $\psi_2$ için simetrik. Sonra $V=(\CC^{D_1}\otimes\psi_2+\psi_1\otimes\CC^{D_2})\oplus W_K$ olur; boyut formülü buradan çıkar.
+\end{proof}
+\noindent \emph{$C$'nin toplamsallığı.} $U_j=\spanC\{P\psi_1:|P|\le j\}$ ve $V_j$ benzer biçimde olmak üzere $\spanC\{P_1\psi_1\otimes P_2\psi_2:|P_1|+|P_2|\le c\}=\sum_{j=0}^{c}U_j\otimes V_{c-j}$; $U_{c_1}=\CC^{D_1}$ ve $V_{c_2}=\CC^{D_2}$ ise toplam $\CC^D$'dir.
+
+\noindent \emph{Jeneriklik.} $C(c)$, $[P\psi]_{0\le|P|\le c}$'nin sıfırdan farklı bir $D\times D$ minörünün varlığına eşdeğerdir; her minör $\psi$'nin koordinatlarında Gauss tam sayılı katsayılı homojen bir holomorf polinomdur. Bir noktada sıfırdan farklıysa $C(c)$, Zariski-açık, yoğun ve tam ölçülü bir kümede sağlanır. Aynı argüman $(\operatorname{Re}\psi,\operatorname{Im}\psi)$'nin gerçel polinomlarıyla $R(K)$ için de yürür.
+
+\begin{proof}[Önerme~\ref{prop:upgrade}'ün ispatı]
+$K=\max(K_H,r)$ olsun; $S(n,K)$ verilen $\psi_X$ durumunda sağlanır, dolayısıyla Lemma~A ile $\Phi_K(U)$ açıktır ve $\psi_X$'i içerir. $R(r)$ ve $C(c)$ açık koşullardır ve $\psi_X$'in bir $\mathcal N$ komşuluğunda sağlanır; $C(c')$'nün sağlandığı küme açık ve yoğundur, dolayısıyla $\Phi_K(U)\cap\mathcal N$ ile kesişir. Kesişimdeki her nokta $K$-yerel bir $H$'nin basit üst özvektörüdür ve $R(r)$ ile $C(\min(c,c'))$'yü sağlar.
+\end{proof}
+\begin{proof}[Önerme~\ref{prop:triv}'nin ispatı]
+Her $b$-qubit $\varphi$ için $H=\varphi\varphi^\dagger-I/D$ yalnız $\mathcal P_b$'deki Paulileri kullanır ve $\varphi$ onun basit üst özvektörüdür. $R(b)$ için: her $v$ için $A'=v\varphi^\dagger+\varphi v^\dagger$ Hermitseldir ve $A'\varphi=v+\overline{\langle\varphi,v\rangle}\varphi$; buradan $v=A'\varphi-\operatorname{Re}\langle\varphi,v\rangle\varphi+\operatorname{Im}\langle\varphi,v\rangle(i\varphi)$ çıkar; $A'$ ve $I$, ağırlığı $\le b$ olan Paulilerin gerçel bileşimleridir.
+\end{proof}
+
+\begin{proof}[Teorem~2$'$'nün ispatı]
+Tümevarım. $n=1$: $H=Z$ ile $|0\rangle$'ın verisi $(1{,}1{,}1)$'dir. $n$ qubitte, Önerme~\ref{prop:upgrade}'den sonra $c\le\cgen(n)$ olan $X=(K_H,r,c)$ verisi verilsin. $X\otimes|0\rangle$ için bileşim kuralı $r'=\max(r,1,\min(r+1,c+1))=\max(r,c+1)$ ($c\le r$ olduğundan), $K_H'=K_H$, $c'=c+1$ verir; $S$-düzeyi en çok $\max(K,\cgen(n)+1)$'dir ve Önerme~\ref{prop:upgrade} ile $c''\le\cgen(n+1)$ elde edilir.
+\end{proof}
+\noindent Somut zincirler: $n=2$'de jenerik $C(1)$, $S(3{,}2)$'yi; $n=3$'te $S(4{,}2)$'yi verir; $\cgen(7)=2$, $S(8{,}3)$'ü; $\cgen(13)=3$, $S(14{,}4)$'ü verir. Dolayısıyla Teorem~\ref{thm:cert}'ün $(4, 2)$ ve $(8, 3)$ durumları yalnız $\FF_p$ tanıklarından da çıkar; bu, bağımsız ikinci bir yoldur.
+
+\begin{proof}[Teorem~\ref{thm:pos}(ii)'deki üst sınırın ispatı]
+Dinamik programlama ($n\le26$ değerleri Ek~\ref{app:dp}'de), kesin blokları, bileşim kuralını ve Önerme~\ref{prop:upgrade}'ü $b=2,\dots,13$ için $\cgen$ tanıklarıyla (Tablo~\ref{tab:fp}) birleştirir. $n=13$'teki Pareto kümesinde verisi $(4{,}4{,}3)$ olan bir blok vardır; bunu eklemek $K(n+13)\le K(n)+3$ verir. Başlangıç penceresi $s=1,\dots,13$'te $\max_s(13K(s)-3s)=24$ ($s=5$'te), $s=14,\dots,26$'da ise $20$'dir. Tümevarımla her $n\ge1$ için $\Kp(n)\le(3n+24)/13$ ve her $n\ge14$ için $\le(3n+20)/13$.
+\end{proof}
+
+\begin{proposition}[sayım; bkz.~\cite{LW02}, denklem (24)]\label{prop:count}
+$K$-UDP durumların kümesi $\mathcal A$ pozitif ölçülüyse $M_K(n)\ge2D-2$, yani $K\ge\Kc(n)$; ve $\Kc(n)>\kc n$.
+\end{proposition}
+\begin{proof}
+$\mu_K$, $\mathcal A$ üzerinde birebir ve gerçel-analitiktir. $\rho=\max\operatorname{rank}d\mu_K\le\min(M_K,2D-2)$ olsun; rankın $\rho$ olduğu küme açık ve yoğundur, tümleyeni ölçü sıfırdır. $\rho<2D-2$ ise sabit rank teoremiyle $\mu_K$ yerel olarak lifleri en az 1 boyutlu bir izdüşümdür; $\mathcal A$ her lifle en çok bir noktada kesişir, dolayısıyla Fubini ile $\mathcal A$ her kartta ölçü sıfırdır; çelişki. İkinci iddia için $q=4$ Hamming topu sınırı $\sum_{w\le\kappa n}\binom nw3^w\le2^{nf(\kappa)}$ ($\kappa\le3/4$) ve $M_K+1\ge2^{n+1}-1>2^n$, $f(K/n)>1$, yani $K/n>\kc$ verir.
+\end{proof}
+\noindent Sayım~\cite{LW02}'ninkidir; buradaki katkımız yalnız titiz pozitif ölçü biçimidir.
+
+\begin{proof}[Teorem~\ref{thm:pos}(i)'in ispatı]
+Lemma~\ref{lem:2}--\ref{lem:3}, Bölüm~\ref{sec:proof1}'deki seçimle uygulanır: $n'=m+t$ qubitte $t=\lceil\log_2n'\rceil$ ve $L=\lceil\kc m+\log_2m\rceil$ ile, büyük $n'$ için $(*)$ sağlanır ve örtme yarıçapı $\le L+t$ olan bir Lagrange tanığı elde edilir. Lemma~\ref{lem:2} ile $C(L+t)$ bu tanıkta, dolayısıyla jenerik olarak sağlanır: $\cgen(n')\le\kc n'+O(\log n')$; küçük $n'$ için $\cgen(n')\le n'$ bayağıdır. Teorem~2$'$, $\Kp(n)\le1+\max_{m<n}\cgen(m)\le\kc n+O(\log n)$ verir; alt sınır Önerme~\ref{prop:count}'tür.
+\end{proof}
+\noindent $O(\log n)$'deki sabiti açık yazmadık.
+
+\begin{proof}[Önerme~\ref{prop:loc}'ün ispatı]
+$\delta\psi\in\psi^\perp$ için $d\mu_K(\delta\psi)=(2\operatorname{Re}\langle\Pperp P\psi,\delta\psi\rangle)_P$; çekirdeği, $\psi^\perp$ içinde $\spanR\{\Pperp P\psi\}$'nin gerçel-dik tümleyenidir; dolayısıyla $d\mu_K$ birebirdir ancak ve ancak $R(K)$ sağlanırsa. $R(K)$ sıfırdan farklı bir gerçel minör koşuludur, yukarıdaki gibi jeneriktir; daldırma yerel olarak birebirdir.
+\end{proof}
+
+\section{Kesin sertifikalar}\label{sec:exact}
+Teorem~\ref{thm:pos} ve~\ref{thm:cert}'ün sayısal girdileri kayan nokta hata analizine dayanmaz: kayan nokta yalnız \emph{ipucu} üretir; her hüküm kesin tam sayı ya da rasyonel aritmetikle denetlenen bir eşitsizliktir. Kötü bir ipucu denetimin başarısız olmasına yol açar; yanlış bir ``geçer'' üretemez.
+
+\paragraph*{$\psi_0$'ı hiç yazmamak.} Sertifika Hamiltonyeni tam sayı katsayılıdır: $H=\sum_{P\in\mathcal P_K}c_PP$, $c_P\in\ZZ$ (bir Haar örneğinden başlayan sayısal bir aramadan gelir, $2^{16}/\max|\lambda|$ ile ölçeklenip yuvarlanır). Sonra $\psi_0$, $H$'nin üst özvektörü olarak \emph{tanımlanır}; sayısal olarak hiç yazılmayan kesin bir nesnedir. Kanıtlanması gereken iki şey vardır: $\lambda_1(H)>\lambda_2(H)$ ve $\psi_0$'da $R(K)$. Pauli matrislerinin girdileri Gauss tam sayılarıdır.
+
+\begin{proposition}[boşluk sertifikası]
+$H$ Hermitsel, $s\in\ZZ$, $w,z\in\ZZ[i]^D$, $p=z^\dagger z>0$, $q\in\ZZ_{>0}$ olsun. (a) $\theta=w^\dagger Hw/w^\dagger w>s$ ve (b) $A=p(sI-H)+q\,zz^\dagger\succ0$ ise $\lambda_1(H)>s>\lambda_2(H)$'dir.
+\end{proposition}
+\begin{proof}
+(a) Rayleigh: $\lambda_1\ge\theta>s$. (b) Bir $\varepsilon>0$ için $sI+(q/p)zz^\dagger-H\succeq\varepsilon I$; Weyl'in tekdüzelik eşitsizliği $\lambda_2(H)+\varepsilon\le\lambda_2(sI+(q/p)zz^\dagger)=s$ verir.
+\end{proof}
+\begin{proposition}[tam sayı artıklı pozitiflik]
+$X\in\ZZ^{N\times N}$ simetrik, $t,f\in\mathbb N$, $R\in\ZZ^{N\times N}$ herhangi bir matris ve $E=2^{2f}(X-tI)-RR^{\mathsf T}$ olsun. O zaman $X\succeq(t-\|E\|_\infty/2^{2f})I$.
+\end{proposition}
+\noindent ($R$, $X-tI$'nin kayan noktalı Cholesky çarpanının ölçeklenip yuvarlanmış hâlidir, yalnız bir ipucudur; karmaşık Hermitsel matrisler gerçel simetrik matrislere gömülür.)
+\begin{proposition}[$\hat w$'den $\psi_0$'a aktarma]
+Boşluk sertifikasının varsayımları sağlansın; böylece $\lambda_2(H)<s<\theta\le\lambda_1(H)$ olur. $\psi_0$, $H$'nin normlanmış üst özvektörü olsun. $w\ne0$, $\hat w=w/\|w\|$ (Öklid normu), $\theta=\hat w^\dagger H\hat w$, $\hat r=\|H\hat w-\theta\hat w\|$ ve $M=M_K(n)$ olsun; $\sigma_{2D}$, $2D$. en büyük tekil değeri göstersin; $\psi_0$'ın fazı $\langle\psi_0,\hat w\rangle\ge0$ ile sabitlensin. O zaman $\|\psi_0-\hat w\|\le\sqrt2\hat r/(\theta-s)$; sütunları $P\psi$ ($P\in\mathcal P_K$), $\psi$ ve $i\psi$ olan $2D\times(M+2)$ gerçel matris $B_\psi$ için Weyl eşitsizliği $\sigma_{2D}(B_{\psi_0})\ge\sigma_{2D}(B_{\hat w})-\sqrt{2(M+2)}\,\hat r/(\theta-s)$ verir. $\sigma_{2D}(B_{\hat w})^2=\lambda_{\min}(G_w)/w^\dagger w$, $G_w=B_wB_w^{\mathsf T}$ tam sayılı ve $\lambda_{\min}(G_w)\ge\tau'$ yukarıdaki gibi sertifikalı ise rasyonel koşul
+\[
+\frac{2(M+2)\,\hat r^2}{(\theta-s)^2}<\frac{\tau'}{w^\dagger w}\tag{D4}
+\]
+$\sigma_{2D}(B_{\psi_0})>0$'ı, yani $\psi_0$'da $R(K)$'yı gerektirir.
+\end{proposition}
+\noindent Doğrulayıcı şunları denetler: (D0) biçim (etiket ağırlıkları $[1,K]$'de, katsayılar tam sayı); (D1) $\theta>s$; (D2) $A\succ0$; (D3) $G_w\succeq\tau'I$; (D4). Aynı $\psi_0$'daki $C(c)$ ve $R(j)$ sertifikaları benzerdir.
+
+\paragraph*{Modüler rank tanıkları.} Jenerik $C(c)$ için tek bir nokta yeter. $v\in\{0{,}1\}^D$ alınsın; $[Pv]_{0\le|P|\le c}$ matrisinin girdileri $\ZZ[i]$'dedir. $p\equiv1\pmod4$ bir asal ve $\iota^2\equiv-1$ ise $i\mapsto\iota$, bir $\ZZ[i]\to\FF_p$ halka homomorfizmasıdır; $\FF_p$ üzerinde rank $D$ ise $\ZZ[i]$ üzerinde sıfırdan farklı bir minör vardır. $C(8{,}2)$ tanığı: $v_j$, onaltılık \texttt{dbd890f0df3d6613\allowbreak ee49a1b9b85313a3\allowbreak 10b7f09b11e6bb13\allowbreak a0e0677b6d4dcec4} sayısının $j$. bitidir ($\|v\|^2=132$); $277$ sütun $[v,\{Pv:1\le|P|\le2\}]$, $\FF_{1009}$ ($\iota=469$), $\FF_{1013}$ ve $\FF_{10009}$ üzerinde rank $256$'dır; ilk $256$ sütunun determinantı $\equiv62\pmod{1009}$'dur. Öteki tanıklar Tablo~\ref{tab:fp}'dedir. $b=13$ için tanık $v_x=u_x\,[\mathrm{popcount}(x)\ \text{çift}]$'tir; burada $u=(u_x)_{x=0}^{8191}$, \texttt{numpy.random.default\_rng(1).\allowbreak integers(0,2,size=8192)} çıktısıdır (NumPy 1.26.4, PCG64); $\|v\|^2=2091$'dir ve $v_0v_1\cdots v_{8191}$ ASCII bit dizisinin SHA-256 özeti \texttt{98ffc78fa981ac03\allowbreak fdc820a9426a6af0\allowbreak 963b37188e044394\allowbreak 2cfc5ea008030050}'dir.
+
+\begin{table}[h]
+\caption{Jenerik $C(b,c)$ tanıkları ($v\in\{0{,}1\}^{2^b}$, $p=1\,000\,037$). Her satırda $c$, $b$ qubit için sayım sınırına eşittir.}\label{tab:fp}
+\begin{tabular}{lllll}
+\toprule
+$b$ & $c$ & sütun $M_c+1$ & $\FF_p$-rankı & not\\
+\midrule
+2, 3 & 1 & 7, 10 & 4, 8 & tam\\
+4--8 & 2 & 67--277 & 16--256 & tam\\
+9 & 3 & 2620 & 512 & tam\\
+10, 11, 12 & 3 & 3676, 4984, 6571 & 1024, 2048, 4096 & $Z^{\otimes b}$-simetrik tanık, iki sektör\\
+13 & 3 & 8464 & $4096+4096$ & sektörler $4096\times4122$ ve $4096\times4342$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\caption{$S$ sertifikaları (Teorem~\ref{thm:cert}), son doğrulayıcı. ``Oran'' $\|E\|_\infty/(2^{2f}t)$'dir ve $<1$ olmalıdır.}\label{tab:S}
+\begin{tabular}{lllllll}
+\toprule
+$n$ & $K$ & tohum & $M$ & oran (D2) & D4: sol $<$ sağ & $\sigma_{2D}(B_{\psi_0})\ge$\\
+\midrule
+4 & 2 & 1001 & 66 & $7{,}0\cdot10^{-7}$ & $1{,}06\cdot10^{-6}<0{,}193$ & 0{,}4388\\
+6 & 3 & 1001 & 693 & $4{,}1\cdot10^{-7}$ & $1{,}77\cdot10^{-7}<0{,}750$ & 0{,}8656\\
+8 & 3 & 1001 & 1788 & $7{,}4\cdot10^{-6}$ & $1{,}39\cdot10^{-5}<0{,}380$ & 0{,}6128\\
+8 & 3 & 1002 & 1788 & $1{,}0\cdot10^{-5}$ & $2{,}43\cdot10^{-5}<0{,}417$ & 0{,}6405\\
+8 & 3 & 1003 & 1788 & $1{,}3\cdot10^{-5}$ & $3{,}95\cdot10^{-5}<0{,}394$ & 0{,}6215\\
+10 & 4 & 1001 & 20685 & $6{,}8\cdot10^{-6}$ & $1{,}15\cdot10^{-5}<0{,}750$ & 0{,}8626\\
+12 & 4 & 1001 & 46665 & $1{,}5\cdot10^{-3}$ & $3{,}46\cdot10^{-4}<0{,}500$ & 0{,}6884\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Doğrulayıcılar, bağımsızlıkları ve geçmişleri Ek~\ref{app:ver}'de anlatılmıştır.
+
+\section{Jones--Linden argümanı nerede yanılıyor?}\label{sec:JL}
+\cite{JL05}'in 3. bölümünde saf $N$-taraflı bir durumun her $m$-taraf marjinali arındırılır ve çevre vektörleri bilinmeyen olarak alınır; kurulum $m\le N/2$ ve tam rank $d^m$ varsayar. Bilinmeyen sayısı $P$, bağımsız kısıt sayısının bir üst sınırı $C$ ile karşılaştırılır: $P-C=d^{2N}-\binom Nm d^{2m}$ (denklem (21)); $m\le N/2$, $d\ge2$ için $P>C$ olduğundan kısıtların parametreleri belirleyemeyeceği, dolayısıyla durumun tek olmadığı sonucuna varılır.
+
+Geçersiz adım, bir denklem sayımından \emph{gerçel bir çözüm ailesinin} varlığına geçiştir. Denklemler bilinmeyenlerde gerçel ve ikinci derecedendir (Gram ve ortonormallik koşulları); gerçel ikinci derece sistemlerde bilinmeyen sayısının denklem sayısını aşması yalıtılmış bir çözümü dışlamaz. En basit örnek $x^2+y^2=0$'dır. Eksik olan, sayımın gerektirdiği düzenliliktir: çözüm kümesinin, pozitif koninin sınırında bulunan saf durumda $P-C$ boyutlu bir manifold olduğu gösterilmemiştir. (Argümanın pozitifliği yok saydığını söylemek doğru olmaz; pozitiflik arındırma yoluyla kodlanmıştır.) İkincil bir nokta: arındırmanın ayar serbestliği olduğundan parametre tekliği durum tekliğiyle aynı şey değildir. Yalnız ispat değil, sonuç da yanlıştır: Teorem~\ref{thm:main}, \ref{thm:pos} ve~\ref{thm:cert}.
+
+Literatür taramamız Ek~\ref{app:search}'da özetlenmiştir.
+
+\section{Tartışma}\label{sec:disc}
+\paragraph*{Fiziksel okuma (yalnız kanıtlanan kadar).} Saf ışınımı $n$-qubitlik bir durumla temsil edelim. İki soru ayrılmalıdır: bilgi kuramsal \emph{belirlenebilirlik} için gereken korelasyon mertebesi; ve toplam veri miktarı ile ölçüm, istatistik ve çözümleme maliyeti. Sonuçlarımız yalnız birincisiyle ilgilidir. Haar-hemen her saf $n$-qubit durum, ağırlığı $\le K(n)\approx0{,}379n$ olan bütün Pauli korelatörlerinin \emph{tam değerleriyle}, karışık adaylara karşı da, tek olarak belirlenir; oysa bu marjinallerin her biri Page anlamında neredeyse maksimal karışıktır~\cite{Pag93a}. Page'in ``yarı'' kuralı tek tek alt sistemlerle ilgilidir; belirlenebilirlik ise bütün $K$-cisim marjinallerinin birlikte taşıdığı bilgiyle ilgilidir. Burada ölçüm sayısı, istatistiksel maliyet, gürültüye kararlılık (Lemma~\ref{lem:1}'deki $G$'nin spektral boşluğu denetlenmedi; \cite{YSCZ26}'nın nitel kararlılık sonucunun bu durumdaki sabitleri bilinmiyor) ya da hesaplama maliyeti için bir sınır yoktur. Sayım (Önerme~\ref{prop:count}) en az $2^{n+1}-2$ korelatör gerektiğini gösterir; bundan herhangi bir fiziksel çözümleme görevi için üstel bir zaman alt sınırı çıkmaz. Burada buharlaşmanın üniterliği kanıtlanmaz, Hawking dinamiğine de değinilmez.
+
+\paragraph*{Daha kısa görünen bir yol.} Qi--Ranard tipi bir sayım~\cite{QR19}, $\psi$'nin $K\approx\kc n$ olmak üzere önemsiz olmayan, gerçel katsayılı, $K$-yerel bir $H$'nin özvektörü olduğunu düşündürür; \cite{CJWZ12}'nin $(H-E)^2$ hilesi bunu $2K$-UDA'ya taşırdı. Eksik parça, \cite{CJWZ12}'nin varsaydığı dejenere olmama koşuludur. Lemma~\ref{lem:1}'in komütant argümanı tam bu parçayı sağlar. Bu yolu literatürde bulmadık ve burada kanıtlamıyoruz.
+
+\paragraph*{Açık sorular.}
+(1) \emph{2 çarpanı:} Hemen her durum için $K=\kc n+O(\log n)$ yeter mi? Örtme inşamız küre-örtme sınırına baş mertebede zaten ulaşıyor (bir Lagrange $S$ için $|S|=2^n$ olduğundan örtme yarıçapı $\rho$, $B_n(\rho)\ge2^n$'yi sağlar). 2 çarpanı, Lemma~\ref{lem:1}'de karmaşık germe pozitif bir sertifikaya dönüştürülürken ortaya çıkar. Dolayısıyla ölçü-1 eşiğinde sayım katsayısına ulaşmak daha güçlü bir sertifika inşası ya da başka bir argüman gerektirir; mevcut inşa içinde yalnız örtme yarıçapını iyileştirmek bu çarpanı kaldıramaz. Öte yandan Önerme~\ref{prop:rel}(ii) ile $\Ko(n)\le\kc n+O(\log n)$ sınırı $u(n)\le\kc n+O(\log n)$'yi, dolayısıyla öz-dual toplamsal kodların en küçük uzaklığı için bir üst sınırı gerektirirdi; bu kodlama sorusunun durumunu burada tartışmıyoruz.
+(2) \emph{Küçük ve orta $n$:} $n<83$ için ölçü-1 eşiği.
+(3) Teorem~\ref{thm:pos} ve~\ref{thm:cert}'ün açık kümeleri için açık yarıçaplar; girdiler ($\sigma_{\min}(B_{\psi_0})$ ve boşluk) sertifikalarda var.
+(4) $\Kp(5)$ ve $\Kp(6)$: $K=2$ yeter mi?
+(5) Küçük $n$ için $\Ko(n)=u(n)+1$ mi?
+(6) Kararlılık sabitleri: $G$'nin spektral boşluğu.
+(7) Bilgisayar destekli kısımlar için başka bir dilde bağımsız bir doğrulayıcı.
+(8) Qudit genellemesi.
+
+\paragraph*{Veri erişimi.} Sertifika dosyaları, doğrulama betikleri, sonlu cisim tanıkları ve dinamik programlama çıktıları \url{https://github.com/berketez/uda-fewer-than-half} adresindedir (\texttt{verification/} dizini, \texttt{uda-verification} 1.0.0 paketi).
+
+\paragraph*{Yapay zekâ kullanımı beyanı.} Bu çalışma yapay zekâ sistemleri yoğun biçimde kullanılarak yapıldı. Türetmeler, ispatlar, kesin sertifikalar, doğrulama kodu ve bu makalenin metni, yazarın yönlendirdiği yapay zekâ ajanları (Anthropic Claude Opus modelleri ve OpenAI Codex/GPT modelleri) tarafından üretildi. Yazar problemi seçti, işi ve çapraz denetimleri düzenledi ve metnin sorumluluğunu üstlenir. İspatlar iki farklı model ailesinden birkaç bağımsız yapay zekâ okumasıyla, bilgisayar destekli kısımlar ise kesin aritmetikli doğrulayıcılarla denetlendi; \textbf{ispatları henüz hiçbir insan uzman denetlemedi}. Böyle bir denetim için minnettar oluruz.
+
+\appendix
+\section{Literatür taraması}\label{app:search}
+Crossref (\cite{JL05} için güncelleme ya da düzeltme ilişkisi yok; ``comment on'' aramaları boş), arXiv (\cite{JL05}'in yalnız v1'i var; Kasım 2026'ya kadar tarih sıralı sorgular), OpenAlex (\cite{JL05}'i anan 60 ve~\cite{LW02}'yi anan 81 eserin başlıkları), Semantic Scholar (\cite{JL05}'in 58 atıf bağlamı; hiçbiri alt sınırı sorgulamıyor), INSPIRE (\cite{SC23,JL05,HG16,KJTV19,WHG17,ZSZ24}'ün ileri atıfları) ve~\cite{Wyd20,Hub17,CDJJKSZ13,YSCZ26} dahil tam metinler. Hiçbirinde yarının altında bir ölçü-1 sınırı ya da~\cite{LW02} penceresini asimptotik olarak daraltan bir sonuç yoktu. Bunlar aramamız hakkında cümlelerdir, yokluk iddiası değildir; cebirsel geometri literatürü derinlemesine taranmadı.
+
+
+\section{Doğrulayıcılar}\label{app:ver}
+$S$ sertifikaları için $n=8$'e kadar iki bağımsız doğrulayıcı vardır (ikincisi açık Kronecker çarpımları kullanır ve $n\le6$'da hiçbir Cholesky ipucu olmadan Bareiss eliminasyonu uygular); $C$ sertifikaları için de iki doğrulayıcı vardır; $R$ sertifikalarının tek doğrulayıcısı çekirdeğini $C$ doğrulayıcısıyla paylaşır. İkinci $S$ doğrulayıcısı sağlamlaştırılmış bir doğrulayıcı değil, sertifikaların çapraz sınamasıdır: son doğrulayıcının aksine int64 taşma sınırlarının hepsini denetlemez, bu yüzden kasıtlı olarak kurulmuş girdiye karşı korumalı değildir. Bozulmuş sertifikaların hepsi reddedildi ($S$ için 8 bozma; her $C$ doğrulayıcısı için iki taşma saldırısı dahil 12 bozma). Çalışma sırasında int64 aritmetiğinde iki taşma açığı bulundu ve düzeltildi: $X-tI$ üzerinde eksik bir ön koşul (hiçbir yanlış kabul örneği kurulamadı) ve $p=z^\dagger z$'nin hesabı; bunun için önceki sürümün kabul ettiği yapay bir sertifika kuruldu; güncel sürüm onu reddediyor ve bütün gerçek sertifikalar hane hane aynı sayılarla yeniden geçiyor. Kalan zayıf noktalar: bütün doğrulayıcılar tek bir yapay zekâ destekli iş akışında, tek bir dilde yazıldı; ikinci $S$ doğrulayıcısı $n=10{,}12$'yi kapsamıyor; numpy int64 matris çarpımlarının taşma olmadığında kesin olduğu varsayıldı; $\FF_p$ tanıkları tek bir eliminasyon koduna dayanıyor (ikinci bir yazımla ve bağımsız bir determinantla çapraz sınandı). Başka bir dilde (ör.\ FLINT) bağımsız bir doğrulayıcı bu noktaları kapatır.
+
+
+\section{Dinamik programlama değerleri}\label{app:dp}
+Teorem~\ref{thm:pos}(ii)'deki dinamik programlamadan (bütün kesin bloklar ve $b\le13$ için $\FF_p$ tanıkları) $\Kp(n)$ için üst sınırlar; $\lfloor n/2\rfloor$ ve sayım alt sınırı $\Kc(n)$ ile birlikte. Sınırın $\Kc(n)$'ye eşit olduğu yerde $\Kp(n)$ tam belirlenir; bu aralıkta bu durum $n\in\{1,3,4,7,8,9,12,13,14,17,18,19,22,23\}$ için gerçekleşir. $13K(s)-3s$'nin en büyük değeri $s\in[1,13]$'te $24$ ($s=5$'te), $s\in[14,26]$'da $20$'dir ($s=15$'te).
+
+\begin{center}
+\begin{tabular}{lccccccccccccc}
+\toprule
+$n$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13\\
+\midrule
+$\lfloor n/2\rfloor$ & 0 & 1 & 1 & 2 & 2 & 3 & 3 & 4 & 4 & 5 & 5 & 6 & 6\\
+$\Kc(n)$ & 1 & 1 & 2 & 2 & 2 & 2 & 3 & 3 & 3 & 3 & 3 & 4 & 4\\
+$\Kp(n)$ üst sınırı & 1 & 2 & 2 & 2 & 3 & 3 & 3 & 3 & 3 & 4 & 4 & 4 & 4\\
+\bottomrule
+\end{tabular}
+
+\medskip
+\begin{tabular}{lccccccccccccc}
+\toprule
+$n$ & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26\\
+\midrule
+$\lfloor n/2\rfloor$ & 7 & 7 & 8 & 8 & 9 & 9 & 10 & 10 & 11 & 11 & 12 & 12 & 13\\
+$\Kc(n)$ & 4 & 4 & 4 & 5 & 5 & 5 & 5 & 5 & 6 & 6 & 6 & 6 & 6\\
+$\Kp(n)$ üst sınırı & 4 & 5 & 5 & 5 & 5 & 5 & 6 & 6 & 6 & 6 & 7 & 7 & 7\\
+\bottomrule
+\end{tabular}
+
+\medskip
+\end{center}
+
+\begin{thebibliography}{99}
+\bibitem{BDH06} T. Brun, I. Devetak, M.-H. Hsieh, Correcting quantum errors with entanglement, Science \textbf{314}, 436 (2006), arXiv:quant-ph/0610092.
+\bibitem{CDJJKSZ13} J. Chen, H. Dawkins, Z. Ji, N. Johnston, D. Kribs, F. Shultz, B. Zeng, Uniqueness of quantum states compatible with given measurement results, Phys. Rev. A \textbf{88}, 012109 (2013), arXiv:1212.3503.
+\bibitem{CJWZ12} J. Chen, Z. Ji, Z. Wei, B. Zeng, Correlations in excited states of local Hamiltonians, Phys. Rev. A \textbf{85}, 040303 (2012), arXiv:1106.1373.
+\bibitem{CRSS98} A. R. Calderbank, E. M. Rains, P. W. Shor, N. J. A. Sloane, Quantum error correction via codes over GF(4), IEEE Trans. Inf. Theory \textbf{44}, 1369 (1998), arXiv:quant-ph/9608006.
+\bibitem{GST18} M. Greiter, V. Schnells, R. Thomale, Method to identify parent Hamiltonians for trial states, Phys. Rev. B \textbf{98}, 081113 (2018), arXiv:1802.07827.
+\bibitem{HCLZ18} S. Huang, J. Chen, Y. Li, B. Zeng, Quantum state tomography for generic pure states, Sci. China Phys. Mech. Astron. \textbf{61}, 110311 (2018), arXiv:1711.10878.
+\bibitem{HG16} F. Huber, O. Gühne, Characterizing ground and thermal states of few-body Hamiltonians, Phys. Rev. Lett. \textbf{117}, 010403 (2016), arXiv:1601.01630.
+\bibitem{Hub17} F. M. Huber, Quantum states and their marginals: from multipartite entanglement to quantum error-correcting codes, doktora tezi, Universität Siegen (2017).
+\bibitem{JL05} N. S. Jones, N. Linden, Parts of quantum states, Phys. Rev. A \textbf{71}, 012324 (2005), arXiv:quant-ph/0407117.
+\bibitem{KJTV17} S. Karuvade, P. D. Johnson, F. Ticozzi, L. Viola, Generic pure quantum states as steady states of quasi-local dissipative dynamics, J. Phys. A \textbf{51}, 145304 (2018), arXiv:1711.11142.
+\bibitem{KJTV19} S. Karuvade, P. D. Johnson, F. Ticozzi, L. Viola, Uniquely determined pure quantum states need not be unique ground states of quasi-local Hamiltonians, Phys. Rev. A \textbf{99}, 062104 (2019), arXiv:1902.09481.
+\bibitem{LPW02} N. Linden, S. Popescu, W. K. Wootters, Almost every pure state of three qubits is completely determined by its two-particle reduced density matrices, Phys. Rev. Lett. \textbf{89}, 207901 (2002), arXiv:quant-ph/0207109.
+\bibitem{LW02} N. Linden, W. K. Wootters, The parts determine the whole in a generic pure quantum state, Phys. Rev. Lett. \textbf{89}, 277906 (2002), arXiv:quant-ph/0208093.
+\bibitem{Pag93a} D. N. Page, Average entropy of a subsystem, Phys. Rev. Lett. \textbf{71}, 1291 (1993), arXiv:gr-qc/9305007.
+\bibitem{Pag93b} D. N. Page, Information in black hole radiation, Phys. Rev. Lett. \textbf{71}, 3743 (1993), arXiv:hep-th/9306083.
+\bibitem{QCLC25} X. Qiu, L. Chen, G. Li, D. Chu, Mixed states uniquely determined by marginals and additivity, IEEE Trans. Inf. Theory (2026), DOI 10.1109/TIT.2026.3699321, arXiv:2512.20133.
+\bibitem{QR19} X.-L. Qi, D. Ranard, Determining a local Hamiltonian from a single eigenstate, Quantum \textbf{3}, 159 (2019), arXiv:1712.01850.
+\bibitem{SC23} Y. Shen, L. Chen, The additivity of states uniquely determined by marginals, Phys. Rev. A \textbf{108}, 062418 (2023), arXiv:2308.11089.
+\bibitem{Scott04} A. J. Scott, Multipartite entanglement, quantum-error-correcting codes, and entangling power of quantum evolutions, Phys. Rev. A \textbf{69}, 052330 (2004), arXiv:quant-ph/0310137.
+\bibitem{UG22} D. Uzcátegui Contreras, D. Goyeneche, Reconstructing the whole from its parts, arXiv:2209.14154.
+\bibitem{Wu15} X. Wu, Y.-H. Yang, Y.-K. Wang, Q.-Y. Wen, S.-J. Qin, F. Gao, Determination of stabilizer states, Phys. Rev. A \textbf{92}, 012305 (2015), arXiv:1503.05421.
+\bibitem{MS77} F. J. MacWilliams, N. J. A. Sloane, \emph{The Theory of Error-Correcting Codes} (North-Holland, Amsterdam, 1977).
+\bibitem{WHG17} N. Wyderka, F. Huber, O. Gühne, Almost all four-particle pure states are determined by their two-body marginals, Phys. Rev. A \textbf{96}, 010102(R) (2017), arXiv:1703.10950.
+\bibitem{Wyd20} N. Wyderka, Learning from correlations: what parts of quantum states tell about the whole, doktora tezi, Universität Siegen (2020), DOI 10.25819/ubsi/2620.
+\bibitem{YSCZ26} W. Yu, F. Shi, G. Chiribella, Q. Zhao, Quantum state determinability from local marginals is universally robust, arXiv:2604.05508 (v2, Ekim 2026).
+\bibitem{ZSZ24} W. Zhang, F. Shi, X. Zhang, Almost all even-particle pure states are determined by their half-body marginals, J. Phys. A \textbf{57}, 495302 (2024), arXiv:2401.07499.
+\end{thebibliography}
+
+\end{document}

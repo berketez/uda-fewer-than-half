@@ -1,0 +1,1 @@
+[b] t=7, L=floor(0.195m), m in [1640,3200]: number of m where (*) fails in integers: 2 [1641, 1646]

@@ -1,0 +1,514 @@
+\documentclass[aps,pra,onecolumn,superscriptaddress,nofootinbib,longbibliography,10pt]{revtex4-2}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theorem2p}{Theorem 2$'$}
+\newtheorem*{lemA}{Lemma A}
+\newtheorem*{lemB}{Lemma B}
+\newtheorem*{lemBp}{Lemma B$'$}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}[proposition]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[proposition]{Definition}
+\newtheorem{remark}[proposition]{Remark}
+\newtheorem{observation}[proposition]{Observation}
+
+\newcommand{\CC}{\mathbb C}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\spanR}{\operatorname{span}_{\RR}}
+\newcommand{\spanC}{\operatorname{span}_{\CC}}
+\newcommand{\Pperp}{\Pi^{\perp}_{\psi}}
+\newcommand{\kc}{\kappa_c}
+\newcommand{\Kp}{K^{*}_{+}}
+\newcommand{\Ko}{K^{*}_{1}}
+\newcommand{\Kc}{K_{\mathrm{count}}}
+\newcommand{\cgen}{c_{\mathrm{gen}}}
+
+\begin{document}
+
+\title{Pure qubit states determined by marginals on fewer than half of the qubits:\\ a measure-one bound and a correction to the Jones--Linden lower bound}
+
+\author{Berke Tezgöçen}
+\email{berketezgocen97@hotmail.com}
+\affiliation{Physics Engineer (B.Sc., Istanbul Technical University), Eskişehir, Türkiye}
+
+\date{November 26, 2026}
+
+\begin{abstract}
+A basic question in the quantum marginal problem is whether a pure $n$-qubit state is uniquely determined, among all pure and mixed states, by its $K$-body marginals. Jones and Linden (2005) asserted that the marginals of fewer than $N/2$ parties are insufficient for almost all states, a statement that is still quoted in the literature. We show that Haar-almost every $n$-qubit pure state is uniquely determined in this sense by its $K(n)$-body marginals, with $K(n)=2\kc n+O(\log n)\approx0.379n$, where $\kc\approx0.189$ solves $h_2(\kappa)+\kappa\log_2 3=1$. Explicitly, for every $n\ge139$ marginals on fewer than half of the qubits suffice, and for every $n\ge996$ the $\lceil0.4n\rceil$-body marginals suffice. Such a state is moreover the unique ground state, with energy zero, of a positive semidefinite $K(n)$-local Hamiltonian. The proof combines Pauli spanning, the covering radius of stabilizer states, and polynomial genericity. The lower bound $\kc n$ comes from the parameter count of Linden and Wootters (2002). For the measure-one threshold, the factor of 2 between the bounds remains open.
+Second, for the smallest $K$ at which uniquely determined states form a set of positive measure, we show that $\Kp(n)=\kc n+O(\log n)$, so the leading coefficient of this threshold is exactly $\kc$. An explicit bound $\kc n<\Kp(n)\le(3n+24)/13$ also holds for every $n$. Third, for $(n,K)=(8,3),(10,4),(12,4)$ we exhibit open sets of uniquely determined states whose certificates are verified by exact integer and rational inequalities.
+Consequently, for qubits the Jones--Linden lower-bound statement fails for every $N\ge7$, while their upper bound is unaffected. For every $N\ge139$, the opposite statement holds for almost every state.
+\end{abstract}
+
+\maketitle
+
+\noindent\textit{Status: the proofs and certificates have so far been checked only by AI systems and exact-arithmetic verifiers, not yet by a human expert (see the statement on the use of AI at the end).}
+
+
+\paragraph*{Notation.} $\mathcal H_n=(\CC^2)^{\otimes n}$, $D=2^n$. Pure states form $\CP^{D-1}$ with the normalized Fubini--Study measure $\mu_n$, i.e.\ the distribution of a Haar-random pure state. For a Pauli string $P$, $|P|$ is its weight (number of non-identity factors); $\mathcal P_K=\{P:1\le|P|\le K\}$ and $M_K(n)=|\mathcal P_K|=\sum_{w=1}^{K}\binom nw 3^w$. $h_2$ is the binary entropy, $f(x)=h_2(x)+x\log_2 3$, and $\kc=0.1892896249\ldots$ is the unique root of $f(\kappa)=1$ in $(0,1/2)$; $2\kc=0.3785792498\ldots$. $\Pperp=I-\psi\psi^\dagger$, $\langle u,v\rangle_{\RR}=\operatorname{Re}\langle u,v\rangle$, and $\mathcal V_L=\spanC\{P:|P|\le L\}$ (identity included).
+
+\section{Introduction}
+
+How much do the parts of a multipartite quantum state determine the whole? For pure states the question is posed as follows. Given $|\psi\rangle\in\mathcal H_n$, suppose we know $\Tr_{A^c}|\psi\rangle\langle\psi|$ for every $K$-element subset $A\subseteq\{1,\dots,n\}$. Is $|\psi\rangle\langle\psi|$ the only density matrix with these marginals? If so, $\psi$ is \emph{uniquely determined among all states} (UDA) by its $K$-body marginals; if uniqueness is required only among pure states, $\psi$ is UDP.
+
+Linden, Popescu and Wootters showed that almost every pure three-qubit state is determined by its two-body marginals~\cite{LPW02}. Linden and Wootters showed that, for qubits, the number of parties needed to determine a generic pure state lies between about $0.189n$ and $2n/3$~\cite{LW02}; the lower end is a parameter count and gives $\kc$. For stabilizer states, Wu et al.~\cite{Wu15} showed that every $n$-qubit stabilizer state is UDA by its marginals on the supports of $n$ independent stabilizer generators; our results concern generic (Haar) states and marginals of bounded size. Jones and Linden~\cite{JL05} reported moving both ends to one half: for even $N$, generic pure states are determined by the marginals of $N/2+1$ parties (the odd case was later brought to $(N+1)/2$ by Huang, Chen, Li and Zeng~\cite{HCLZ18}); and, in the abstract of~\cite{JL05}, the reduced states of fewer than $N/2$ parties are said to be insufficient for almost all states. The body of~\cite{JL05} (introduction and Sec.~3) states a stronger form: $\lfloor N/2\rfloor$-party marginals do not distinguish a generic pure state from other pure or mixed states. Since ``generic'' and ``almost all'' are used in the measure-one sense, the lower-bound claim reads: for $K<N/2$ (abstract) or $K=\lfloor N/2\rfloor$ (body), the set of UDA states has Haar measure zero.
+
+This statement continues to be quoted. We verified in full texts that it is repeated by Wyderka, Huber and Gühne~\cite{WHG17}, Huang et al.~\cite{HCLZ18}, Uzcátegui Contreras and Goyeneche~\cite{UG22}, Zhang, Shi and Zhang~\cite{ZSZ24} (in its strongest form: for even $N$ almost every pure state is $N/2$-UDP but not $N/2$-UDA), Shen and Chen~\cite{SC23}, Qiu, Chen, Li and Chu~\cite{QCLC25}, and in the theses of Huber~\cite{Hub17} and Wyderka~\cite{Wyd20}. In the sources we examined (Sec.~\ref{sec:JL}) we found no correction or comment on the lower bound, and no measure-one upper bound below one half.
+
+\subsection*{This work}
+\begin{enumerate}
+\item \textbf{Measure-one bound (Theorem~\ref{thm:main}).} Haar-almost every $n$-qubit pure state is UDA with $K(n)=2\kc n+O(\log n)$-body marginals, and is the unique ground state, with energy zero, of a positive semidefinite $K(n)$-local Hamiltonian. Explicit thresholds: $\lceil n/2\rceil-1$ (fewer than half) for every $n\ge139$ and $\lceil0.4n\rceil$ for every $n\ge996$. This refutes the measure-one reading of the Jones--Linden lower bound for every $N\ge139$ and lowers the best known measure-one upper bound from $\lfloor n/2\rfloor+1$ to $\approx0.379n$ asymptotically.
+\item \textbf{Positive-measure threshold (Theorem~\ref{thm:pos}).} The smallest $K$ for which UDA states have positive measure satisfies $\Kp(n)=\kc n+O(\log n)$; explicitly $\kc n<\Kp(n)\le(3n+24)/13$ for every $n$. In particular, for every $N\ge7$ there is a positive-measure set of UDA states with $K<N/2$.
+\item \textbf{Exact finite certificates (Theorem~\ref{thm:cert}).} For $(n,K)=(8,3),(10,4),(12,4)$ (with $K<n/2$) and $(4,2),(6,3)$ (with $K=n/2$) the UDA states contain a nonempty open set. The proofs are computer-assisted; every final verdict is an exact integer or rational inequality.
+\item \textbf{Gluing (Theorem~\ref{thm:glue})} of exact certificates, which drives Theorem~\ref{thm:pos}.
+\item We identify the invalid step in the Jones--Linden argument (Sec.~\ref{sec:JL}).
+\end{enumerate}
+
+\paragraph*{What we do not claim.} We do not claim that almost every state is determined by marginals on fewer than half of its qubits for small $n$; this is false at $(n,K)=(8,3)$, where a $3$-uniform graph state has a non-UDA neighbourhood~\cite{HG16} (Observation~\ref{obs:sep}). We do not prove that the measure-one threshold is $\kc n+O(\log n)$; a factor of $2$ remains open. We give no radii or volumes for the open sets of Theorems~\ref{thm:pos} and~\ref{thm:cert}, and no statements about measurement cost, statistical cost or robustness to noise.
+
+\paragraph*{Motivation.} We arrived at this question from the black-hole information problem. If evaporation is unitary, the final radiation is pure; modelled as a Haar-typical pure state, every subsystem containing a fixed fraction $\alpha<1/2$ of the qubits is nearly maximally mixed as $n\to\infty$~\cite{Pag93a,Pag93b}. One may then ask at which order of correlations the information is written: not in any single small subsystem, but in all $K$-body marginals \emph{jointly}. Our results belong to quantum information theory and concern only determinability from exact data (Sec.~\ref{sec:disc}).
+
+\section{Definitions and thresholds}
+
+\begin{definition}
+Let $\psi$ be a pure state and $1\le K\le n$; for $K\ge n$ we read $K$-UDA as $n$-UDA, which holds trivially, and locality orders such as $2L+1$ below are understood as $\min(n,2L+1)$. Knowing the $K$-body marginals of a state $\rho$ is equivalent to knowing $\Tr(\rho P)$ for all $P\in\mathcal P_K$.
+\begin{itemize}
+\item $\psi$ is \emph{$K$-UDA} if every density matrix $\rho$ with $\Tr(\rho P)=\langle\psi|P|\psi\rangle$ for all $P\in\mathcal P_K$ equals $|\psi\rangle\langle\psi|$; \emph{$K$-UDP} if this is required only for pure $\rho$.
+\item $\psi$ is \emph{$K$-UGS} if it is the unique ground state of a $K$-local Hamiltonian. UGS implies UDA (Proposition~\ref{prop:top}); the converse fails in general~\cite{KJTV19}.
+\item $\mathcal U_K(n)\subseteq\CP^{D-1}$ denotes the set of $K$-UDA states and $\mathcal N_K(n)$ its complement. $\mathcal U_K\subseteq\mathcal U_{K+1}$ and $\mathcal U_n=\CP^{D-1}$.
+\end{itemize}
+\end{definition}
+
+\begin{definition}
+The \emph{positive-measure threshold} is $\Kp(n)=\min\{K:\mu_n(\mathcal U_K(n))>0\}$; the \emph{measure-one threshold} is $\Ko(n)=\min\{K:\mu_n(\mathcal N_K(n))=0\}$; the \emph{counting threshold} is $\Kc(n)=\min\{K:M_K(n)\ge2^{n+1}-2\}$, where $2D-2$ is the real dimension of $\CP^{D-1}$. $u(n)$ denotes the largest $K$ for which a $K$-uniform $n$-qubit pure state (all $K$-body marginals maximally mixed) exists.
+\end{definition}
+
+All upper bounds we give for $\Kp$ construct a nonempty \emph{open} set of UDA states; lower bounds use only positive measure.
+
+\begin{proposition}\label{prop:rel}
+For every $n$:
+(i) $\Kc(n)\le\Kp(n)\le\Ko(n)$;
+(ii) $\Ko(n)\ge u(n)+1$;
+(iii) $\Ko(n)\le\lfloor n/2\rfloor+1$ \cite{JL05,HCLZ18};
+(iv) $\Ko(n)\le K(n)$ with $K(n)$ as in Theorem~\ref{thm:main};
+(v) $\mathcal N_K(n)$ is semialgebraic, hence $\mu_n(\mathcal N_K)>0$ if and only if $\mathcal N_K$ has nonempty interior.
+\end{proposition}
+\noindent The first inequality of (i) is Proposition~\ref{prop:count}. Item (ii) is a direct consequence of Huber and Gühne~\cite{HG16}: if $\varphi$ is $K$-uniform, then $\rho_t=\psi\psi^\dagger+t(I/D-\varphi\varphi^\dagger)$ has the same $K$-body marginals as $\psi$, and is a valid state different from $\psi\psi^\dagger$ for small $t>0$ whenever $|\langle\psi|\varphi\rangle|^2>(D-1)/D$; this is an open ball of non-UDA states. Item (iii) is quoted; we did not re-check those proofs. Item (v) is Tarski--Seidenberg.
+
+\begin{observation}\label{obs:sep}
+At $(n,K)=(6,3)$ and $(8,3)$ both $\mathcal U_K$ and $\mathcal N_K$ contain nonempty open sets: the UDA side is Theorem~\ref{thm:cert}, the non-UDA side comes from the $3$-uniform wheel graph state ($n=6$) and cube graph state ($n=8$) via Proposition~\ref{prop:rel}(ii). Hence $\Kp(8)=3<4\le\Ko(8)$. At $n=12$, $\Kp(12)=4$ while $\Ko(12)\ge6$ because of a $5$-uniform $12$-qubit state (the $[[12,0,6]]$ dodecacode). So for small $n$ the positive-measure language is unavoidable.
+\end{observation}
+
+\section{Main results}
+
+\subsection{Certificate language}
+For a unit vector $\psi$ we use real and complex spanning conditions:
+\begin{itemize}
+\item $R(K)$ at $\psi$: $\spanR\{P\psi:0\le|P|\le K\}+\RR\,i\psi=\CC^D$ (as $\RR^{2D}$); equivalently $\spanR\{\Pperp P\psi:P\in\mathcal P_K\}=\psi^\perp$.
+\item $C(c)$ at $\psi$: $\spanC\{P\psi:0\le|P|\le c\}=\CC^D$, i.e.\ $\mathcal V_c\psi=\CC^D$.
+\item $S(n,K)$ at $(H,\psi)$: $H=\sum_{P\in\mathcal P_K}h_PP$ with $h_P\in\RR$, $\psi$ is an eigenvector of the \emph{simple} largest eigenvalue of $H$, and $R(K)$ holds at $\psi$.
+\end{itemize}
+$R(K)\Rightarrow C(K)$, and both are phase invariant. $R(K)$ is equivalent to the map $\mu_K:[\psi]\mapsto(\langle\psi|P|\psi\rangle)_{P\in\mathcal P_K}$ being an immersion at $[\psi]$. A \emph{certificate datum} $(K_H,r,c)$ of a state records upper bounds: the state is a simple top eigenvector of a Hamiltonian with real coefficients and locality at most $K_H$, and it satisfies $R(r)$ and $C(c)$. The recorded values need not be minimal. Since $R(r)\Rightarrow C(r)$, we may always assume $c\le r$. The two kinds of certificate play different roles: $S$ makes an open \emph{neighbourhood} UDA (Lemma~A), while $C$ alone, at twice the order, makes the point itself UDA (Lemma~\ref{lem:1}). Since $C(c)$ is a generic condition, the latter leads to measure-one results. We write $\cgen(m)$ for the smallest $c$ such that $C(c)$ holds at some (hence, by Sec.~\ref{sec:proof2}, at Haar-almost every) $m$-qubit state.
+
+\subsection{Measure one}
+\begin{theorem}\label{thm:main}
+For every $n$, Haar-almost every $n$-qubit pure state $\psi$ (the exceptional set has measure zero for that $n$) has the following properties: it is uniquely determined, among all pure and mixed states, by its reduced density matrices on all $K(n)$-element subsets of qubits; and it is the unique ground state, with energy zero, of a positive semidefinite $K(n)$-local Hamiltonian. Here $K(n)=2\kc n+O(\log n)$ in general, and explicitly:
+\begin{itemize}
+\item $K(n)=\lceil n/2\rceil-1$ suffices for every $n\ge139$ (fewer than half of the qubits);
+\item $K(n)=\lceil0.4n\rceil$ suffices for every $n\ge996$;
+\item $K(n)=\lceil2\kc n+4\log_2n\rceil$ suffices for every $n\ge274$.
+\end{itemize}
+The lower bound is $\Ko(n)\ge\Kc(n)>\kc n$; the factor of $2$ is open.
+\end{theorem}
+
+\subsection{Positive measure}
+\begin{theorem}\label{thm:pos}
+(i) $\Kp(n)=\kc n+O(\log n)$; in particular $\lim_{n\to\infty}\Kp(n)/n=\kc$, so the leading coefficient of the positive-measure threshold equals the counting coefficient.
+(ii) Explicitly, for every $n\ge1$,
+\[
+\lfloor\kc n\rfloor+1\le\Kc(n)\le\Kp(n)\le\frac{3n+24}{13},
+\]
+and $\Kp(n)\le(3n+20)/13$ for every $n\ge14$.
+\end{theorem}
+
+\begin{theorem2p}
+For every $n\ge2$, $\Kp(n)\le1+\max_{1\le m<n}\cgen(m)$.
+\end{theorem2p}
+
+\noindent The explicit bound (ii) remains useful for small $n$: it gives positive-measure UDA sets with $K<N/2$ for every $N\ge7$, whereas Theorem~\ref{thm:main} needs $N\ge139$. The measure is weaker (positive versus full).
+
+\subsection{Exact finite certificates}
+\begin{theorem}\label{thm:cert}
+For each $(n,K)$ in Table~\ref{tab:cert} there is a nonempty open set $O_{n,K}\subseteq\CP^{2^n-1}$ such that for every $[\psi]\in O_{n,K}$ and every density matrix $\rho$: if $\Tr_{A^c}\rho=\Tr_{A^c}|\psi\rangle\langle\psi|$ for all $|A|=K$, then $\rho=|\psi\rangle\langle\psi|$. In particular $\mu_n(O_{n,K})>0$.
+\end{theorem}
+\begin{table}[h]
+\caption{Finite certificates (Theorem~\ref{thm:cert}). All direct $S$ certificates pass the final verifier (Sec.~\ref{sec:exact}).}\label{tab:cert}
+\begin{tabular}{lll}
+\toprule
+$(n,K)$ & $K$ vs.\ $n/2$ & certificate route\\
+\midrule
+$(4,2)$ & $K=n/2$ & direct $S(4,2)$\\
+$(6,3)$ & $K=n/2$ & direct $S(6,3)$\\
+$(8,3)$ & $K<n/2$ & direct $S(8,3)$ (three independent seeds)\\
+$(10,4)$ & $K<n/2$ & direct $S(10,4)$\\
+$(12,4)$ & $K=n/3$ & (a) gluing $S(4,2)\otimes S(8,3)$ with $C(2)$ at $\psi_8$, Lemma~B; exact integers\\
+ & & (b) direct certificate (floating GEMM with proven $<2^{53}$ bounds)\\
+\bottomrule
+\end{tabular}
+\end{table}
+\noindent Additional exact inputs used for Theorem~\ref{thm:pos}: $C(2)$ certificates at $n=4,6,8$ (three seeds) at the same points $\psi_0$ as the $S$ certificates, $C(3)$ at $n=10$, $R(2)$ at $n=6$ and $R(3)$ at $n=10$. This yields exact block data $\psi_4:(2,2,2)$, $\psi_6:(3,2,2)$, $\psi_8:(3,3,2)$, $\psi_{10}:(4,3,3)$, $|0\rangle:(1,1,1)$.
+
+\subsection{Gluing}
+\begin{lemA}[certificate to open set]
+If $S(n,K)$ holds at $(H_0,\psi_0)$, then the pure states that are $K$-UDA contain an open neighbourhood of $[\psi_0]$, and $R(K)$ holds throughout that neighbourhood.
+\end{lemA}
+\begin{lemB}[gluing]
+Let $S(n_1,K_1)$ hold at $(H_1,\psi_1)$, $S(n_2,K_2)$ at $(H_2,\psi_2)$, and $C(K_2')$ at $\psi_2$. With $K=\max(K_1,K_2,K_1+K_2')$, $S(n_1+n_2,K)$ holds at $(H_1\otimes I+I\otimes H_2,\ \psi_1\otimes\psi_2)$. If $C$-levels are known for both blocks one may use $K=\max(K_1,K_2,\min(K_1+K_2',K_1'+K_2))$.
+\end{lemB}
+\begin{lemBp}[necessary and sufficient condition]
+Let $A_j=\Pi^\perp_{\psi_1}\spanR\{P\psi_1:|P|\le j\}$, define $B_j$ likewise for $\psi_2$, let $X\hat\otimes Y=\spanR\{x\otimes y:x\in X,y\in Y\}$ and $W_K=\sum_{j=1}^{K-1}A_j\hat\otimes B_{K-j}\subseteq\psi_1^\perp\otimes\psi_2^\perp$. Then $R(K)$ holds at $\psi_1\otimes\psi_2$ if and only if $R(K)$ holds at $\psi_1$, $R(K)$ holds at $\psi_2$, and $W_K=\psi_1^\perp\otimes\psi_2^\perp$. When the first two hold, $\dim_{\RR}V_K=2(D_1+D_2-1)+\dim_{\RR}W_K$, where $V_K=\spanR\{P(\psi_1\otimes\psi_2):|P|\le K\}+\RR\,i(\psi_1\otimes\psi_2)$.
+\end{lemBp}
+\noindent \textbf{Composition rule.} From the sufficient direction of Lemma~B$'$,
+\[
+(K_{H,1},r_1,c_1)\otimes(K_{H,2},r_2,c_2)\to(K_H',r',c'),
+\]
+with $K_H'=\max(K_{H,1},K_{H,2})$, $r'=\max\big(r_1,r_2,\min(r_1+c_2,\,c_1+r_2)\big)$ and $c'=c_1+c_2$,
+and complex spanning is additive: $C(c_1)$ at $\psi_1$ and $C(c_2)$ at $\psi_2$ give $C(c_1+c_2)$ at $\psi_1\otimes\psi_2$.
+
+\begin{theorem}\label{thm:glue}
+Lemma~A, Lemma~B, Lemma~B$'$ and the composition rule hold. The resulting open sets are neighbourhoods of product states and contain states entangled across the cut; uniqueness is global, including mixed competitors.
+\end{theorem}
+\noindent \emph{Prior work.} Shen and Chen~\cite{SC23} proved that a tensor product of UDA states (one of them pure) is UDA at level $\max(k_1,k_2)$; this concerns the product state itself, whereas Theorem~\ref{thm:glue} concerns an open neighbourhood of it, with additive growth of the order.
+
+\begin{proposition}[generic upgrade]\label{prop:upgrade}
+If an $n$-qubit state with data $(K_H,r,c)$ exists and $C(c')$ is generic on $n$ qubits, then a state with data $(\max(K_H,r),r,\min(c,c'))$ exists.
+\end{proposition}
+\begin{proposition}[trivial block]\label{prop:triv}
+$S(b,b)$ holds at every $b$-qubit pure state. Hence a single witness of generic $C(c)$ on $b$ qubits yields, by Proposition~\ref{prop:upgrade}, a block with data $(b,b,c)$.
+\end{proposition}
+
+\subsection{Local uniqueness and a sharper half threshold}
+\begin{proposition}[local uniqueness]\label{prop:loc}
+If $R(K)$ holds at some $n$-qubit state, then for Haar-almost every $\psi$ the map $\mu_K$ is an immersion at $[\psi]$, so no other pure state near $\psi$ has the same $K$-body marginals. (Example: $R(2)$ is generic at $n=6$, $R(3)$ at $n=10$.) This is only local uniqueness among pure states.
+\end{proposition}
+
+\begin{proposition}[computer-assisted]\label{prop:83}
+Let $\cgen(1)=\cgen(2)=\cgen(3)=1$, $\cgen(4)=\dots=\cgen(8)=2$, $\cgen(9)=\dots=\cgen(13)=3$ (the $\FF_p$ witnesses of Table~\ref{tab:fp}), and let
+$c(n)=\min\{\sum_i\cgen(b_i):\sum_ib_i=n,\ 1\le b_i\le13\}$. Then for every $n$, Haar-almost every $n$-qubit pure state is $(2c(n)+1)$-UDA and $(2c(n)+1)$-UGS. In particular, for every $n\ge83$, $2c(n)+1<n/2$.
+\end{proposition}
+\begin{proof}
+By additivity of $C$ (Sec.~\ref{sec:proof2}), the tensor product of block witnesses satisfies $C(c(n))$; by genericity, $C(c(n))$ then holds Haar-almost everywhere; Lemma~\ref{lem:1} gives the claim. Dynamic programming gives $2c(n)+1\ge n/2$ last at $n=82$ (scan $n\le400$); since a $13$-qubit block gives $c(n+13)\le c(n)+3$, if $2c(n)+1<n/2$ then $2c(n+13)+1\le2c(n)+7<(n+13)/2$, and the condition holds on the window $[83,95]$.
+\end{proof}
+\noindent The slope $6/13$ is asymptotically worse than Theorem~\ref{thm:main}, but the half threshold drops from $139$ to $83$. The abstract quotes $139$, the threshold of the route of Theorem~\ref{thm:main}; the improvement to $83$ rests on the finite-field witnesses of Table~\ref{tab:fp} and is stated here as a computer-assisted refinement.
+
+\subsection{Status of the Jones--Linden lower bound}
+\begin{corollary}\label{cor:JL}
+For qubits:
+\begin{itemize}
+\item The abstract reading (``the marginals of fewer than $N/2$ parties are insufficient for almost all states'') is false for every $N\ge7$, since $\Kp(N)\le(3N+24)/13<N/2$ when $7N>48$; Theorem~\ref{thm:cert} gives this directly for $N=8,10,12$. For every $N\ge139$ the stronger statement holds: almost every state is UDA with $K<N/2$.
+\item The body reading (``$\lfloor N/2\rfloor$-body marginals are insufficient for almost all states'') is false for $N=4$ and every $N\ge6$, and for every $N\ge139$ almost every state is UDA with $\lfloor N/2\rfloor$-body marginals.
+\item For $N\in\{1,2,3,5\}$ our positive-measure construction gives $K>\lfloor N/2\rfloor$; at $N=3$ this is consistent with counting and~\cite{LPW02}; $N=5$ is open.
+\end{itemize}
+The weak reading ``the non-UDA set has positive measure'' is true for some small $N$ (because of $K$-uniform states~\cite{HG16}), but false for every $N\ge139$. The upper bounds of~\cite{JL05,HCLZ18} are unaffected.
+\end{corollary}
+
+\section{Proof of Theorem~\ref{thm:main}}\label{sec:proof1}
+
+\begin{lemma}[complex spanning implies a local positive certificate]\label{lem:1}
+Suppose $\mathcal V_L\psi=\CC^D$, i.e.\ $C(L)$ holds at $\psi$. Then there is a positive semidefinite, $(2L+1)$-local $G$ with $\ker G=\CC\psi$. Consequently $\psi$ is $(2L+1)$-UDA and the unique ground state, with energy zero, of the positive semidefinite $(2L+1)$-local Hamiltonian $G$.
+\end{lemma}
+\begin{proof}
+\emph{Basis.} Choose Paulis $P_1,\dots,P_D$ of weight $\le L$ such that the $P_i\psi$ form a basis; $B=[P_1\psi\cdots P_D\psi]$ is invertible.
+\emph{Annihilators.} For each single-site $Q\in\{X_j,Z_j\}$ let $C_Q=B^{-1}QB$ and $A_{Q,i}=QP_i-\sum_j(C_Q)_{ji}P_j$. The $i$-th column of $QB=BC_Q$ reads $QP_i\psi=\sum_j(C_Q)_{ji}P_j\psi$, so $A_{Q,i}\psi=0$.
+\emph{Positivity and locality.} Let $G=\sum_{Q,i}A_{Q,i}^\dagger A_{Q,i}\succeq0$. With $S_i=\sum_j(C_Q)_{ji}P_j$,
+$A_{Q,i}^\dagger A_{Q,i}=I-(QP_i)^\dagger S_i-S_i^\dagger QP_i+S_i^\dagger S_i$, because $(QP_i)^\dagger QP_i=I$; so no product of two weight-$(L+1)$ factors appears. The cross terms have weight $\le2L+1$ and the last term weight $\le2L$; $G$ is $(2L+1)$-local and Hermitian.
+\emph{One-dimensional kernel.} Let $\phi$ be annihilated by all $A_{Q,i}$ and define a linear $T$ by $T(P_i\psi)=P_i\phi$. Then $QP_i\phi=\sum_j(C_Q)_{ji}P_j\phi=T(QP_i\psi)$ and also $QP_i\phi=QT(P_i\psi)$, so $QT=TQ$ on a basis. Since $\{X_j,Z_j\}$ generate $M_{2^n}(\CC)$, $T=cI$, so $P_i(\phi-c\psi)=0$ and $\phi=c\psi$.
+\emph{UDA.} $G$ is a combination of Paulis of weight $\le2L+1$. If $\sigma$ has the same $(2L+1)$-body marginals as $\psi$, then $\Tr(\sigma G)=\langle\psi,G\psi\rangle=0$; as $G\succeq0$, $\operatorname{ran}\sigma\subseteq\ker G=\CC\psi$, so $\sigma=\psi\psi^\dagger$.
+\end{proof}
+\begin{remark}
+Lemma~\ref{lem:1} gives UGS, which is stronger than UDA; this does not contradict~\cite{KJTV19}, which concerns other states. The operators $A_{Q,i}$ are not local; positivity is global while locality is in Pauli weight. For Haar-generic $\psi$ with $2L+1<n/2$ all $(2L+1)$-body marginals have full rank, so support-based (frustration-free) parent Hamiltonians~\cite{KJTV17} vanish; Lemma~\ref{lem:1} circumvents this. No simple-eigenvalue assumption is needed, unlike the $(H-E)^2$ route of~\cite{CJWZ12}. \emph{Prior work:} the sum-of-squares doubling of locality appears in~\cite{CJWZ12}; parent Hamiltonians from annihilators in~\cite{GST18}; the SDP dual of UDA in~\cite{HG16,KJTV19,Wyd20}. The spanning criterion and the commutant argument we did not find in the literature we examined.
+\end{remark}
+
+\begin{lemma}[stabilizer covering $\Leftrightarrow$ spanning]\label{lem:2}
+Identify phase-free $m$-qubit Paulis with $V=\FF_2^{2m}$; a Lagrangian subspace $S\subset V$ determines a stabilizer state $\psi_S$. Every coset of $S$ contains a representative of weight $\le R$ if and only if $\mathcal V_R\psi_S=\CC^{2^m}$. Moreover, if $\mathcal V_R\psi=\CC^{2^m}$ holds at one state, it holds at Haar-almost every state.
+\end{lemma}
+\begin{proof}
+For $s\in S$, $Ps\,\psi_S$ equals $P\psi_S$ up to a phase, so $P\psi_S$ depends only on the coset $P+S$. Distinct cosets are orthogonal: if $P^\dagger P'\notin S=S^\perp$, it anticommutes with some stabilizer and has zero expectation. The $2^m$ cosets give an orthonormal basis; a low-weight representative in every coset produces every basis vector, and a coset without one leaves its basis vector out of the span. For genericity: $M(\psi)=[P\psi]_{|P|\le R}$ is linear in $\psi$, its $D\times D$ minors are homogeneous holomorphic polynomials; a nonzero minor at a witness makes the zero set a proper algebraic cone, of measure zero on the sphere (method as in~\cite{KJTV17}).
+\end{proof}
+
+\begin{lemma}[covering with few extra qubits]\label{lem:3}
+Let $B_m(L)=\sum_{j=0}^{L}\binom mj3^j$ and $d=2^m$. Then
+\[
+2^t\log_2\frac{B_m(L)}{2^m}>2m\quad\Longrightarrow\quad\text{Haar-almost every $(m+t)$-qubit pure state is $(2(L+t)+1)$-UDA.}\tag{$*$}
+\]
+\end{lemma}
+\begin{proof}
+(1) \emph{Random Lagrangian.} Pick a uniform Lagrangian $S$ and an independent uniform $v\in V$; let $b=B_m(L)$ and $N=|(v+S)\cap B_L|$. Every nonzero $u$ satisfies $\Pr[u\in S]=1/(d+1)$, and double counting gives $\mathbb EN=b/d$, $\operatorname{Var}N=b(d^2-b)/(d^2(d+1))$. By Chebyshev, $\Pr[N=0]\le d/b$, so some $S$ leaves a fraction $\varepsilon\le d/b$ of $V$ uncovered by $S+B_L$.
+(2) \emph{Squaring.} Adjoining $v_1$ replaces the uncovered set $U$ by $U\cap(U+v_1)$, whose average size over $v_1$ is $|U|^2/|V|$; choose $v_1$ no worse than average. After $t$ steps $W=S+\operatorname{span}\{v_1,\dots,v_t\}$ leaves at most $d^2(d/b)^{2^t}$ points uncovered, which is $<1$ under $(*)$; so $W$ has covering radius $\le L$.
+(3) \emph{Restoring isotropy.} $\dim W=m+s$ with $s\le t$. Since $S\subset W$, $W^\perp\subset S\subset W$; the radical of the form on $W$ is $W^\perp$, and $W/W^\perp$ is symplectic of dimension $2s$. Choosing $F$ that identifies $W/W^\perp$ with the symplectic space of $s$ ancilla qubits, $\widetilde S=\{(w,Fw):w\in W\}$ is Lagrangian on $m+s$ qubits (over $\FF_2$ the two symplectic contributions cancel); this is the entanglement-assisted stabilizer construction~\cite{BDH06}.
+(4) \emph{Radius.} Distance $\le L$ on the old coordinates and $\le s$ on the new ones: covering radius $\le L+s$. Padding with $t-s$ qubits in $|0\rangle$ gives radius $\le L+t$ on $m+t$ qubits.
+(5) Lemma~\ref{lem:2} gives $\mathcal V_{L+t}\psi=\CC^{2^{m+t}}$ Haar-almost everywhere, and Lemma~\ref{lem:1} completes the proof.
+\end{proof}
+\noindent \emph{Prior work.} Random linear covering and squaring are classical covering-code techniques; isotropy repair is the entanglement-assisted stabilizer construction~\cite{BDH06}. We did not find the connection between covering radius and Pauli spanning, or its use for UDA, in the literature we examined. An asymptotic result on covering radii of Lagrangian (additive self-dual $GF(4)$~\cite{CRSS98}) codes may be known in coding theory; we did not search that literature in depth.
+
+\paragraph*{Constants.} \emph{Linear slope:} with $\beta=0.195$ and $t=7$, $f(\beta)-1=0.0208823579$ and $2^7(f(\beta)-1)=2.6729>2$; Stirling gives $\log_2B_m(\lfloor\beta m\rfloor)=mf(\beta)+O(\log m)$, so $(*)$ holds for large $m$; with $n=m+7$ and $L=\lfloor0.195m\rfloor$, $K=2(L+7)+1\le0.39n+12.27$. \emph{Slope $2\kc$:} take $t=\lceil\log_2n\rceil$, $m=n-t$, $L=\lceil\kc m+\log_2m\rceil$. Since $f(\kc)=1$ and $f'(\kc)=\log_2\frac{3(1-\kc)}{\kc}=3.683554$, $\log_2(B_m(L)/2^m)=(f'(\kc)-\tfrac12)\log_2m+O(1)\to\infty$ and $(*)$ holds; the order is $K=2(L+t)+1=2\kc n+(4-2\kc)\log_2n+O(1)$.
+
+\paragraph*{Explicit thresholds.} Table~\ref{tab:N0} lists how the thresholds of Theorem~\ref{thm:main} were established. In the range $n\in[100,1660]$ condition $(*)$ was checked, for the optimized choice of $(t,L)$, through the equivalent comparison $B^{2^t}>2^{m2^t+2m}$ in pure integer arithmetic. Example values of the optimized construction: $K=93$ at $n=200$ ($0.465n$), $K=399$ at $n=1000$, $K=1161$ at $n=3000$; for these three values condition $(*)$ was confirmed in integer arithmetic for the chosen $(t,L)$. The first $n$ with $K<n/2$ is $127$ ($K=63$), but it fails again at $n\in\{128,129,130,133,134,138\}$; hence the half threshold is $139$.
+
+\begin{table}[h]
+\caption{Thresholds of Theorem~\ref{thm:main}.}\label{tab:N0}
+\begin{tabular}{p{0.3\textwidth}p{0.08\textwidth}p{0.55\textwidth}}
+\toprule
+Claim & $N_0$ & Verification\\
+\midrule
+$\lceil n/2\rceil-1$, optimized $(t,L)$ & 139 & exact integer check of $(*)$ on $[100,1660]$ (last failure 138); for $n>1660$ the $t=7$ row and $0.39n+12.27<n/2$\\
+$\lceil0.4n\rceil$, optimized $(t,L)$ & 996 & same method (last failure 995); for $n>1660$ the next row\\
+$\lceil0.4n\rceil$, $t=7$, $L=\lfloor0.195m\rfloor$ & 1654 & exact integers on $m\in[1640,5100]$ (failures only at 1641, 1646); analytic lower bound $g(m)$ below for $m\ge5000$\\
+$\lceil2\kc n+4\log_2n\rceil$ & 274 & sufficient condition $B_m(L)\ge2^{m+2}$ in exact integers on $[274,5000]$ (last failure 273), with a rigorously checked $\kappa_{\mathrm{lo}}=0.1892896249<\kc$; analytic tail for $n\ge4729$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent For the tail, $K\le2\kc n+(4-2\kc)\log_2n+5-2\kc\le2\kc n+4\log_2n$ for $n\ge4729$, and $B_m(L)\ge2^{m+2}$ follows for $x=L/m\le0.2$ ($m\ge1028$) from concavity of $f$ and the MacWilliams--Sloane bound $\binom{m}{\lambda m}\ge2^{mh_2(\lambda)}/\sqrt{8m\lambda(1-\lambda)}$~\cite{MS77}, $\log_2B-m\ge3.08\log_2m-0.2\ge2$; since $2^t\ge n>m$, $B_m(L)\ge2^{m+2}$ suffices for $(*)$. The asymptotic statement $K(n)=2\kc n+O(\log n)$ is proven analytically above and does not depend on these finite checks, which only fix the explicit values of $N_0$. For the third row, with $\beta=0.195$, $t=7$ and $L=\lfloor\beta m\rfloor$, the inequality $\binom mL3^L\le B_m(L)$, the binomial bound above, the concavity of $f$ (which gives $mf(L/m)\ge mf(\beta)-f'(\beta-1/5000)$ for $m\ge5000$) and $L(1-L/m)\le\beta(1-\beta)m$ yield
+\[
+2^7\log_2\frac{B_m(L)}{2^m}-2m\ \ge\ g(m):=128\Big[m\big(f(\beta)-1\big)-f'\big(\beta-\tfrac{1}{5000}\big)-\tfrac12\log_2\big(8\beta(1-\beta)m\big)\Big]-2m,
+\]
+and $g(5000)\approx2092>0$, while $g'(m)=128(f(\beta)-1)-2-64/(m\ln2)>0$ for $m\ge5000$.
+
+\begin{remark}[consistency with uniform states]
+If a Lagrangian subspace of covering radius $\rho$ exists, no $(2\rho+1)$-uniform pure state exists: for a $2\rho$-uniform $\varphi$ the coset representatives $P_c$ give an orthonormal basis $\{P_c\varphi\}$; $(2\rho+1)$-uniformity would force each $QP_c$ ($Q$ single-site) to be again a representative, so the representatives would form the whole Pauli group, contradicting $2^n<4^n$. Hence the hypothesis of Theorem~\ref{thm:main} automatically excludes the obstruction of Proposition~\ref{prop:rel}(ii). Qubit uniformity is moreover known to be bounded by roughly $n/3$ through shadow-enumerator bounds (see~\cite{Scott04} and references therein), which is below $2\kc n$.
+\end{remark}
+\begin{remark}[the route is lossy at finite $n$]
+The stabilizer witness is worse than the true spanning threshold at small $m$: at $m=8$, $L=2$ none of 1500 random Lagrangians had covering radius $\le2$, while $C(2)$ holds at an explicit 8-qubit point by the exact modular witness of Sec.~\ref{sec:exact}, hence generically. This does not affect the asymptotic slope.
+\end{remark}
+
+\section{Proofs of Theorems~\ref{thm:pos} and~\ref{thm:glue}}\label{sec:proof2}
+
+\begin{proposition}[simple top eigenvector is UDA; cf.~\cite{CJWZ12,KJTV19}]\label{prop:top}
+Let $H=\sum_{P\in\mathcal P_K}h_PP$ be Hermitian with real coefficients $h_P$, with largest eigenvalues $\lambda_1>\lambda_2$ and unit top eigenvector $\psi$. Then $\psi$ is $K$-UDA.
+\end{proposition}
+\begin{proof}
+If $\rho$ has the same $K$-body marginals, $\Tr H\rho=\lambda_1$ by linearity. Since $\lambda_1I-H\succeq(\lambda_1-\lambda_2)(I-\psi\psi^\dagger)$, $0=\Tr(\lambda_1I-H)\rho\ge(\lambda_1-\lambda_2)(1-\langle\psi|\rho|\psi\rangle)$, so $\langle\psi|\rho|\psi\rangle=1$ and $\rho=\psi\psi^\dagger$.
+\end{proof}
+
+\begin{proof}[Proof of Lemma A]
+$\mathcal O=\{c\in\RR^{M_K}:\lambda_1(H_c)\text{ simple}\}$, $H_c=\sum_Pc_PP$, is open and $\Phi:c\mapsto[\text{top eigenvector of }H_c]$ is real-analytic (Riesz projection). Under $T_{[\psi]}\CP^{D-1}\cong\psi^\perp$,
+$d\Phi_c(\delta c)=(\lambda_1-H)|_{\psi^\perp}^{-1}\Pperp\big(\sum_P\delta c_PP\big)\psi$.
+The operator $(\lambda_1-H)|_{\psi^\perp}$ is complex-linear and invertible, so $d\Phi$ is onto if and only if $\spanR\{\Pperp P\psi\}=\psi^\perp$, i.e.\ iff $R(K)$ holds. Surjectivity persists on a neighbourhood $U$ of $c_0$; a submersion is open, so $\Phi(U)$ is an open set containing $[\psi_0]$. Every state in $\Phi(U)$ is a gapped top eigenvector and hence UDA by Proposition~\ref{prop:top}. $R(K)$ is an open condition.
+\end{proof}
+
+\begin{proof}[Proof of Lemma B]
+Let $\psi=\psi_1\otimes\psi_2$ and $V=\spanR\{P\psi:|P|\le K\}+\RR\,i\psi$.
+(1) The spectrum of $H_1\otimes I+I\otimes H_2$ is $\{a_i+b_j\}$, and $a_1+b_1$ is attained only by $(1,1)$, with multiplicity one; the terms have weight $\le\max(K_1,K_2)\le K$.
+(2) $\CC^D=\CC\psi\oplus(\psi_1^\perp\otimes\psi_2)\oplus(\psi_1\otimes\psi_2^\perp)\oplus(\psi_1^\perp\otimes\psi_2^\perp)$.
+(3) $v\mapsto v\otimes\psi_2$ is real-linear and injective; $R(K_1)$ at $\psi_1$ and $i\psi\in V$ give $\CC^{D_1}\otimes\psi_2\subseteq V$, and symmetrically $\psi_1\otimes\CC^{D_2}\subseteq V$.
+(4) Writing $P_1\psi_1=\alpha_1\psi_1+a$, $P_2\psi_2=\alpha_2\psi_2+b$ with $\alpha_i\in\RR$, $a\in\psi_1^\perp$, $b\in\psi_2^\perp$,
+$P_1\psi_1\otimes P_2\psi_2=\alpha_1\alpha_2\psi+\alpha_2a\otimes\psi_2+\alpha_1\psi_1\otimes b+a\otimes b$; the first three terms lie in $V$ by (3) and the coefficients are real, so $a\otimes b\in V$.
+(5) Over $|P_1|\le K_1$, $|P_2|\le K_2'$ the vectors $a\otimes b$ span $A\hat\otimes B'$ with $A=\spanR\{a(P_1)\}=\psi_1^\perp$ (by $R(K_1)$), a \emph{complex} subspace. Hence $A\hat\otimes B'=A\otimes_{\CC}\spanC B'$, and $C(K_2')$ gives $\spanC B'=\psi_2^\perp$. The weights used are $\le K_1+K_2'\le K$.
+(6) By (3) and (5), $V=\CC^D$, i.e.\ $R(K)$ holds; with (1), $S(n_1+n_2,K)$. The symmetric version follows by exchanging roles.
+\end{proof}
+\noindent The complex structure in step (5) is essential: for a merely real $A$ the real dimension of $A\hat\otimes B'$ could fall short (numerically, $\psi_8\otimes\psi_4$ at $K=3$: rank $4286/8192$).
+
+\begin{proof}[Proof of Lemma B$'$]
+($\Leftarrow$) Steps (3)--(6) above; the $\psi_1^\perp\otimes\psi_2^\perp$ component of the cross generators is exactly $a\otimes b$. ($\Rightarrow$) With $Q_1=\Pi^\perp_{\psi_1}\otimes|\psi_2\rangle\langle\psi_2|$, $Q_1(P_1\psi_1\otimes P_2\psi_2)=\alpha_2a\otimes\psi_2$ and $Q_1(i\psi)=0$; taking $P_2=I$ gives $Q_1V=A_K\otimes\psi_2$, so $R(K)$ at $\psi$ forces $A_K=\psi_1^\perp$, i.e.\ $R(K)$ at $\psi_1$; symmetrically for $\psi_2$. Then $V=(\CC^{D_1}\otimes\psi_2+\psi_1\otimes\CC^{D_2})\oplus W_K$, which gives the dimension formula.
+\end{proof}
+\noindent \emph{Additivity of $C$.} $\spanC\{P_1\psi_1\otimes P_2\psi_2:|P_1|+|P_2|\le c\}=\sum_{j=0}^{c}U_j\otimes V_{c-j}$ with $U_j=\spanC\{P\psi_1:|P|\le j\}$ and $V_j$ likewise; if $U_{c_1}=\CC^{D_1}$ and $V_{c_2}=\CC^{D_2}$ the sum is $\CC^D$.
+
+\noindent \emph{Genericity.} $C(c)$ is equivalent to a nonzero $D\times D$ minor of $[P\psi]_{0\le|P|\le c}$; each minor is a homogeneous holomorphic polynomial in the coordinates of $\psi$ with Gaussian-integer coefficients, so if it is nonzero at one point, $C(c)$ holds on a Zariski-open, dense, full-measure set. The same argument with real polynomials in $(\operatorname{Re}\psi,\operatorname{Im}\psi)$ applies to $R(K)$.
+
+\begin{proof}[Proof of Proposition~\ref{prop:upgrade}]
+Let $K=\max(K_H,r)$; $S(n,K)$ holds at the given state $\psi_X$, so by Lemma~A the image $\Phi_K(U)$ is open and contains $\psi_X$. $R(r)$ and $C(c)$ are open conditions, holding on a neighbourhood $\mathcal N$ of $\psi_X$; the set where $C(c')$ holds is open and dense, so it meets $\Phi_K(U)\cap\mathcal N$. Any point of the intersection is a simple top eigenvector of a $K$-local $H$ and satisfies $R(r)$ and $C(\min(c,c'))$.
+\end{proof}
+\begin{proof}[Proof of Proposition~\ref{prop:triv}]
+For any $b$-qubit $\varphi$, $H=\varphi\varphi^\dagger-I/D$ uses only Paulis in $\mathcal P_b$ and has $\varphi$ as simple top eigenvector. For $R(b)$: for any $v$, $A'=v\varphi^\dagger+\varphi v^\dagger$ is Hermitian and $A'\varphi=v+\overline{\langle\varphi,v\rangle}\varphi$, hence $v=A'\varphi-\operatorname{Re}\langle\varphi,v\rangle\varphi+\operatorname{Im}\langle\varphi,v\rangle(i\varphi)$, and $A'$ and $I$ are real combinations of Paulis of weight $\le b$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~2$'$]
+Induction. For $n=1$, $|0\rangle$ with $H=Z$ has data $(1,1,1)$. Given data $X=(K_H,r,c)$ on $n$ qubits with $c\le\cgen(n)$ (after Proposition~\ref{prop:upgrade}), the composition rule for $X\otimes|0\rangle$ gives $r'=\max(r,1,\min(r+1,c+1))=\max(r,c+1)$ (as $c\le r$), $K_H'=K_H$, $c'=c+1$; the $S$-level is at most $\max(K,\cgen(n)+1)$, and Proposition~\ref{prop:upgrade} then gives $c''\le\cgen(n+1)$.
+\end{proof}
+\noindent Concrete chains: generic $C(1)$ at $n=2$ gives $S(3,2)$, at $n=3$ gives $S(4,2)$; $\cgen(7)=2$ gives $S(8,3)$; $\cgen(13)=3$ gives $S(14,4)$. Thus the $(4,2)$ and $(8,3)$ cases of Theorem~\ref{thm:cert} also follow from the $\FF_p$ witnesses alone, an independent second route.
+
+\begin{proof}[Proof of Theorem~\ref{thm:pos}(ii), upper bound]
+Dynamic programming (values for $n\le26$ in Appendix~\ref{app:dp}) combines the exact blocks, the composition rule and Proposition~\ref{prop:upgrade} with the $\cgen$ witnesses for $b=2,\dots,13$ (Table~\ref{tab:fp}). The Pareto set at $n=13$ contains a block with data $(4,4,3)$; appending it gives $K(n+13)\le K(n)+3$. On the initial window $s=1,\dots,13$, $\max_s(13K(s)-3s)=24$ (at $s=5$), and on $s=14,\dots,26$ it is $20$. By induction $\Kp(n)\le(3n+24)/13$ for all $n\ge1$ and $\le(3n+20)/13$ for $n\ge14$.
+\end{proof}
+
+\begin{proposition}[counting; cf.~\cite{LW02}, Eq.~(24)]\label{prop:count}
+If the set $\mathcal A$ of $K$-UDP states has positive measure, then $M_K(n)\ge2D-2$, i.e.\ $K\ge\Kc(n)$; and $\Kc(n)>\kc n$.
+\end{proposition}
+\begin{proof}
+$\mu_K$ is injective and real-analytic on $\mathcal A$. Let $\rho=\max\operatorname{rank}d\mu_K\le\min(M_K,2D-2)$; the set where the rank equals $\rho$ is open and dense with a null complement. If $\rho<2D-2$, by the constant rank theorem $\mu_K$ is locally a projection with fibres of dimension $\ge1$; $\mathcal A$ meets each fibre in at most one point, so by Fubini $\mathcal A$ has measure zero in each chart, a contradiction. For the second claim, the $q=4$ Hamming-ball bound $\sum_{w\le\kappa n}\binom nw3^w\le2^{nf(\kappa)}$ ($\kappa\le3/4$) and $M_K+1\ge2^{n+1}-1>2^n$ give $f(K/n)>1$, i.e.\ $K/n>\kc$.
+\end{proof}
+\noindent The count is that of~\cite{LW02}; our contribution here is only the rigorous positive-measure form.
+
+\begin{proof}[Proof of Theorem~\ref{thm:pos}(i)]
+Apply Lemmas~\ref{lem:2}--\ref{lem:3} with the choice of Sec.~\ref{sec:proof1}: on $n'=m+t$ qubits with $t=\lceil\log_2n'\rceil$ and $L=\lceil\kc m+\log_2m\rceil$, condition $(*)$ holds for large $n'$ and yields a Lagrangian witness of covering radius $\le L+t$. By Lemma~\ref{lem:2}, $C(L+t)$ holds at this witness and hence generically: $\cgen(n')\le\kc n'+O(\log n')$; for small $n'$, $\cgen(n')\le n'$ trivially. Theorem~2$'$ gives $\Kp(n)\le1+\max_{m<n}\cgen(m)\le\kc n+O(\log n)$, and the lower bound is Proposition~\ref{prop:count}.
+\end{proof}
+\noindent We have not made the constant in $O(\log n)$ explicit.
+
+\begin{proof}[Proof of Proposition~\ref{prop:loc}]
+For $\delta\psi\in\psi^\perp$, $d\mu_K(\delta\psi)=(2\operatorname{Re}\langle\Pperp P\psi,\delta\psi\rangle)_P$, whose kernel is the real orthogonal complement of $\spanR\{\Pperp P\psi\}$ in $\psi^\perp$; so $d\mu_K$ is injective iff $R(K)$ holds. $R(K)$ is a nonzero real minor condition, generic as above; an immersion is locally injective.
+\end{proof}
+
+\section{Exact certificates}\label{sec:exact}
+The numerical inputs of Theorems~\ref{thm:pos} and~\ref{thm:cert} do not rely on floating-point error analysis: floating point only produces \emph{hints}, and every verdict is an inequality checked in exact integer or rational arithmetic. A bad hint makes a check fail; it cannot produce a false pass.
+
+\paragraph*{Never writing $\psi_0$.} The certifying Hamiltonian has integer coefficients, $H=\sum_{P\in\mathcal P_K}c_PP$, $c_P\in\ZZ$ (from a numerical search started at a Haar sample, rescaled by $2^{16}/\max|\lambda|$ and rounded). Then $\psi_0$ is \emph{defined} as the top eigenvector of $H$; it is an exact object never written numerically. Two facts must be proven: $\lambda_1(H)>\lambda_2(H)$ and $R(K)$ at $\psi_0$. Pauli matrices have Gaussian-integer entries.
+
+\begin{proposition}[gap certificate]
+Let $H$ be Hermitian, $s\in\ZZ$, $w,z\in\ZZ[i]^D$, $p=z^\dagger z>0$, $q\in\ZZ_{>0}$. If (a) $\theta=w^\dagger Hw/w^\dagger w>s$ and (b) $A=p(sI-H)+q\,zz^\dagger\succ0$, then $\lambda_1(H)>s>\lambda_2(H)$.
+\end{proposition}
+\begin{proof}
+(a) Rayleigh: $\lambda_1\ge\theta>s$. (b) $sI+(q/p)zz^\dagger-H\succeq\varepsilon I$ for some $\varepsilon>0$, and Weyl monotonicity gives $\lambda_2(H)+\varepsilon\le\lambda_2(sI+(q/p)zz^\dagger)=s$.
+\end{proof}
+\begin{proposition}[positivity with integer residual]
+Let $X\in\ZZ^{N\times N}$ be symmetric, $t,f\in\mathbb N$, $R\in\ZZ^{N\times N}$ arbitrary, and $E=2^{2f}(X-tI)-RR^{\mathsf T}$. Then $X\succeq(t-\|E\|_\infty/2^{2f})I$.
+\end{proposition}
+\noindent ($R$ is the rounded, scaled floating-point Cholesky factor of $X-tI$, a mere hint; complex Hermitian matrices are embedded as real symmetric ones.)
+\begin{proposition}[transfer from $\hat w$ to $\psi_0$]
+Assume the hypotheses of the gap certificate, so that $\lambda_2(H)<s<\theta\le\lambda_1(H)$, and let $\psi_0$ be the normalized top eigenvector of $H$. Let $w\ne0$, $\hat w=w/\|w\|$ (Euclidean norm), $\theta=\hat w^\dagger H\hat w$, $\hat r=\|H\hat w-\theta\hat w\|$, $M=M_K(n)$, let $\sigma_{2D}$ denote the $2D$-th largest singular value, and fix the phase of $\psi_0$ by $\langle\psi_0,\hat w\rangle\ge0$. Then $\|\psi_0-\hat w\|\le\sqrt2\hat r/(\theta-s)$, and with $B_\psi$ the real $2D\times(M+2)$ matrix with columns $P\psi$ ($P\in\mathcal P_K$), $\psi$, $i\psi$, Weyl's inequality gives $\sigma_{2D}(B_{\psi_0})\ge\sigma_{2D}(B_{\hat w})-\sqrt{2(M+2)}\,\hat r/(\theta-s)$. With $\sigma_{2D}(B_{\hat w})^2=\lambda_{\min}(G_w)/w^\dagger w$, $G_w=B_wB_w^{\mathsf T}$ integer, and $\lambda_{\min}(G_w)\ge\tau'$ certified as above, the rational condition
+\[
+\frac{2(M+2)\,\hat r^2}{(\theta-s)^2}<\frac{\tau'}{w^\dagger w}\tag{D4}
+\]
+implies $\sigma_{2D}(B_{\psi_0})>0$, i.e.\ $R(K)$ at $\psi_0$.
+\end{proposition}
+\noindent The verifier checks: (D0) format (labels of weight in $[1,K]$, integer coefficients); (D1) $\theta>s$; (D2) $A\succ0$; (D3) $G_w\succeq\tau'I$; (D4). $C(c)$ and $R(j)$ certificates at the same $\psi_0$ are analogous.
+
+\paragraph*{Modular rank witnesses.} For generic $C(c)$ one point suffices. Take $v\in\{0,1\}^D$; the matrix $[Pv]_{0\le|P|\le c}$ has entries in $\ZZ[i]$. For a prime $p\equiv1\pmod4$ with $\iota^2\equiv-1$, $i\mapsto\iota$ is a ring homomorphism $\ZZ[i]\to\FF_p$; rank $D$ over $\FF_p$ implies a nonzero minor over $\ZZ[i]$. The $C(8,2)$ witness: $v_j$ is the $j$-th bit of the hexadecimal number \texttt{dbd890f0df3d6613ee49a1b9b85313a3\allowbreak10b7f09b11e6bb13a0e0677b6d4dcec4} ($\|v\|^2=132$); the $277$ columns $[v,\{Pv:1\le|P|\le2\}]$ have rank $256$ over $\FF_{1009}$ ($\iota=469$), $\FF_{1013}$, $\FF_{10009}$, and the first $256$ columns have determinant $\equiv62\pmod{1009}$. Other witnesses are listed in Table~\ref{tab:fp}. For $b=13$ the witness is $v_x=u_x\,[\mathrm{popcount}(x)\ \text{even}]$, where $u=(u_x)_{x=0}^{8191}$ is the output of \texttt{numpy.random.default\_rng(1).integers(0,2,size=8192)} (NumPy 1.26.4, PCG64); $\|v\|^2=2091$, and the SHA-256 hash of the ASCII bit string $v_0v_1\cdots v_{8191}$ is \texttt{98ffc78fa981ac03\allowbreak fdc820a9426a6af0\allowbreak 963b37188e044394\allowbreak 2cfc5ea008030050}.
+
+\begin{table}[h]
+\caption{Generic $C(b,c)$ witnesses ($v\in\{0,1\}^{2^b}$, $p=1\,000\,037$). In every row $c$ equals the counting bound for $b$ qubits.}\label{tab:fp}
+\begin{tabular}{lllll}
+\toprule
+$b$ & $c$ & columns $M_c+1$ & $\FF_p$-rank & note\\
+\midrule
+2, 3 & 1 & 7, 10 & 4, 8 & full\\
+4--8 & 2 & 67--277 & 16--256 & full\\
+9 & 3 & 2620 & 512 & full\\
+10, 11, 12 & 3 & 3676, 4984, 6571 & 1024, 2048, 4096 & $Z^{\otimes b}$-symmetric witness, two sectors\\
+13 & 3 & 8464 & $4096+4096$ & sectors $4096\times4122$ and $4096\times4342$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\caption{$S$ certificates (Theorem~\ref{thm:cert}), final verifier. ``Ratio'' is $\|E\|_\infty/(2^{2f}t)$ and must be $<1$.}\label{tab:S}
+\begin{tabular}{lllllll}
+\toprule
+$n$ & $K$ & seed & $M$ & ratio (D2) & D4: lhs $<$ rhs & $\sigma_{2D}(B_{\psi_0})\ge$\\
+\midrule
+4 & 2 & 1001 & 66 & $7.0\cdot10^{-7}$ & $1.06\cdot10^{-6}<0.193$ & 0.4388\\
+6 & 3 & 1001 & 693 & $4.1\cdot10^{-7}$ & $1.77\cdot10^{-7}<0.750$ & 0.8656\\
+8 & 3 & 1001 & 1788 & $7.4\cdot10^{-6}$ & $1.39\cdot10^{-5}<0.380$ & 0.6128\\
+8 & 3 & 1002 & 1788 & $1.0\cdot10^{-5}$ & $2.43\cdot10^{-5}<0.417$ & 0.6405\\
+8 & 3 & 1003 & 1788 & $1.3\cdot10^{-5}$ & $3.95\cdot10^{-5}<0.394$ & 0.6215\\
+10 & 4 & 1001 & 20685 & $6.8\cdot10^{-6}$ & $1.15\cdot10^{-5}<0.750$ & 0.8626\\
+12 & 4 & 1001 & 46665 & $1.5\cdot10^{-3}$ & $3.46\cdot10^{-4}<0.500$ & 0.6884\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The verifiers, their independence and their history are described in Appendix~\ref{app:ver}.
+
+\section{Where the Jones--Linden argument fails}\label{sec:JL}
+In Sec.~3 of~\cite{JL05}, each $m$-party marginal of a pure $N$-party state is purified and the environment vectors are taken as unknowns; the setup assumes $m\le N/2$ and full rank $d^m$. The number $P$ of unknowns is compared with an upper bound $C$ on the number of independent constraints, $P-C=d^{2N}-\binom Nm d^{2m}$ (their Eq.~(21)), and from $P>C$ for $m\le N/2$, $d\ge2$ it is concluded that the constraints cannot fix the parameters, hence that the state is not unique.
+
+The invalid step is the passage from an equation count to the existence of a \emph{real family of solutions}. The equations are real and quadratic in the unknowns (Gram and orthonormality conditions), and for real quadratic systems having more unknowns than equations does not exclude an isolated solution; the simplest example is $x^2+y^2=0$. What is missing is the regularity required by the count: it is not shown that the solution set is a manifold of dimension $P-C$ at the pure state, which lies on the boundary of the positive cone. (It would be inaccurate to say that the argument ignores positivity; it encodes positivity through the purification.) A secondary point is that uniqueness of parameters is not the same as uniqueness of the state, since the purification has gauge freedom. The conclusion, not only the proof, is false: Theorems~\ref{thm:main}, \ref{thm:pos} and~\ref{thm:cert}.
+
+Our literature search is summarized in Appendix~\ref{app:search}.
+
+\section{Discussion}\label{sec:disc}
+\paragraph*{Physical reading (only as far as proven).} Represent pure radiation by an $n$-qubit state. Two questions must be separated: the order of correlations needed for information-theoretic \emph{determinability}, and the total amount of data and the cost of measurement, statistics and decoding. Our results concern only the first. Haar-almost every pure $n$-qubit state is uniquely determined, against mixed alternatives as well, by the \emph{exact values} of all Pauli correlators of weight $\le K(n)\approx0.379n$, although each such marginal is nearly maximally mixed in Page's sense~\cite{Pag93a}. Page's ``half'' rule concerns individual subsystems; determinability concerns the information carried by all $K$-body marginals jointly. Nothing here bounds measurement numbers, statistical cost, robustness to noise (the spectral gap of $G$ in Lemma~\ref{lem:1} is not controlled; the qualitative robustness result of~\cite{YSCZ26} has unknown constants here) or computational cost. The count (Proposition~\ref{prop:count}) shows that at least $2^{n+1}-2$ correlators are needed; it does not imply an exponential lower bound on the time of any physical decoding task. Nothing here proves unitarity of evaporation or concerns Hawking dynamics.
+
+\paragraph*{A shorter-looking route.} A Qi--Ranard-type count~\cite{QR19} suggests that $\psi$ is an eigenvector of a nontrivial $K$-local $H$ with real coefficients with $K\approx\kc n$, and the $(H-E)^2$ trick of~\cite{CJWZ12} would move this to $2K$-UDA; the missing piece is non-degeneracy, which~\cite{CJWZ12} assumes. The commutant argument of Lemma~\ref{lem:1} supplies exactly this piece. We did not find this route in the literature and do not prove it here.
+
+\paragraph*{Open problems.}
+(1) \emph{The factor of 2:} does $K=\kc n+O(\log n)$ suffice for almost every state? Our covering construction already attains the sphere-covering bound to leading order (a Lagrangian $S$ has $|S|=2^n$, so its covering radius $\rho$ satisfies $B_n(\rho)\ge2^n$). The factor of two enters when complex spanning is converted into a positive certificate in Lemma~\ref{lem:1}. Reaching the counting coefficient for the measure-one threshold therefore requires a stronger certificate construction or a different argument; improving the covering radius alone cannot remove this factor within the present construction. Conversely, by Proposition~\ref{prop:rel}(ii), a bound $\Ko(n)\le\kc n+O(\log n)$ would imply $u(n)\le\kc n+O(\log n)$, hence an upper bound on the minimum distance of self-dual additive codes; we do not discuss the status of that coding question here.
+(2) \emph{Small and intermediate $n$:} the measure-one threshold for $n<83$.
+(3) Explicit radii of the open sets of Theorems~\ref{thm:pos} and~\ref{thm:cert}; the inputs ($\sigma_{\min}(B_{\psi_0})$ and the gap) are in the certificates.
+(4) $\Kp(5)$ and $\Kp(6)$: is $K=2$ enough?
+(5) Is $\Ko(n)=u(n)+1$ for small $n$?
+(6) Stability constants: the spectral gap of $G$.
+(7) An independent verifier in another language for the computer-assisted parts.
+(8) Qudits.
+
+\paragraph*{Data availability.} Certificate files, verification scripts, finite-field witnesses and the dynamic-programming outputs are available at \url{https://github.com/berketez/uda-fewer-than-half} (directory \texttt{verification/}, package \texttt{uda-verification} 1.0.0).
+
+\paragraph*{Statement on the use of AI.} This work was carried out with extensive use of AI systems. The derivations, proofs, exact certificates, verification code and the text of this paper were produced by AI agents (Anthropic Claude Opus models and OpenAI Codex/GPT models) directed by the author, who chose the problem, organized the work and the cross-checks, and takes responsibility for the manuscript. The proofs were checked by several independent AI readings from two different model families, and the computer-assisted parts by exact-arithmetic verifiers; \textbf{no human expert has yet checked the proofs}. We would be grateful for any such check.
+
+\appendix
+\section{Literature search}\label{app:search}
+Crossref (no update or correction relation for~\cite{JL05}; ``comment on'' searches empty), arXiv (only v1 of~\cite{JL05}; date-sorted queries to November 2026), OpenAlex (titles of the 60 works citing~\cite{JL05} and 81 citing~\cite{LW02}), Semantic Scholar (58 citation contexts of~\cite{JL05}, none questioning the lower bound), INSPIRE (forward citations of~\cite{SC23,JL05,HG16,KJTV19,WHG17,ZSZ24}), and full texts including~\cite{Wyd20,Hub17,CDJJKSZ13,YSCZ26}. None contained a measure-one bound below one half or an asymptotic narrowing of the window of~\cite{LW02}. These are statements about our search, not claims of absence; the algebraic-geometry literature was not searched in depth.
+
+
+\section{Verifiers}\label{app:ver}
+Two independent verifiers exist for $S$ certificates up to $n=8$ (the second uses explicit Kronecker products and, for $n\le6$, Bareiss elimination without any Cholesky hint), and two for $C$ certificates; $R$ certificates have one verifier sharing its core with the $C$ verifier. The second $S$ verifier is a cross-check of the certificates rather than a hardened verifier: unlike the final verifier it does not check all int64 overflow bounds, so it is not protected against adversarially constructed input. Corrupted certificates (8 corruptions for $S$; 12 corruptions for each $C$ verifier, including two overflow attacks) were all rejected. Two overflow gaps in the int64 arithmetic were found during the work and fixed: a missing precondition on $X-tI$ (no false acceptance was ever constructed) and the computation of $p=z^\dagger z$, for which an artificial certificate accepted by the earlier version was constructed; the current version rejects it, and all real certificates re-pass with digit-identical numbers. Remaining weak points: all verifiers were written within a single AI-assisted workflow, in one language; the second $S$ verifier does not cover $n=10,12$; exactness of numpy int64 matrix products in the absence of overflow is assumed; the $\FF_p$ witnesses use one elimination code (cross-checked against a second implementation and an independent determinant). An independent verifier in another language (e.g.\ FLINT) would close these points.
+
+
+\section{Dynamic-programming values}\label{app:dp}
+Upper bounds on $\Kp(n)$ from the dynamic programming of Theorem~\ref{thm:pos}(ii) (all exact blocks and the $\FF_p$ witnesses with $b\le13$), together with $\lfloor n/2\rfloor$ and the counting lower bound $\Kc(n)$. Where the bound equals $\Kc(n)$, $\Kp(n)$ is determined exactly; in this range this happens for $n\in\{1,3,4,7,8,9,12,13,14,17,18,19,22,23\}$. The maxima of $13K(s)-3s$ are $24$ on $s\in[1,13]$ (at $s=5$) and $20$ on $s\in[14,26]$ (at $s=15$).
+
+\begin{center}
+\begin{tabular}{lccccccccccccc}
+\toprule
+$n$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13\\
+\midrule
+$\lfloor n/2\rfloor$ & 0 & 1 & 1 & 2 & 2 & 3 & 3 & 4 & 4 & 5 & 5 & 6 & 6\\
+$\Kc(n)$ & 1 & 1 & 2 & 2 & 2 & 2 & 3 & 3 & 3 & 3 & 3 & 4 & 4\\
+bound on $\Kp(n)$ & 1 & 2 & 2 & 2 & 3 & 3 & 3 & 3 & 3 & 4 & 4 & 4 & 4\\
+\bottomrule
+\end{tabular}
+
+\medskip
+\begin{tabular}{lccccccccccccc}
+\toprule
+$n$ & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26\\
+\midrule
+$\lfloor n/2\rfloor$ & 7 & 7 & 8 & 8 & 9 & 9 & 10 & 10 & 11 & 11 & 12 & 12 & 13\\
+$\Kc(n)$ & 4 & 4 & 4 & 5 & 5 & 5 & 5 & 5 & 6 & 6 & 6 & 6 & 6\\
+bound on $\Kp(n)$ & 4 & 5 & 5 & 5 & 5 & 5 & 6 & 6 & 6 & 6 & 7 & 7 & 7\\
+\bottomrule
+\end{tabular}
+
+\medskip
+\end{center}
+
+\begin{thebibliography}{99}
+\bibitem{BDH06} T. Brun, I. Devetak, M.-H. Hsieh, Correcting quantum errors with entanglement, Science \textbf{314}, 436 (2006), arXiv:quant-ph/0610092.
+\bibitem{CDJJKSZ13} J. Chen, H. Dawkins, Z. Ji, N. Johnston, D. Kribs, F. Shultz, B. Zeng, Uniqueness of quantum states compatible with given measurement results, Phys. Rev. A \textbf{88}, 012109 (2013), arXiv:1212.3503.
+\bibitem{CJWZ12} J. Chen, Z. Ji, Z. Wei, B. Zeng, Correlations in excited states of local Hamiltonians, Phys. Rev. A \textbf{85}, 040303 (2012), arXiv:1106.1373.
+\bibitem{CRSS98} A. R. Calderbank, E. M. Rains, P. W. Shor, N. J. A. Sloane, Quantum error correction via codes over GF(4), IEEE Trans. Inf. Theory \textbf{44}, 1369 (1998), arXiv:quant-ph/9608006.
+\bibitem{GST18} M. Greiter, V. Schnells, R. Thomale, Method to identify parent Hamiltonians for trial states, Phys. Rev. B \textbf{98}, 081113 (2018), arXiv:1802.07827.
+\bibitem{HCLZ18} S. Huang, J. Chen, Y. Li, B. Zeng, Quantum state tomography for generic pure states, Sci. China Phys. Mech. Astron. \textbf{61}, 110311 (2018), arXiv:1711.10878.
+\bibitem{HG16} F. Huber, O. Gühne, Characterizing ground and thermal states of few-body Hamiltonians, Phys. Rev. Lett. \textbf{117}, 010403 (2016), arXiv:1601.01630.
+\bibitem{Hub17} F. M. Huber, Quantum states and their marginals: from multipartite entanglement to quantum error-correcting codes, PhD thesis, Universität Siegen (2017).
+\bibitem{JL05} N. S. Jones, N. Linden, Parts of quantum states, Phys. Rev. A \textbf{71}, 012324 (2005), arXiv:quant-ph/0407117.
+\bibitem{KJTV17} S. Karuvade, P. D. Johnson, F. Ticozzi, L. Viola, Generic pure quantum states as steady states of quasi-local dissipative dynamics, J. Phys. A \textbf{51}, 145304 (2018), arXiv:1711.11142.
+\bibitem{KJTV19} S. Karuvade, P. D. Johnson, F. Ticozzi, L. Viola, Uniquely determined pure quantum states need not be unique ground states of quasi-local Hamiltonians, Phys. Rev. A \textbf{99}, 062104 (2019), arXiv:1902.09481.
+\bibitem{LPW02} N. Linden, S. Popescu, W. K. Wootters, Almost every pure state of three qubits is completely determined by its two-particle reduced density matrices, Phys. Rev. Lett. \textbf{89}, 207901 (2002), arXiv:quant-ph/0207109.
+\bibitem{LW02} N. Linden, W. K. Wootters, The parts determine the whole in a generic pure quantum state, Phys. Rev. Lett. \textbf{89}, 277906 (2002), arXiv:quant-ph/0208093.
+\bibitem{Pag93a} D. N. Page, Average entropy of a subsystem, Phys. Rev. Lett. \textbf{71}, 1291 (1993), arXiv:gr-qc/9305007.
+\bibitem{Pag93b} D. N. Page, Information in black hole radiation, Phys. Rev. Lett. \textbf{71}, 3743 (1993), arXiv:hep-th/9306083.
+\bibitem{QCLC25} X. Qiu, L. Chen, G. Li, D. Chu, Mixed states uniquely determined by marginals and additivity, IEEE Trans. Inf. Theory (2026), DOI 10.1109/TIT.2026.3699321, arXiv:2512.20133.
+\bibitem{QR19} X.-L. Qi, D. Ranard, Determining a local Hamiltonian from a single eigenstate, Quantum \textbf{3}, 159 (2019), arXiv:1712.01850.
+\bibitem{SC23} Y. Shen, L. Chen, The additivity of states uniquely determined by marginals, Phys. Rev. A \textbf{108}, 062418 (2023), arXiv:2308.11089.
+\bibitem{Scott04} A. J. Scott, Multipartite entanglement, quantum-error-correcting codes, and entangling power of quantum evolutions, Phys. Rev. A \textbf{69}, 052330 (2004), arXiv:quant-ph/0310137.
+\bibitem{UG22} D. Uzcátegui Contreras, D. Goyeneche, Reconstructing the whole from its parts, arXiv:2209.14154.
+\bibitem{Wu15} X. Wu, Y.-H. Yang, Y.-K. Wang, Q.-Y. Wen, S.-J. Qin, F. Gao, Determination of stabilizer states, Phys. Rev. A \textbf{92}, 012305 (2015), arXiv:1503.05421.
+\bibitem{MS77} F. J. MacWilliams, N. J. A. Sloane, \emph{The Theory of Error-Correcting Codes} (North-Holland, Amsterdam, 1977).
+\bibitem{WHG17} N. Wyderka, F. Huber, O. Gühne, Almost all four-particle pure states are determined by their two-body marginals, Phys. Rev. A \textbf{96}, 010102(R) (2017), arXiv:1703.10950.
+\bibitem{Wyd20} N. Wyderka, Learning from correlations: what parts of quantum states tell about the whole, PhD thesis, Universität Siegen (2020), DOI 10.25819/ubsi/2620.
+\bibitem{YSCZ26} W. Yu, F. Shi, G. Chiribella, Q. Zhao, Quantum state determinability from local marginals is universally robust, arXiv:2604.05508 (v2, October 2026).
+\bibitem{ZSZ24} W. Zhang, F. Shi, X. Zhang, Almost all even-particle pure states are determined by their half-body marginals, J. Phys. A \textbf{57}, 495302 (2024), arXiv:2401.07499.
+\end{thebibliography}
+
+\end{document}

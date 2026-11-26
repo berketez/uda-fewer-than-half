@@ -1,0 +1,4 @@
+[a] n in [700,1660] (integer (*))
+    n with K >= n/2 (>=120): []; total 0
+    n with K > ceil(0.4n) (>=980): [980, 985, 990, 995]; total 255
+    number of n where the floating-point hint had to be corrected in integers: 0
