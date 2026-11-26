@@ -26,9 +26,9 @@ $n \ge 139$, and $\lceil 0.4n \rceil$-body marginals suffice for every $n \ge 99
 unique ground state, with energy zero, of a positive semidefinite $K(n)$-local Hamiltonian. The proof combines Pauli
 spanning, the covering radius of stabilizer states, and polynomial genericity.
 
-For the smallest $K$ at which UDA states form a set of positive measure we show $K^*_+(n) = \kappa_c n + O(\log n)$,
+For the smallest $K$ at which UDA states form a set of positive measure we show $`K^{\ast}_{+}(n) = \kappa_c n + O(\log n)`$,
 so the leading coefficient of this threshold equals the parameter-counting coefficient of Linden and Wootters (2002);
-explicitly $\kappa_c n < K^*_+(n) \le (3n+24)/13$ for every $n$. For $(n,K) = (8,3), (10,4), (12,4)$ we give open
+explicitly $`\kappa_c n \lt K^{\ast}_{+}(n) \le (3n+24)/13`$ for every $n$. For $(n,K) = (8,3), (10,4), (12,4)$ we give open
 sets of UDA states whose certificates are verified by exact integer and rational inequalities.
 
 Consequently, for qubits the Jones–Linden lower-bound statement fails for every $N \ge 7$, and for every $N \ge 139$
@@ -44,8 +44,8 @@ which does not follow (the simplest counterexample is $x^2 + y^2 = 0$).
 | | $K(n) = \lceil n/2 \rceil - 1$ (fewer than half) for every $n \ge 139$ | |
 | | $K(n) = \lceil 0.4n \rceil$ for every $n \ge 996$ | |
 | | $K(n) = \lceil 2\kappa_c n + 4\log_2 n \rceil$ for every $n \ge 274$ | |
-| **Theorem 2** (positive measure) | $K^*_+(n) = \kappa_c n + O(\log n)$; $\ \kappa_c n < K^*_+(n) \le (3n+24)/13$ for all $n$ | analytic proof + gluing of exact certificates |
-| **Theorem 3** (finite certificates) | open sets of UDA states at $(n,K) = (8,3), (10,4), (12,4)$ with $K < n/2$, and $(4,2), (6,3)$ with $K = n/2$ | computer-assisted; every final verdict is an exact integer or rational inequality |
+| **Theorem 2** (positive measure) | $`K^{\ast}_{+}(n) = \kappa_c n + O(\log n)`$; $`\ \kappa_c n \lt K^{\ast}_{+}(n) \le (3n+24)/13`$ for all $n$ | analytic proof + gluing of exact certificates |
+| **Theorem 3** (finite certificates) | open sets of UDA states at $(n,K) = (8,3), (10,4), (12,4)$ with $K \lt  n/2$, and $(4,2), (6,3)$ with $K = n/2$ | computer-assisted; every final verdict is an exact integer or rational inequality |
 | **Correction** | the Jones–Linden lower bound fails for qubits for every $N \ge 7$ (positive measure) and every $N \ge 139$ (measure one) | Theorems 1–3; Sec. "Where the Jones–Linden argument fails" |
 
 ## What we do not claim
@@ -90,7 +90,7 @@ Building the papers: `pdflatex` three times on each `.tex` file (no BibTeX neede
 ## Motivation
 
 We arrived at this question from the black-hole information problem. If evaporation is unitary the final radiation
-is pure, and a Haar-typical pure state looks maximally mixed on every subsystem holding a fixed fraction $\alpha < 1/2$
+is pure, and a Haar-typical pure state looks maximally mixed on every subsystem holding a fixed fraction $\alpha \lt  1/2$
 of the qubits (Page). One may then ask at which order of correlations the information is written: not in any single
 small subsystem, but in all $K$-body marginals *jointly*. The results themselves belong to quantum information theory.
 
@@ -140,7 +140,7 @@ O(\log n) \approx 0{,}379\,n$ cisim marjinalleriyle UDA'dır.** Burada $\kappa_c
 marjinaller, her $n \ge 996$ için $\lceil 0{,}4n \rceil$ cisim marjinalleri yeter. Böyle bir durum ayrıca pozitif yarı
 tanımlı, $K(n)$-yerel bir Hamiltonyenin enerjisi sıfır olan tek temel durumudur.
 
-Pozitif ölçülü eşik için $K^*_+(n) = \kappa_c n + O(\log n)$ gösteriyoruz; bu eşiğin baş katsayısı Linden–Wootters
+Pozitif ölçülü eşik için $`K^{\ast}_{+}(n) = \kappa_c n + O(\log n)`$ gösteriyoruz; bu eşiğin baş katsayısı Linden–Wootters
 (2002) parametre sayımının katsayısına eşittir. $(8,3)$, $(10,4)$ ve $(12,4)$ için nihai doğrulaması tam sayı ve
 rasyonel eşitsizliklere dayanan açık UDA kümeleri veriyoruz. Sonuç olarak Jones–Linden alt sınırı qubitlerde her
 $N \ge 7$ için yanlıştır; her $N \ge 139$ için tersi hemen her durumda doğrudur. Üst sınırları etkilenmez. Hatalı
